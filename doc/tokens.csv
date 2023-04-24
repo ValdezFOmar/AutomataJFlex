@@ -1,0 +1,64 @@
+Token,Expresion Regular,Lexemas,
+Identifier,[a-zA-Z][a-zA-Z0-9_]*,Infinitos
+Number,"(0|([1-9][0-9]*))("".""[0-9]+)?",Infinitos
+Comparison,<|>|==|!=|<=|>=,"<,>,==,!=,<=,>="
+Arithmetic,+|-|*|/|**|//|%|++|--,"+,-,*,/,**,//,%,++,--"
+Assignment,=|+=|-=|*=|/=|**=|//=|%=|&=||=|^=|>>=|<<=,"=,+=,-=,*=,/=,**=,//=,%=,&=,|=,^=,>>=,<<="
+Logical,&&||||!|and|or|not|?|??|AndAlso,"&&,||,!,and,or,not,?,??,AndAlso"
+Identity,is|is not,"is,is not"
+Instance,instanceof,instanceof
+Membership,in|not in,"in,not in"
+Bitwise,&|||^|~|<<|>>,"&,|,^,~,<<,>>"
+Boolean,([Tt]rue)|([Ff]alse),"True,true,False,false"
+Null,[Nn]ull|None,"Null,null,None"
+String,"\""[^\'\""]*\""",Infinitos
+Character,"\'[^\'\""\\]?\'",Infinitos
+Loop,for|foreach|while|do|Each,"for,foreach,while,do,Each"
+DataType,int|int8|int16|int32|int64|string|boolean|float|decimal|date|char|byte|var|complex|long|short|double|time,"int,int8,int16,int32,int64,string,boolean,float,decimal,date,char,byte,var,complex,long,short,double,time"
+Conditional,if|elif|switch|case|ALL|ANY|EXISTS|HAVING|LIKE|WHERE,"if,elif,switch,case,ALL,ANY,EXISTS,HAVING,LIKE,WHERE"
+Consequence,else|finally,"else,finally"
+Function,def|void|lambda|PROCEDURE,"def,void,lambda,PROCEDURE"
+Execute,EXEC|Call,"EXEC,Call"
+Try,try|assert|with,"try,assert,with"
+Exception,throw|raise|catch|except,"throw,raise,catch,except"
+Comment,/*|*/|#|TODO|FIXME,"/*,*/,#,TODO,FIXME"
+AccesMod,nonlocal|global|public|private|protected|default,"nonlocal,global,public,private,protected,default"
+NonAccesMod,const|final|abstract|static|transient|synchronized|volatile,"const,final,abstract,static,transient,synchronized,volatile"
+Separator,"(|)|{|}|[|]|;|,|.|:",",,(,),{,},[,],;,.,:"
+Class,class|super,"class,super"
+Interface,interface,interface
+Enum,enum,enum
+Inherited,extends|implements,"extends,implements"
+Break,break,break
+Continue,continue,continue
+Pass,pass,pass
+Importing,import|from|requires|native,"import,from,requires,native"
+Return,return|yield," return,yield"
+Create,new|CREATE,"new,CREATE"
+Delete,del|DELETE|DROP|TRUNCATE,"del,DELETE,DROP,TRUNCATE"
+Reference,this|self|throws|AddressOf|Delegate,"this,self,throws,AddressOf,Delegate"
+Alias,as|Alias,"as,Alias"
+Asynchronous,await|async,"await,async"
+Package,package,package
+Print,print,print
+Handler,AddHandler,AddHandler
+Modifier,ByRef|ByVal|strictfp,"ByRef,ByVal,strictfp"
+Storage,Dim,Dim
+Cast,DirectCast,DirectCast
+Add,ADD|ADD CONSTRAINT,"ADD,ADD CONSTRAINT"
+Constraint,CHECK|CONSTRAINT|FOREIGN KEY|PRIMARY KEY|UNIQUE,"CHECK,CONSTRAINT,FOREIGN KEY,PRIMARY KEY,UNIQUE"
+Alter,ALTER,ALTER
+Insert,INSERT|INTO|VALUES,"INSERT,INTO,VALUES"
+Sort,ASC|DESC|GROUP BY|ORDER BY,"ASC,DESC,GROUP BY,ORDER BY"
+Backup,BACKUP,BACKUP
+Range,BETWEEN,BETWEEN
+View,VIEW,VIEW
+Column,COLUMN,COLUMN
+Table,TABLE,TABLE
+Database,DATABASE,DATABASE
+Select,SELECT,SELECT
+Join,JOIN|FULL OUTER JOIN|INNER JOIN|LEFT JOIN|OUTER JOIN|RIGHT JOIN,"JOIN,FULL OUTER JOIN,INNER JOIN,LEFT JOIN,OUTER JOIN,RIGHT JOIN"
+Index,INDEX,INDEX
+Limit,LIMIT|ROWNUM|TOP|DISTINCT,"LIMIT,ROWNUM,TOP,DISTINCT"
+Update,UPDATE|SET,"UPDATE,SET"
+Union,UNION|UNION ALL,"UNION,UNION ALL"

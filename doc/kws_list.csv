@@ -1,0 +1,205 @@
+Expresion Regular,Token,Lenguaje
+[a-zA-Z][a-zA-Z0-9_]*,Identifier,Python
+"(0|([1-9][0-9]*))("".""[0-9]+)?",Number,Python
+<,Comparision,Python
+>,Comparision,Python
+==,Comparision,Python
+!=,Comparision,Python
+<=,Comparision,Python
+>=,Comparision,Python
++,Arithmetic,Python
+-,Arithmetic,Python
+*,Arithmetic,Python
+/,Arithmetic,Python
+**,Arithmetic,Python
+%,Arithmetic,Python
+for,Loop,Python
+foreach,Loop,Java
+while,Loop,Python
+int,DataType,Python
+int8,DataType,Go
+int16,DataType,Go
+int32,DataType,Go
+int64,DataType,Go
+string,DataType,Java
+boolean,DataType,Java
+float,DataType,Java
+decimal,DataType,Java
+date,DataType,SQL
+if,Conditional,Python
+else,Consequence,Python
+def,Function,Python
+True,Boolean,Python
+False,Boolean,Python
+class,Class,Python
+break,Breack,Python
+switch,Conditional,Java
+elif,Conditional,Python
+import,Importing,Python
+from,Importing,Python
+return,Return,Python
+try,Try,Python
+catch,Exception,Java
+++,Arithmetic,Java
+--,Arithmetic,Java
+=,Assignment,Python
++=,Assignment,Python
+-=,Assignment,Python
+*=,Assignment,Python
+/=,Assignment,Python
+/*,Comment,Java
+*/,Comment,Java
+//,Arithmetic,Python
+finally,Consequence,Python
+except,Exception,Python
+&&,Logical,Java
+||,Logical,Java
+and,Logical,Python
+or,Logical,Python
+case,Conditional,Java
+default,AccesMod,Java
+void,Function,Java
+public,AccesMod,Java
+private,AccesMod,Java
+char,DataType,Java
+byte,DataType,Java
+(,Separator,Java
+),Separator,Java
+{,Separator,Java
+},Separator,Java
+[,Separator,Java
+],Separator,Java
+"""String""",String,Java
+'C',Character,Java
+static,NonAccesMod,Java
+var,DataType,Java
+null,Null,Java
+%=,Assignment,Python
+not,Logical,Python
+is,Identity,Python
+is not,Identity,Python
+in,Membership,Python
+not in,Membership,Python
+;,Separator,Java
+",",Separator,Python
+.,Separator,Python
+const,NonAccesMod,Java
+do,Loop,Java
+&,Bitwise,Python
+|,Bitwise,Python
+^,Bitwise,Python
+~,Bitwise,Python
+<<,Bitwise,Python
+>>,Bitwise,Python
+&=,Assignment,Python
+|=,Assignment,Python
+^=,Assignment,Python
+>>=,Assignment,Python
+<<=,Assignment,Python
+**=,Assignment,Python
+lambda,Function,Python
+:,Separator,Python
+complex,DataType,Python
+!,Logical,Python
+continue,Continue,Python
+protected,AccesMod,Java
+final,NonAccesMod,Java
+abstract,NonAccesMod,Java
+transient,NonAccesMod,Java
+synchronized,NonAccesMod,Java
+volatile,NonAccesMod,Java
+extends,Inherited,Java
+instanceof,Instance,Java
+requires,Importing,Java
+new,Create,Java
+this,Reference,Java
+throw,Exception,Python
+throws,Reference,Python
+interface,Interface,Java
+implements,Inherited,Java
+as,Alias,Python
+del,Delete,Python
+global,AccesMod,Python
+pass,Pass,Python
+nonlocal,AccesMod,Python
+raise,Exception,Python
+'#',Comment,Python
+//=,Assignment,Python
+ADD,Add,SQL
+ADD CONSTRAINT,Add,SQL
+ALL,Conditional,SQL
+ANY,Conditional,SQL
+ALTER,Alter,SQL
+ASC,Sort,SQL
+BACKUP,Backup,SQL
+BETWEEN,Range,SQL
+CHECK,Constraint,SQL
+COLUMN,Column,SQL
+CONSTRAINT,Constraint,SQL
+CREATE,Create,SQL
+DATABASE,Database,SQL
+DELETE,Delete,SQL
+DESC,Sort,SQL
+DISTINCT,Limit,SQL
+DROP,Delete,SQL
+EXEC,Execute,SQL
+EXISTS,Conditional,SQL
+FULL OUTER JOIN,Join,SQL
+HAVING,Conditional,SQL
+INDEX,Index,SQL
+INNER JOIN,Join,SQL
+INSERT,Join,SQL
+JOIN,Join,SQL
+LEFT JOIN,Join,SQL
+LIKE,Conditional,SQL
+ORDER BY,Sort,SQL
+OUTER JOIN,Join,SQL
+PRIMARY KEY,Constraint,SQL
+PROCEDURE,Function,SQL
+RIGHT JOIN,Join,SQL
+ROWNUM,Limit,SQL
+SELECT,Select,SQL
+INTO,Insert,SQL
+TOP,Limit,SQL
+SET,Update,SQL
+TABLE,Table,SQL
+TRUNCATE,Delete,SQL
+UNION,Union,SQL
+UNION ALL,Union,SQL
+UNIQUE,Constraint,SQL
+UPDATE,Update,SQL
+VALUES,Insert,SQL
+VIEW,View,SQL
+WHERE,Conditional,SQL
+enum,Enum,SQL
+?,Logical,SQL
+??,Logical,SQL
+yield,Return,SQL
+async,Asynchronous,SQL
+await,Asynchronous,SQL
+self,Reference,SQL
+TODO,Comment,SQL
+FIXME,Comment,SQL
+long,DataType,Java
+short,DataType,Java
+double,DataType,Java
+native,Importing,Java
+super,Class,Python
+package,Package,Java
+strictfp,Modifier,Java
+print,Print,Python
+time,DataType,SQL
+assert,Try,Python
+None,Null,Python
+with,Try,Python
+AddHandler,Handler,Visual Basic
+AddressOf,Reference,Visual Basic
+Alias,Alias,Visual Basic
+AndAlso,Logical,Visual Basic
+ByRef,Modifier,Visual Basic
+ByVal,Modifier,Visual Basic
+Call,Execute,Visual Basic
+Delegate,Delegate,Visual Basic
+Dim,Storage,Visual Basic
+DirectCast,Cast,Visual Basic
+Each,Loop,Visual Basic
