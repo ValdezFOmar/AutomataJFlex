@@ -8,8 +8,6 @@
 // import java.util.Arrays;
 
 /*TODO.
-  - Finish the .csv file
-  - Add the identifier token
   - Change the return values
    - Return the lexema found if the token has more than one lexema
    - Return the nothing if the token has only one lexema
@@ -1181,6 +1179,7 @@ class lexer {
     
     System.out.printf("----------------------------------------\n");
     System.out.printf("Numero total de palabras: %d.\n",keywords);
+    System.out.printf("----------------------------------------\n");
     }
   }
 

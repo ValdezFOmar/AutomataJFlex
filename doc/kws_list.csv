@@ -32,7 +32,7 @@ def,Function,Python
 True,Boolean,Python
 False,Boolean,Python
 class,Class,Python
-break,Breack,Python
+break,Break,Python
 switch,Conditional,Java
 elif,Conditional,Python
 import,Importing,Python
@@ -72,7 +72,7 @@ byte,DataType,Java
 """String""",String,Java
 'C',Character,Java
 static,NonAccesMod,Java
-var,DataType,Java
+var,Variable,Java
 null,Null,Java
 %=,Assignment,Python
 not,Logical,Python
@@ -184,7 +184,7 @@ long,DataType,Java
 short,DataType,Java
 double,DataType,Java
 native,Importing,Java
-super,Class,Python
+super,Parent,Python
 package,Package,Java
 strictfp,Modifier,Java
 print,Print,Python
@@ -203,3 +203,41 @@ Delegate,Delegate,Visual Basic
 Dim,Storage,Visual Basic
 DirectCast,Cast,Visual Basic
 Each,Loop,Visual Basic
+CBool,Cast,Visual Basic
+CByte,Cast,Visual Basic
+CChar,Cast,Visual Basic
+CDate,Cast,Visual Basic
+CDbl,Cast,Visual Basic
+CDec,Cast,Visual Basic
+CInt,Cast,Visual Basic
+CLng,Cast,Visual Basic
+CObj,Cast,Visual Basic
+CSByte,Cast,Visual Basic
+CShort,Cast,Visual Basic
+CSng,Cast,Visual Basic
+CStr,Cast,Visual Basic
+CUInt,Cast,Visual Basic
+CULng,Cast,Visual Basic
+CUShort,Cast,Visual Basic
+End,Break,Visual Basic
+Erase,Delete,Visual Basic
+Error,Exception,Visual Basic
+Event,Event,Visual Basic
+Exit,Break,Visual Basic
+Friend,Modifier,Visual Basic
+Get,Get,Visual Basic
+GetType,Get,Visual Basic
+GetXmlNamespace,Get,Visual Basic
+GoTo,GoTo,Visual Basic
+Handles,Handler,Visual Basic
+Let,Variable,Visual Basic
+Lib,Reference,Visual Basic
+Me,Reference,Visual Basic
+Mod,Arithmetic,Visual Basic
+Module,Module,Visual Basic
+MustInherit,NonAccesMod,Visual Basic
+MustOverride,NonAccesMod,Visual Basic
+MyBase,Parent,Visual Basic
+MyClass,Reference,Visual Basic
+NameOf,Get,Visual Basic
+Namespace,Namespace,Visual Basic

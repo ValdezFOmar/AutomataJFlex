@@ -15,13 +15,21 @@ Execute java class:
 java -cp bin lexer input.txt
 ```
 
-# Keywords
-Current number of keywords = `202`
+# Count
+Current number of keywords = `241`
 
 Total number of keywords = `300`
 
 # Resources
-Check Visual Basic Keywords (Add all the casting types).
+<!--- 
+## Packages/Libs
+TODO. Add this info
+--->
+
+## Keywords
+<!---
+Check Visual Basic Keywords (Last one was Namespace). Also consider adding Data Structures.
+--->
 
 - COBOL
 - GO

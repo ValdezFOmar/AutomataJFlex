@@ -18,7 +18,6 @@
 %column
 %unicode
 // %cup
-// %debug
 
 // Code for varibles and functions
 %{
@@ -47,7 +46,7 @@ Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
 // Operators
 Comparison = "<"|">"|"=="|"!="|"<="|">="
-Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"
+Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod"
 Assignment = "="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<="
 Logical = "&&"|"||"|"!"|"and"|"or"|"not"|"?"|"??"|"AndAlso"
 Identity = "is"|"is not"
@@ -64,39 +63,46 @@ Number = (0|([1-9][0-9]*))("."[0-9]+)?
 
 // Keywords
 Loop = "for"|"foreach"|"while"|"do"|"Each"
-DataType = "int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|"float"|"decimal"|"date"|"char"|"byte"|"var"|"complex"|"long"|"short"|"double"|"time"
+DataType = "int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|"float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|"short"|"double"|"time"
+Variable = "var"|"Let"
 Conditional = "if"|"elif"|"switch"|"case"|"ALL"|"ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
 Consequence = "else"|"finally"
 Function = "def"|"void"|"lambda"|"PROCEDURE"
 Execute = "EXEC"|"Call"
 Try = "try"|"assert"|"with"
-Exception = "throw"|"raise"|"catch"|"except"
+Exception = "throw"|"raise"|"catch"|"except"|"Error"
 Comment = "/*"|"*/"|"#"|"TODO"|"FIXME"
 AccesMod = "nonlocal"|"global"|"public"|"private"|"protected"|"default"
-NonAccesMod = "const"|"final"|"abstract"|"static"|"transient"|"synchronized"|"volatile"
+NonAccesMod = "const"|"final"|"abstract"|"static"|"transient"|"synchronized"|"volatile"|"MustInherit"|"MustOverride"
 Separator = "("|")"|"{"|"}"|"["|"]"|";"|","|"."|":"
-Class = "class"|"super"
+Class = "class"
+Parent = "super"|"MyBase"
 Interface = "interface"
 Enum = "enum"
 Inherited = "extends"|"implements"
-Break = "break"
+Break = "break"|"End"|"Exit"
 Continue = "continue"
 Pass = "pass"
 Importing = "import"|"from"|"requires"|"native"
 Return = "return"|"yield"
 Create = "new"|"CREATE"
-Delete = "del"|"DELETE"|"DROP"|"TRUNCATE"
-Reference = "this"|"self"|"throws"|"AddressOf"|"Delegate"
+Delete = "del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"
+Reference = "this"|"self"|"throws"|"AddressOf"|"Delegate"|"Lib"|"Me"|"MyClass"
 Alias = "as"|"Alias"
 Asynchronous = "await"|"async"
 Package = "package"
 Print = "print"
 
 // VisualBasic
-Handler = "AddHandler"
-Modifier = "ByRef"|"ByVal"|"strictfp"
+Handler = "AddHandler"|"Handles"
+Modifier = "ByRef"|"ByVal"|"strictfp"|"Friend"
 Storage = "Dim"
-Cast = "DirectCast"
+Cast = "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|"CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|"CUShort"
+Event = "Event"
+Get = "Get"|"GetType"|"GetXmlNamespace"|"NameOf"
+GoTo = "GoTo"
+Module = "Module"
+Namespace = "Namespace"
 
 // SQL Keywords
 Add = "ADD"|"ADD CONSTRAINT"
@@ -135,6 +141,7 @@ Union = "UNION"|"UNION ALL"
 
 {Loop}          {printResult("Iterador", yytext(), yyline, yycolumn);}
 {DataType}      {printResult("Tipo de dato", yytext(), yyline, yycolumn);}
+{Variable}      {printResult("Variable", yytext(), yyline, yycolumn);}
 {Conditional}   {printResult("Condicional", yytext(), yyline, yycolumn);}
 {Consequence}   {printResult("Consequencia", yytext(), yyline, yycolumn);}
 {Function}      {printResult("Funcion", yytext(), yyline, yycolumn);}
@@ -166,6 +173,7 @@ Union = "UNION"|"UNION ALL"
 {Modifier}      {printResult("Modificador", yytext(), yyline, yycolumn);}
 {Storage}       {printResult("Almacenamiento", yytext(), yyline, yycolumn);}
 {Cast}          {printResult("Cast", yytext(), yyline, yycolumn);}
+{Event}         {printResult("Evento", yytext(), yyline, yycolumn);}
 
 {Add}           {printResult("Añadir", yytext(), yyline, yycolumn);}
 {Constraint}    {printResult("Restriccion", yytext(), yyline, yycolumn);}

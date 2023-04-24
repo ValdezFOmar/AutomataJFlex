@@ -1,64 +1,71 @@
-Token,Expresion Regular,Lexemas,
-Identifier,[a-zA-Z][a-zA-Z0-9_]*,Infinitos
-Number,"(0|([1-9][0-9]*))("".""[0-9]+)?",Infinitos
-Comparison,<|>|==|!=|<=|>=,"<,>,==,!=,<=,>="
-Arithmetic,+|-|*|/|**|//|%|++|--,"+,-,*,/,**,//,%,++,--"
+Token,Expresion Regular,Lexemas
+AccesMod,nonlocal|global|public|private|protected|default,"nonlocal,global,public,private,protected,default"
+Add,ADD|ADD CONSTRAINT,"ADD,ADD CONSTRAINT"
+Alias,as|Alias,"as,Alias"
+Alter,ALTER,ALTER
+Arithmetic,+|-|*|/|**|//|%|++|--|Mod,"+,-,*,/,**,//,%,++,--,Mod"
 Assignment,=|+=|-=|*=|/=|**=|//=|%=|&=||=|^=|>>=|<<=,"=,+=,-=,*=,/=,**=,//=,%=,&=,|=,^=,>>=,<<="
-Logical,&&||||!|and|or|not|?|??|AndAlso,"&&,||,!,and,or,not,?,??,AndAlso"
-Identity,is|is not,"is,is not"
-Instance,instanceof,instanceof
-Membership,in|not in,"in,not in"
+Asynchronous,await|async,"await,async"
+Backup,BACKUP,BACKUP
 Bitwise,&|||^|~|<<|>>,"&,|,^,~,<<,>>"
 Boolean,([Tt]rue)|([Ff]alse),"True,true,False,false"
-Null,[Nn]ull|None,"Null,null,None"
-String,"\""[^\'\""]*\""",Infinitos
+Break,break|End|Exit,"break,End,Exit"
+Cast,DirectCast|CBool|CByte|CChar|CDate|CDbl|CDec|CInt|CLng|CObj|CSByte|CShort|CSng|CStr|CUInt|CULng|CUShort,"DirectCastDirectCast,CBool,CByte,CChar,CDate,CDbl,CDec,CInt,CLng,CObj,CSByte,CShort,CSng,CStr,CUInt,CULng,CUShort"
 Character,"\'[^\'\""\\]?\'",Infinitos
-Loop,for|foreach|while|do|Each,"for,foreach,while,do,Each"
-DataType,int|int8|int16|int32|int64|string|boolean|float|decimal|date|char|byte|var|complex|long|short|double|time,"int,int8,int16,int32,int64,string,boolean,float,decimal,date,char,byte,var,complex,long,short,double,time"
+Class,class,class
+Column,COLUMN,COLUMN
+Comment,/*|*/|#|TODO|FIXME,"/*,*/,#,TODO,FIXME"
+Comparison,<|>|==|!=|<=|>=,"<,>,==,!=,<=,>="
 Conditional,if|elif|switch|case|ALL|ANY|EXISTS|HAVING|LIKE|WHERE,"if,elif,switch,case,ALL,ANY,EXISTS,HAVING,LIKE,WHERE"
 Consequence,else|finally,"else,finally"
-Function,def|void|lambda|PROCEDURE,"def,void,lambda,PROCEDURE"
-Execute,EXEC|Call,"EXEC,Call"
-Try,try|assert|with,"try,assert,with"
-Exception,throw|raise|catch|except,"throw,raise,catch,except"
-Comment,/*|*/|#|TODO|FIXME,"/*,*/,#,TODO,FIXME"
-AccesMod,nonlocal|global|public|private|protected|default,"nonlocal,global,public,private,protected,default"
-NonAccesMod,const|final|abstract|static|transient|synchronized|volatile,"const,final,abstract,static,transient,synchronized,volatile"
-Separator,"(|)|{|}|[|]|;|,|.|:",",,(,),{,},[,],;,.,:"
-Class,class|super,"class,super"
-Interface,interface,interface
-Enum,enum,enum
-Inherited,extends|implements,"extends,implements"
-Break,break,break
-Continue,continue,continue
-Pass,pass,pass
-Importing,import|from|requires|native,"import,from,requires,native"
-Return,return|yield," return,yield"
-Create,new|CREATE,"new,CREATE"
-Delete,del|DELETE|DROP|TRUNCATE,"del,DELETE,DROP,TRUNCATE"
-Reference,this|self|throws|AddressOf|Delegate,"this,self,throws,AddressOf,Delegate"
-Alias,as|Alias,"as,Alias"
-Asynchronous,await|async,"await,async"
-Package,package,package
-Print,print,print
-Handler,AddHandler,AddHandler
-Modifier,ByRef|ByVal|strictfp,"ByRef,ByVal,strictfp"
-Storage,Dim,Dim
-Cast,DirectCast,DirectCast
-Add,ADD|ADD CONSTRAINT,"ADD,ADD CONSTRAINT"
 Constraint,CHECK|CONSTRAINT|FOREIGN KEY|PRIMARY KEY|UNIQUE,"CHECK,CONSTRAINT,FOREIGN KEY,PRIMARY KEY,UNIQUE"
-Alter,ALTER,ALTER
-Insert,INSERT|INTO|VALUES,"INSERT,INTO,VALUES"
-Sort,ASC|DESC|GROUP BY|ORDER BY,"ASC,DESC,GROUP BY,ORDER BY"
-Backup,BACKUP,BACKUP
-Range,BETWEEN,BETWEEN
-View,VIEW,VIEW
-Column,COLUMN,COLUMN
-Table,TABLE,TABLE
+Continue,continue,continue
+Create,new|CREATE,"new,CREATE"
 Database,DATABASE,DATABASE
-Select,SELECT,SELECT
-Join,JOIN|FULL OUTER JOIN|INNER JOIN|LEFT JOIN|OUTER JOIN|RIGHT JOIN,"JOIN,FULL OUTER JOIN,INNER JOIN,LEFT JOIN,OUTER JOIN,RIGHT JOIN"
+DataType,int|int8|int16|int32|int64|string|boolean|float|decimal|date|char|byte|complex|long|short|double|time,"int,int8,int16,int32,int64,string,boolean,float,decimal,date,char,byte,complex,long,short,double,time"
+Delete,del|DELETE|DROP|TRUNCATE|Erase,"del,DELETE,DROP,TRUNCATE,Erase"
+Enum,enum,enum
+Event,Event,Event
+Exception,throw|raise|catch|except|Error,"throw,raise,catch,except,Error"
+Execute,EXEC|Call,"EXEC,Call"
+Function,def|void|lambda|PROCEDURE,"def,void,lambda,PROCEDURE"
+Get,Get|GetType|GetXmlNamespace|NameOf,"Get,GetType,GetXmlNamespace,NameOf"
+GoTo,GoTo,GoTo
+Handler,AddHandler|Handles,"AddHandler,Handles"
+Identifier,[a-zA-Z][a-zA-Z0-9_]*,Infinitos
+Identity,is|is not,"is,is not"
+Importing,import|from|requires|native,"import,from,requires,native"
 Index,INDEX,INDEX
+Inherited,extends|implements,"extends,implements"
+Insert,INSERT|INTO|VALUES,"INSERT,INTO,VALUES"
+Instance,instanceof,instanceof
+Interface,interface,interface
+Join,JOIN|FULL OUTER JOIN|INNER JOIN|LEFT JOIN|OUTER JOIN|RIGHT JOIN,"JOIN,FULL OUTER JOIN,INNER JOIN,LEFT JOIN,OUTER JOIN,RIGHT JOIN"
 Limit,LIMIT|ROWNUM|TOP|DISTINCT,"LIMIT,ROWNUM,TOP,DISTINCT"
-Update,UPDATE|SET,"UPDATE,SET"
+Logical,&&||||!|and|or|not|?|??|AndAlso,"&&,||,!,and,or,not,?,??,AndAlso"
+Loop,for|foreach|while|do|Each,"for,foreach,while,do,Each"
+Membership,in|not in,"in,not in"
+Modifier,ByRef|ByVal|strictfp|Friend,"ByRef,ByVal,strictfp,Friend"
+Module,Module,Module
+Namespace,Namespace,Namespace
+NonAccesMod,const|final|abstract|static|transient|synchronized|volatile|MustInherit|MustOverride,"const,final,abstract,static,transient,synchronized,volatile,MustInherit,MustOverride"
+Null,[Nn]ull|None,"Null,null,None"
+Number,"(0|([1-9][0-9]*))("".""[0-9]+)?",Infinitos
+Package,package,package
+Parent,super|MyBase,"super,MyBase"
+Pass,pass,pass
+Print,print,print
+Range,BETWEEN,BETWEEN
+Reference,this|self|throws|AddressOf|Delegate|Lib|Me|MyClass,"this,self,throws,AddressOf,Delegate,Lib,Me,MyClass"
+Return,return|yield," return,yield"
+Select,SELECT,SELECT
+Separator,"(|)|{|}|[|]|;|,|.|:",",,(,),{,},[,],;,.,:"
+Sort,ASC|DESC|GROUP BY|ORDER BY,"ASC,DESC,GROUP BY,ORDER BY"
+Storage,Dim,Dim
+String,"\""[^\'\""]*\""",Infinitos
+Table,TABLE,TABLE
+Try,try|assert|with,"try,assert,with"
 Union,UNION|UNION ALL,"UNION,UNION ALL"
+Update,UPDATE|SET,"UPDATE,SET"
+Variable,var|Let,"var,Let"
+View,VIEW,VIEW
