@@ -1,6 +1,8 @@
 Expresion Regular,Token,Lenguaje
 [a-zA-Z][a-zA-Z0-9_]*,Identifier,Python
-"(0|([1-9][0-9]*))("".""[0-9]+)?",Number,Python
+[+-]?[0-9]+,Integer,None
+([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?,Decimal,None,
+,Complex,None,
 <,Comparision,Python
 >,Comparision,Python
 ==,Comparision,Python
@@ -241,3 +243,59 @@ MyBase,Parent,Visual Basic
 MyClass,Reference,Visual Basic
 NameOf,Get,Visual Basic
 Namespace,Namespace,Visual Basic
+Narrowing,Cast,Visual Basic
+Next,Loop,Visual Basic
+Nothing,Null,Visual Basic
+NotInheritable,Modifier,Visual Basic
+NotOverridable,Modifier,Visual Basic
+Object,DataType,View Basic
+Of,Of,Visual Basic
+Operator,Operator,Visual Basic
+Option,Option,Visual Basic
+Optional,Modifier,Visual Basic
+OrElse,Logical,Visual Basic
+Out,Modifier,Visual Basic
+Overloads,Modifier,Visual Basic
+Overridable,NonAccesMod,Visual Basic
+Overrides,NonAccesMod,Visual Basic
+Partial,Partial,Visual Basic
+RaiseEvent,Exception,Visual Basic
+ReadOnly,ReadOnly,Visual Basic
+ReDim,Storage,Visual Basic
+REM,Comment,Visual Basic
+RemoveHandler,Delete,Visual Basic
+Resume,Consequence,Visual Basic
+SByte,DataType,Visual Basic
+Shared,AccesMod,Visual Basic
+Single,DataType,Visual Basic
+Step,Increment,Visual Basic
+Stop,Debug,Visual Basic
+Structure,Structure,Visual Basic
+Sub,Function,Visual Basic
+Then,Consequence,Visual Backup
+TryCast,Cast,Visual Basic
+TypeOf,TypeOf,Visual Basic
+UInteger,DataType,Visual Basic
+ULong,DataType,Visual Basic
+UShort,DataType,Visual Basic
+Using,Importing,Visual Basic
+Widening,Cast,Visual Basic
+WithEvents,Modifier,Visual Basic
+WriteOnly,Modifier,Visual Basic
+Xor,Logical,Visual Basic
+list,DataStructure,Python
+tuple,DataStructure,Python
+dict,DataStructure,Python
+Array,DataStructure,Java
+Stack,DataStructure,None,
+Queue,DataStructure,None,
+uint,DataType,Go
+uint8,DataType,Go
+uint16,DataType,Go
+uint32,DataType,Go
+uint64,DataType,Go
+float32,DataType,Go
+float64,DataType,Go
+complex64,DataType,Go
+complex128,DataType,Go
+func,Function,Go

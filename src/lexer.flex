@@ -41,6 +41,10 @@
 %eof}
 
 // --- Definitions ---
+SIGN = [+-]
+DIGIT = [0-9]
+DEC = "."{DIGIT}+
+EXPO = [Ee]{SIGN}?{DIGIT}+
 
 Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
@@ -48,32 +52,40 @@ Identifier = [a-zA-Z][a-zA-Z0-9_]*
 Comparison = "<"|">"|"=="|"!="|"<="|">="
 Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod"
 Assignment = "="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<="
-Logical = "&&"|"||"|"!"|"and"|"or"|"not"|"?"|"??"|"AndAlso"
+Logical = "&&"|"||"|"!"|"and"|"or"|"not"|"?"|"??"|"AndAlso"|"OrElse"|"Xor"
 Identity = "is"|"is not"
 Instance = "instanceof"
+Type = "TypeOf"
 Membership = "in"|"not in"
 Bitwise = "&"|"|"|"^"|"~"|"<<"|">>"
 
 // Literals
 Boolean = ([Tt]"rue")|([Ff]"alse")
-Null = [Nn]"ull"|"None"
+Null = [Nn]"ull"|"None"|"Nothing"
 String = \"[^\'\"]*\"
 Character = \'[^\'\"\\]?\'
-Number = (0|([1-9][0-9]*))("."[0-9]+)?
+Integer = {SIGN}?{DIGIT}+           // [+-]?[0-9]+
+Decimal = {Integer}{DEC}?{EXPO}?    // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?
+Complex = ({Integer}|{Decimal})"i"  // (([+-]?[0-9]+)|(([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?))"i"
 
 // Keywords
-Loop = "for"|"foreach"|"while"|"do"|"Each"
-DataType = "int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|"float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|"short"|"double"|"time"
+Loop = "for"|"foreach"|"while"|"do"|"Each"|"Next"
+DataType = ("int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|
+            "float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|
+            "short"|"double"|"time"|"Object"|"SByte"|"Single"|"UInteger"|
+            "ULong"|"UShort"|"uint"|"uint8"|"uint16"|"uint32"|"uint64"|
+            "float32"|"float64"|"complex64"|"complex128")
+DataStructure = "list"|"tuple"|"dict"|"Array"|"Stack"|"Queue"
 Variable = "var"|"Let"
 Conditional = "if"|"elif"|"switch"|"case"|"ALL"|"ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
-Consequence = "else"|"finally"
-Function = "def"|"void"|"lambda"|"PROCEDURE"
+Consequence = "else"|"finally"|"Resume"|"Then"
+Function = "def"|"void"|"lambda"|"PROCEDURE"|"Sub"|"func"
 Execute = "EXEC"|"Call"
 Try = "try"|"assert"|"with"
-Exception = "throw"|"raise"|"catch"|"except"|"Error"
-Comment = "/*"|"*/"|"#"|"TODO"|"FIXME"
-AccesMod = "nonlocal"|"global"|"public"|"private"|"protected"|"default"
-NonAccesMod = "const"|"final"|"abstract"|"static"|"transient"|"synchronized"|"volatile"|"MustInherit"|"MustOverride"
+Exception = "throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent"
+Comment = "/*"|"*/"|"#"|"TODO"|"FIXME"|"REM"
+AccesMod = "nonlocal"|"global"|"public"|"private"|"protected"|"default"|"Shared"
+NonAccesMod = "ReadOnly"|"const"|"final"|"abstract"|"static"|"transient"|"synchronized"|"volatile"|"MustInherit"|"MustOverride"|"Overridable"|"Overrides"
 Separator = "("|")"|"{"|"}"|"["|"]"|";"|","|"."|":"
 Class = "class"
 Parent = "super"|"MyBase"
@@ -83,10 +95,10 @@ Inherited = "extends"|"implements"
 Break = "break"|"End"|"Exit"
 Continue = "continue"
 Pass = "pass"
-Importing = "import"|"from"|"requires"|"native"
+Importing = "import"|"from"|"requires"|"native"|"Using"
 Return = "return"|"yield"
 Create = "new"|"CREATE"
-Delete = "del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"
+Delete = "del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"|"RemoveHandler"
 Reference = "this"|"self"|"throws"|"AddressOf"|"Delegate"|"Lib"|"Me"|"MyClass"
 Alias = "as"|"Alias"
 Asynchronous = "await"|"async"
@@ -95,14 +107,21 @@ Print = "print"
 
 // VisualBasic
 Handler = "AddHandler"|"Handles"
-Modifier = "ByRef"|"ByVal"|"strictfp"|"Friend"
-Storage = "Dim"
-Cast = "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|"CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|"CUShort"
+Modifier = "ByRef"|"ByVal"|"strictfp"|"Friend"|"NotInheritable"|"NotOverridable"|"Optional"|"Out"|"Overloads"|"WithEvents"|"WriteOnly"
+Storage = "Dim"|"ReDim"
+Cast = "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|"CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|"CUShort"|"Narrowing"|"TryCast"|"Widening"
 Event = "Event"
 Get = "Get"|"GetType"|"GetXmlNamespace"|"NameOf"
 GoTo = "GoTo"
 Module = "Module"
 Namespace = "Namespace"
+Of = "Of"
+Operator = "Operator"
+Option = "Option"
+Partial = "Partial"
+Increment = "Step"
+Debug = "Stop"
+Structure = "Structure"
 
 // SQL Keywords
 Add = "ADD"|"ADD CONSTRAINT"
@@ -138,9 +157,13 @@ Union = "UNION"|"UNION ALL"
 {Null}          {printResult("Valor nulo", yytext(), yyline, yycolumn);}
 {String}        {printResult("Cadena", yytext(), yyline, yycolumn);}
 {Character}     {printResult("Caracter", yytext(), yyline, yycolumn);}
+{Integer}       {printResult("Entero", yytext(), yyline, yycolumn);}
+{Decimal}       {printResult("Decimal", yytext(), yyline, yycolumn);}
+{Complex}       {printResult("Complejo", yytext(), yyline, yycolumn);}
 
 {Loop}          {printResult("Iterador", yytext(), yyline, yycolumn);}
 {DataType}      {printResult("Tipo de dato", yytext(), yyline, yycolumn);}
+{DataStructure} {printResult("Estructura de datos", yytext(), yyline, yycolumn);}
 {Variable}      {printResult("Variable", yytext(), yyline, yycolumn);}
 {Conditional}   {printResult("Condicional", yytext(), yyline, yycolumn);}
 {Consequence}   {printResult("Consequencia", yytext(), yyline, yycolumn);}
@@ -174,6 +197,17 @@ Union = "UNION"|"UNION ALL"
 {Storage}       {printResult("Almacenamiento", yytext(), yyline, yycolumn);}
 {Cast}          {printResult("Cast", yytext(), yyline, yycolumn);}
 {Event}         {printResult("Evento", yytext(), yyline, yycolumn);}
+{Get}           {printResult("Get", yytext(), yyline, yycolumn);}
+{GoTo}          {printResult("GoTo", yytext(), yyline, yycolumn);}
+{Module}        {printResult("Module", yytext(), yyline, yycolumn);}
+{Namespace}     {printResult("Namespace", yytext(), yyline, yycolumn);}
+{Of}            {printResult("Of", yytext(), yyline, yycolumn);}
+{Operator}      {printResult("Operador de VB", yytext(), yyline, yycolumn);}
+{Option}        {printResult("Opcion", yytext(), yyline, yycolumn);}
+{Partial}       {printResult("Parcial", yytext(), yyline, yycolumn);}
+{Increment}     {printResult("Incremento", yytext(), yyline, yycolumn);}
+{Debug}         {printResult("Debug", yytext(), yyline, yycolumn);}
+{Structure}     {printResult("Estructura", yytext(), yyline, yycolumn);}
 
 {Add}           {printResult("Añadir", yytext(), yyline, yycolumn);}
 {Constraint}    {printResult("Restriccion", yytext(), yyline, yycolumn);}
@@ -194,7 +228,6 @@ Union = "UNION"|"UNION ALL"
 {Union}         {printResult("Union", yytext(), yyline, yycolumn);}
 
 {Identifier}    {printResult("Identificador", yytext(), yyline, yycolumn);}
-{Number}        {printResult("Numero", yytext(), yyline, yycolumn);}
 //{}{printResult("", yytext(), yyline, yycolumn);}
 
 [^] {/* Ignore unmatched characters */}
