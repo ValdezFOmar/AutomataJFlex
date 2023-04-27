@@ -12,7 +12,7 @@
 
 %%
 // Options and Declarations
-%class lexer
+%class Lexer
 %standalone
 %line
 %column

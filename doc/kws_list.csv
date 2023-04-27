@@ -1,8 +1,8 @@
 Expresion Regular,Token,Lenguaje
 [a-zA-Z][a-zA-Z0-9_]*,Identifier,Python
 [+-]?[0-9]+,Integer,None
-([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?,Decimal,None,
-,Complex,None,
+"([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?",Decimal,None
+"(([+-]?[0-9]+)|(([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?))i",Complex,None
 <,Comparision,Python
 >,Comparision,Python
 ==,Comparision,Python
@@ -125,7 +125,7 @@ global,AccesMod,Python
 pass,Pass,Python
 nonlocal,AccesMod,Python
 raise,Exception,Python
-'#',Comment,Python
+#,Comment,Python
 //=,Assignment,Python
 ADD,Add,SQL
 ADD CONSTRAINT,Add,SQL
@@ -287,8 +287,8 @@ list,DataStructure,Python
 tuple,DataStructure,Python
 dict,DataStructure,Python
 Array,DataStructure,Java
-Stack,DataStructure,None,
-Queue,DataStructure,None,
+Stack,DataStructure,None
+Queue,DataStructure,None
 uint,DataType,Go
 uint8,DataType,Go
 uint16,DataType,Go
