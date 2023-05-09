@@ -1,32 +1,33 @@
 # Execute Program
 
-Generate java code from jflex file on command line:
-```PS
-jflex -nobak -q src/lexer.flex
+Run BASH script:
+```BASH
+source utils/scripts/convert.sh
 ```
 
-Compile java file:
-```PS
-javac -d bin src/lexer.java
+or PowerShell script:
+```PS1
+utils/scripts/Convert
 ```
 
-Execute java class:
-```PS
-java -cp bin lexer input.txt
-```
+Then execute the Main java file:
 
-# Count
-
-Total number of keywords = `300`
+    src/main/Main.java
 
 # Resources
 <!---
-## Packages/Libs
+## Packages,Libs,JDK,JFlex,etc.
 TODO. Add this info
 --->
+To be added.
 
-## Keywords
+# Keywords
+Complete list of keywords:
 
+    doc/kws_list.csv
+
+Total number of keywords = `300`<br>
+Gathered from from this sources: 
 - [GO DataTypes](https://www.geeksforgeeks.org/data-types-in-go/)
 - [GO Keywords](https://go.dev/ref/spec#Keywords)
 - [Java Keywords](https://www.w3schools.com/java/java_ref_keywords.asp)

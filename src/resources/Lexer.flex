@@ -4,10 +4,15 @@
 // import java.util.Arrays;
 
 /*TODO.
-  - Change the return values
-   - Return the lexema found if the token has more than one lexema
-   - Return the nothing if the token has only one lexema
-   - Return the number of the identifier found (0),(1),(2),...
+    - Add all of this functionality to Main Class (Including the imports)
+    - Make the return value a Object defined in src/main/Token
+    - Add configurations from example: test_java_project/src/resources/Lexer.flex
+    - Refactor some of the token (separe the 'Separator' category into their own tokens)
+
+    - Change the return values
+        - Return the lexema found if the token has more than one lexema
+        - Return the nothing if the token has only one lexema
+        - Return the number of the identifier found (0),(1),(2),...
 */
 
 %%
@@ -70,11 +75,13 @@ Complex = ({Integer}|{Decimal})"i"  // (([+-]?[0-9]+)|(([+-]?[0-9]+)("."[0-9]+)?
 
 // Keywords
 Loop = "for"|"foreach"|"while"|"do"|"Each"|"Next"
-DataType = ("int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|
-            "float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|
-            "short"|"double"|"time"|"Object"|"SByte"|"Single"|"UInteger"|
-            "ULong"|"UShort"|"uint"|"uint8"|"uint16"|"uint32"|"uint64"|
-            "float32"|"float64"|"complex64"|"complex128")
+DataType = (
+    "int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|
+    "float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|
+    "short"|"double"|"time"|"Object"|"SByte"|"Single"|"UInteger"|
+    "ULong"|"UShort"|"uint"|"uint8"|"uint16"|"uint32"|"uint64"|
+    "float32"|"float64"|"complex64"|"complex128"
+)
 DataStructure = "list"|"tuple"|"dict"|"Array"|"Stack"|"Queue"
 Variable = "var"|"Let"
 Conditional = "if"|"elif"|"switch"|"case"|"ALL"|"ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
