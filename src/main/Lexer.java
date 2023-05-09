@@ -21,7 +21,7 @@
 
 
 @SuppressWarnings("fallthrough")
-class Lexer {
+public class Lexer {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
@@ -1209,15 +1209,17 @@ class Lexer {
   private boolean zzEOFDone;
 
   /* user code: */
-    int keywords = 0;
-    //List<String> identifiers = new ArrayList<String>();
+    private int _numberkeywords = 0;
+    private boolean _thereIsTokens = false;
     
-    void printResult(String token, String text, int line, int column){
-        keywords++;
-        if (text.length() >= 8)
-            System.out.printf("%s\t<= %s (Linea: %d, Columna: %d)\n", text, token, line+1, column+1);
-        else
-            System.out.printf("%s\t\t<= %s (Linea: %d, Columna: %d)\n", text, token, line+1, column+1);
+    public boolean thereIsTokens() {return this._thereIsTokens;}
+    public int numberkeywords() {return this._numberkeywords;}
+
+    private Symbol foundSymbol(String token, String lexeme, int line, int column) {
+        this._thereIsTokens = true;
+        this._numberkeywords++;
+        Symbol s = new Symbol(token, lexeme, line, column);
+        return s;
     }
 
 
@@ -1226,7 +1228,7 @@ class Lexer {
    *
    * @param   in  the java.io.Reader to read input from.
    */
-  Lexer(java.io.Reader in) {
+  public Lexer(java.io.Reader in) {
     this.zzReader = in;
   }
 
@@ -1489,9 +1491,10 @@ class Lexer {
     if (!zzEOFDone) {
       zzEOFDone = true;
     
-    System.out.printf("----------------------------------------\n");
-    System.out.printf("Numero total de palabras: %d.\n",keywords);
-    System.out.printf("----------------------------------------\n");
+    this._thereIsTokens = false;
+    // System.out.printf("----------------------------------------\n");
+    // System.out.printf("Numero total de palabras: %d.\n",keywords);
+    // System.out.printf("----------------------------------------\n");
     }
   }
 
@@ -1505,7 +1508,7 @@ class Lexer {
    * @return the next token.
    * @exception java.io.IOException if any I/O-Error occurs.
    */
-  public int yylex() throws java.io.IOException
+  public Symbol yylex() throws java.io.IOException
   {
     int zzInput;
     int zzAction;
@@ -1643,7 +1646,7 @@ class Lexer {
       if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
         zzAtEOF = true;
             zzDoEOF();
-        return YYEOF;
+        return null;
       }
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
@@ -1653,474 +1656,402 @@ class Lexer {
           // fall through
           case 81: break;
           case 2:
-            { printResult("Operador Logico", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador Logico", yytext(), yyline, yycolumn);
             }
           // fall through
           case 82: break;
           case 3:
-            { printResult("Comentario", yytext(), yyline, yycolumn);
+            { return foundSymbol("Comentario", yytext(), yyline, yycolumn);
             }
           // fall through
           case 83: break;
           case 4:
-            { printResult("Operador Aritmetico", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador Aritmetico", yytext(), yyline, yycolumn);
             }
           // fall through
           case 84: break;
           case 5:
-            { printResult("Operador de Bits", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador de Bits", yytext(), yyline, yycolumn);
             }
           // fall through
           case 85: break;
           case 6:
-            { printResult("Separador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Separador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 86: break;
           case 7:
-            { printResult("Entero", yytext(), yyline, yycolumn);
+            { return foundSymbol("Entero", yytext(), yyline, yycolumn);
             }
           // fall through
           case 87: break;
           case 8:
-            { printResult("Comparador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Comparador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 88: break;
           case 9:
-            { printResult("Asignador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Asignador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 89: break;
           case 10:
-            { printResult("Identificador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Identificador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 90: break;
           case 11:
-            { printResult("Cadena", yytext(), yyline, yycolumn);
+            { return foundSymbol("Cadena", yytext(), yyline, yycolumn);
             }
           // fall through
           case 91: break;
           case 12:
-            { printResult("Caracter", yytext(), yyline, yycolumn);
+            { return foundSymbol("Caracter", yytext(), yyline, yycolumn);
             }
           // fall through
           case 92: break;
           case 13:
-            { printResult("Complejo", yytext(), yyline, yycolumn);
+            { return foundSymbol("Complejo", yytext(), yyline, yycolumn);
             }
           // fall through
           case 93: break;
           case 14:
-            { printResult("Referencia", yytext(), yyline, yycolumn);
+            { return foundSymbol("Referencia", yytext(), yyline, yycolumn);
             }
           // fall through
           case 94: break;
           case 15:
-            { printResult("Of", yytext(), yyline, yycolumn);
+            { return foundSymbol("Of", yytext(), yyline, yycolumn);
             }
           // fall through
           case 95: break;
           case 16:
-            { printResult("Renombrar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Renombrar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 96: break;
           case 17:
-            { printResult("Iterador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Iterador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 97: break;
           case 18:
-            { printResult("Condicional", yytext(), yyline, yycolumn);
+            { return foundSymbol("Condicional", yytext(), yyline, yycolumn);
             }
           // fall through
           case 98: break;
           case 19:
-            { printResult("Operadot de Pertenencia", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operadot de Pertenencia", yytext(), yyline, yycolumn);
             }
           // fall through
           case 99: break;
           case 20:
-            { printResult("Operador de identidad", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador de identidad", yytext(), yyline, yycolumn);
             }
           // fall through
           case 100: break;
           case 21:
-            { printResult("Decimal", yytext(), yyline, yycolumn);
+            { return foundSymbol("Decimal", yytext(), yyline, yycolumn);
             }
           // fall through
           case 101: break;
           case 22:
-            { printResult("Añadir", yytext(), yyline, yycolumn);
+            { return foundSymbol("Añadir", yytext(), yyline, yycolumn);
             }
           // fall through
           case 102: break;
           case 23:
-            { printResult("Ordenar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Ordenar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 103: break;
           case 24:
-            { printResult("Almacenamiento", yytext(), yyline, yycolumn);
+            { return foundSymbol("Almacenamiento", yytext(), yyline, yycolumn);
             }
           // fall through
           case 104: break;
           case 25:
-            { printResult("Salida", yytext(), yyline, yycolumn);
+            { return foundSymbol("Salida", yytext(), yyline, yycolumn);
             }
           // fall through
           case 105: break;
           case 26:
-            { printResult("Get", yytext(), yyline, yycolumn);
+            { return foundSymbol("Get", yytext(), yyline, yycolumn);
             }
           // fall through
           case 106: break;
           case 27:
-            { printResult("Variable", yytext(), yyline, yycolumn);
+            { return foundSymbol("Variable", yytext(), yyline, yycolumn);
             }
           // fall through
           case 107: break;
           case 28:
-            { printResult("Modificador", yytext(), yyline, yycolumn);
+            { return foundSymbol("Modificador", yytext(), yyline, yycolumn);
             }
           // fall through
           case 108: break;
           case 29:
-            { printResult("Update", yytext(), yyline, yycolumn);
+            { return foundSymbol("Update", yytext(), yyline, yycolumn);
             }
           // fall through
           case 109: break;
           case 30:
-            { printResult("Funcion", yytext(), yyline, yycolumn);
+            { return foundSymbol("Funcion", yytext(), yyline, yycolumn);
             }
           // fall through
           case 110: break;
           case 31:
-            { printResult("Limite", yytext(), yyline, yycolumn);
+            { return foundSymbol("Limite", yytext(), yyline, yycolumn);
             }
           // fall through
           case 111: break;
           case 32:
-            { printResult("Borrar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Borrar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 112: break;
           case 33:
-            { printResult("Tipo de dato", yytext(), yyline, yycolumn);
+            { return foundSymbol("Tipo de dato", yytext(), yyline, yycolumn);
             }
           // fall through
           case 113: break;
           case 34:
-            { printResult("Crear", yytext(), yyline, yycolumn);
+            { return foundSymbol("Crear", yytext(), yyline, yycolumn);
             }
           // fall through
           case 114: break;
           case 35:
-            { printResult("Intentar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Intentar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 115: break;
           case 36:
-            { printResult("Cast", yytext(), yyline, yycolumn);
+            { return foundSymbol("Cast", yytext(), yyline, yycolumn);
             }
           // fall through
           case 116: break;
           case 37:
-            { printResult("Ejecutar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Ejecutar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 117: break;
           case 38:
-            { printResult("GoTo", yytext(), yyline, yycolumn);
+            { return foundSymbol("GoTo", yytext(), yyline, yycolumn);
             }
           // fall through
           case 118: break;
           case 39:
-            { printResult("Insertar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Insertar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 119: break;
           case 40:
-            { printResult("Join", yytext(), yyline, yycolumn);
+            { return foundSymbol("Join", yytext(), yyline, yycolumn);
             }
           // fall through
           case 120: break;
           case 41:
-            { printResult("Valor nulo", yytext(), yyline, yycolumn);
+            { return foundSymbol("Valor nulo", yytext(), yyline, yycolumn);
             }
           // fall through
           case 121: break;
           case 42:
-            { printResult("Incremento", yytext(), yyline, yycolumn);
+            { return foundSymbol("Incremento", yytext(), yyline, yycolumn);
             }
           // fall through
           case 122: break;
           case 43:
-            { printResult("Debug", yytext(), yyline, yycolumn);
+            { return foundSymbol("Debug", yytext(), yyline, yycolumn);
             }
           // fall through
           case 123: break;
           case 44:
-            { printResult("Consequencia", yytext(), yyline, yycolumn);
+            { return foundSymbol("Consequencia", yytext(), yyline, yycolumn);
             }
           // fall through
           case 124: break;
           case 45:
-            { printResult("Booleano", yytext(), yyline, yycolumn);
+            { return foundSymbol("Booleano", yytext(), yyline, yycolumn);
             }
           // fall through
           case 125: break;
           case 46:
-            { printResult("Vista", yytext(), yyline, yycolumn);
+            { return foundSymbol("Vista", yytext(), yyline, yycolumn);
             }
           // fall through
           case 126: break;
           case 47:
-            { printResult("Estructura de datos", yytext(), yyline, yycolumn);
+            { return foundSymbol("Estructura de datos", yytext(), yyline, yycolumn);
             }
           // fall through
           case 127: break;
           case 48:
-            { printResult("Enum", yytext(), yyline, yycolumn);
+            { return foundSymbol("Enum", yytext(), yyline, yycolumn);
             }
           // fall through
           case 128: break;
           case 49:
-            { printResult("Importar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Importar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 129: break;
           case 50:
-            { printResult("Pasar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Pasar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 130: break;
           case 51:
-            { printResult("Alterar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Alterar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 131: break;
           case 52:
-            { printResult("Restriccion", yytext(), yyline, yycolumn);
+            { return foundSymbol("Restriccion", yytext(), yyline, yycolumn);
             }
           // fall through
           case 132: break;
           case 53:
-            { printResult("Excepcion", yytext(), yyline, yycolumn);
+            { return foundSymbol("Excepcion", yytext(), yyline, yycolumn);
             }
           // fall through
           case 133: break;
           case 54:
-            { printResult("Evento", yytext(), yyline, yycolumn);
+            { return foundSymbol("Evento", yytext(), yyline, yycolumn);
             }
           // fall through
           case 134: break;
           case 55:
-            { printResult("Indice", yytext(), yyline, yycolumn);
+            { return foundSymbol("Indice", yytext(), yyline, yycolumn);
             }
           // fall through
           case 135: break;
           case 56:
-            { printResult("Tabla", yytext(), yyline, yycolumn);
+            { return foundSymbol("Tabla", yytext(), yyline, yycolumn);
             }
           // fall through
           case 136: break;
           case 57:
-            { printResult("Union", yytext(), yyline, yycolumn);
+            { return foundSymbol("Union", yytext(), yyline, yycolumn);
             }
           // fall through
           case 137: break;
           case 58:
-            { printResult("Asyncrono", yytext(), yyline, yycolumn);
+            { return foundSymbol("Asyncrono", yytext(), yyline, yycolumn);
             }
           // fall through
           case 138: break;
           case 59:
-            { printResult("Clase", yytext(), yyline, yycolumn);
+            { return foundSymbol("Clase", yytext(), yyline, yycolumn);
             }
           // fall through
           case 139: break;
           case 60:
-            { printResult("Modificador de No Acceso", yytext(), yyline, yycolumn);
+            { return foundSymbol("Modificador de No Acceso", yytext(), yyline, yycolumn);
             }
           // fall through
           case 140: break;
           case 61:
-            { printResult("Imprimir", yytext(), yyline, yycolumn);
+            { return foundSymbol("Imprimir", yytext(), yyline, yycolumn);
             }
           // fall through
           case 141: break;
           case 62:
-            { printResult("Regresar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Regresar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 142: break;
           case 63:
-            { printResult("Backup", yytext(), yyline, yycolumn);
+            { return foundSymbol("Backup", yytext(), yyline, yycolumn);
             }
           // fall through
           case 143: break;
           case 64:
-            { printResult("Columna", yytext(), yyline, yycolumn);
+            { return foundSymbol("Columna", yytext(), yyline, yycolumn);
             }
           // fall through
           case 144: break;
           case 65:
-            { printResult("Module", yytext(), yyline, yycolumn);
+            { return foundSymbol("Module", yytext(), yyline, yycolumn);
             }
           // fall through
           case 145: break;
           case 66:
-            { printResult("Opcion", yytext(), yyline, yycolumn);
+            { return foundSymbol("Opcion", yytext(), yyline, yycolumn);
             }
           // fall through
           case 146: break;
           case 67:
-            { printResult("Select", yytext(), yyline, yycolumn);
+            { return foundSymbol("Select", yytext(), yyline, yycolumn);
             }
           // fall through
           case 147: break;
           case 68:
-            { printResult("Modificador de Acceso", yytext(), yyline, yycolumn);
+            { return foundSymbol("Modificador de Acceso", yytext(), yyline, yycolumn);
             }
           // fall through
           case 148: break;
           case 69:
-            { printResult("Rango", yytext(), yyline, yycolumn);
+            { return foundSymbol("Rango", yytext(), yyline, yycolumn);
             }
           // fall through
           case 149: break;
           case 70:
-            { printResult("AddHandler", yytext(), yyline, yycolumn);
+            { return foundSymbol("AddHandler", yytext(), yyline, yycolumn);
             }
           // fall through
           case 150: break;
           case 71:
-            { printResult("Parcial", yytext(), yyline, yycolumn);
+            { return foundSymbol("Parcial", yytext(), yyline, yycolumn);
             }
           // fall through
           case 151: break;
           case 72:
-            { printResult("Erencia", yytext(), yyline, yycolumn);
+            { return foundSymbol("Erencia", yytext(), yyline, yycolumn);
             }
           // fall through
           case 152: break;
           case 73:
-            { printResult("Paquete", yytext(), yyline, yycolumn);
+            { return foundSymbol("Paquete", yytext(), yyline, yycolumn);
             }
           // fall through
           case 153: break;
           case 74:
-            { printResult("Database", yytext(), yyline, yycolumn);
+            { return foundSymbol("Database", yytext(), yyline, yycolumn);
             }
           // fall through
           case 154: break;
           case 75:
-            { printResult("Operador de VB", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador de VB", yytext(), yyline, yycolumn);
             }
           // fall through
           case 155: break;
           case 76:
-            { printResult("Continuar", yytext(), yyline, yycolumn);
+            { return foundSymbol("Continuar", yytext(), yyline, yycolumn);
             }
           // fall through
           case 156: break;
           case 77:
-            { printResult("Namespace", yytext(), yyline, yycolumn);
+            { return foundSymbol("Namespace", yytext(), yyline, yycolumn);
             }
           // fall through
           case 157: break;
           case 78:
-            { printResult("Estructura", yytext(), yyline, yycolumn);
+            { return foundSymbol("Estructura", yytext(), yyline, yycolumn);
             }
           // fall through
           case 158: break;
           case 79:
-            { printResult("Interface", yytext(), yyline, yycolumn);
+            { return foundSymbol("Interface", yytext(), yyline, yycolumn);
             }
           // fall through
           case 159: break;
           case 80:
-            { printResult("Operador de instancia", yytext(), yyline, yycolumn);
+            { return foundSymbol("Operador de instancia", yytext(), yyline, yycolumn);
             }
           // fall through
           case 160: break;
           default:
             zzScanError(ZZ_NO_MATCH);
-        }
-      }
-    }
-  }
-
-  /**
-   * Runs the scanner on input files.
-   *
-   * This is a standalone scanner, it will print any unmatched
-   * text to System.out unchanged.
-   *
-   * @param argv   the command line, contains the filenames to run
-   *               the scanner on.
-   */
-  public static void main(String[] argv) {
-    if (argv.length == 0) {
-      System.out.println("Usage : java Lexer [ --encoding <name> ] <inputfile(s)>");
-    }
-    else {
-      int firstFilePos = 0;
-      String encodingName = "UTF-8";
-      if (argv[0].equals("--encoding")) {
-        firstFilePos = 2;
-        encodingName = argv[1];
-        try {
-          // Side-effect: is encodingName valid?
-          java.nio.charset.Charset.forName(encodingName);
-        } catch (Exception e) {
-          System.out.println("Invalid encoding '" + encodingName + "'");
-          return;
-        }
-      }
-      for (int i = firstFilePos; i < argv.length; i++) {
-        Lexer scanner = null;
-        java.io.FileInputStream stream = null;
-        java.io.Reader reader = null;
-        try {
-          stream = new java.io.FileInputStream(argv[i]);
-          reader = new java.io.InputStreamReader(stream, encodingName);
-          scanner = new Lexer(reader);
-          while ( !scanner.zzAtEOF ) scanner.yylex();
-        }
-        catch (java.io.FileNotFoundException e) {
-          System.out.println("File not found : \""+argv[i]+"\"");
-        }
-        catch (java.io.IOException e) {
-          System.out.println("IO error scanning file \""+argv[i]+"\"");
-          System.out.println(e);
-        }
-        catch (Exception e) {
-          System.out.println("Unexpected exception:");
-          e.printStackTrace();
-        }
-        finally {
-          if (reader != null) {
-            try {
-              reader.close();
-            }
-            catch (java.io.IOException e) {
-              System.out.println("IO error closing file \""+argv[i]+"\"");
-              System.out.println(e);
-            }
-          }
-          if (stream != null) {
-            try {
-              stream.close();
-            }
-            catch (java.io.IOException e) {
-              System.out.println("IO error closing file \""+argv[i]+"\"");
-              System.out.println(e);
-            }
-          }
         }
       }
     }
