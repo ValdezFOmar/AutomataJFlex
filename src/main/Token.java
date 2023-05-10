@@ -1,5 +1,5 @@
 // Class use for returning tokens as objects
-public class Symbol {
+public class Token {
     String token;
     String lexeme;
     int line;
@@ -9,7 +9,7 @@ public class Symbol {
 
     public String getToken() { return this.token; }
 
-    Symbol(String token, String lexeme, int line, int column) {
+    Token(String token, String lexeme, int line, int column) {
         this.lexeme = lexeme;
         this.token = token;
         this.line = line;

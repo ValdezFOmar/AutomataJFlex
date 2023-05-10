@@ -1209,17 +1209,17 @@ public class Lexer {
   private boolean zzEOFDone;
 
   /* user code: */
-    private int _numberkeywords = 0;
+    private int _numberTokens = 0;
     private boolean _thereIsTokens = false;
     
     public boolean thereIsTokens() {return this._thereIsTokens;}
-    public int numberkeywords() {return this._numberkeywords;}
+    public int numberTokens() {return this._numberTokens;}
 
-    private Symbol foundSymbol(String token, String lexeme, int line, int column) {
+    private Token foundSymbol(String token, String lexeme, int line, int column) {
         this._thereIsTokens = true;
-        this._numberkeywords++;
-        Symbol s = new Symbol(token, lexeme, line, column);
-        return s;
+        this._numberTokens++;
+        Token t = new Token(token, lexeme, line, column);
+        return t;
     }
 
 
@@ -1492,9 +1492,6 @@ public class Lexer {
       zzEOFDone = true;
     
     this._thereIsTokens = false;
-    // System.out.printf("----------------------------------------\n");
-    // System.out.printf("Numero total de palabras: %d.\n",keywords);
-    // System.out.printf("----------------------------------------\n");
     }
   }
 
@@ -1508,7 +1505,7 @@ public class Lexer {
    * @return the next token.
    * @exception java.io.IOException if any I/O-Error occurs.
    */
-  public Symbol yylex() throws java.io.IOException
+  public Token nextToken() throws java.io.IOException
   {
     int zzInput;
     int zzAction;

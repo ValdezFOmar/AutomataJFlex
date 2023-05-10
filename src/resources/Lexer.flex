@@ -1,17 +1,11 @@
 // User Code (Import dependencies or declare variables)
 
-// import java.util.List;
-// import java.util.Arrays;
-
 /*TODO.
-    - Add all of this functionality to Main Class (Including the imports)
-    - Make the return value a Object defined in src/main/Token
-    - Add configurations from example: test_java_project/src/resources/Lexer.flex
     - Refactor some of the token (separe the 'Separator' category into their own tokens)
 
     - Change the return values
-        - Return the lexema found if the token has more than one lexema
-        - Return the nothing if the token has only one lexema
+        - Return the lexema found if the token has more than one lexeme
+        - Return the nothing if the token has only one lexeme
         - Return the number of the identifier found (0),(1),(2),...
 */
 
@@ -19,7 +13,8 @@
 // Options and Declarations
 %public
 %class Lexer
-%type Symbol
+%function nextToken
+%type Token
 %line
 %column
 %unicode
@@ -27,17 +22,18 @@
 
 // Code for defining atributes a methods of the class "Lexer"
 %{
-    private int _numberkeywords = 0;
+    private int _numberTokens = 0;
     private boolean _thereIsTokens = false;
     
     public boolean thereIsTokens() {return this._thereIsTokens;}
-    public int numberkeywords() {return this._numberkeywords;}
+    public int numberTokens() {return this._numberTokens;}
 
-    private Symbol foundSymbol(String token, String lexeme, int line, int column) {
+    // Creates and returns a Token Object
+    private Token foundSymbol(String token, String lexeme, int line, int column) {
         this._thereIsTokens = true;
-        this._numberkeywords++;
-        Symbol s = new Symbol(token, lexeme, line, column);
-        return s;
+        this._numberTokens++;
+        Token t = new Token(token, lexeme, line, column);
+        return t;
     }
 %}
 
