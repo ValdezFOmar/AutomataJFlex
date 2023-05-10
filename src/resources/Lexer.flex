@@ -81,7 +81,10 @@ DataType = (
 )
 DataStructure = "list"|"tuple"|"dict"|"Array"|"Stack"|"Queue"
 Variable = "var"|"Let"
-Conditional = "if"|"elif"|"switch"|"case"|"ALL"|"ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
+Conditional = (
+    "if"|"elif"|"switch"|"case"|"ALL"|
+    "ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
+)
 Consequence = "else"|"finally"|"Resume"|"Then"
 Function = "def"|"void"|"lambda"|"PROCEDURE"|"Sub"|"func"
 Execute = "EXEC"|"Call"
@@ -89,7 +92,11 @@ Try = "try"|"assert"|"with"
 Exception = "throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent"
 Comment = "/*"|"*/"|"#"|"TODO"|"FIXME"|"REM"
 AccesMod = "nonlocal"|"global"|"public"|"private"|"protected"|"default"|"Shared"
-NonAccesMod = "ReadOnly"|"const"|"final"|"abstract"|"static"|"transient"|"synchronized"|"volatile"|"MustInherit"|"MustOverride"|"Overridable"|"Overrides"
+NonAccesMod = (
+    "ReadOnly"|"const"|"final"|"abstract"|"static"|
+    "transient"|"synchronized"|"volatile"|"MustInherit"|
+    "MustOverride"|"Overridable"|"Overrides"
+)
 Separator = "("|")"|"{"|"}"|"["|"]"|";"|","|"."|":"
 Class = "class"
 Parent = "super"|"MyBase"
@@ -111,9 +118,16 @@ Print = "print"
 
 // VisualBasic
 Handler = "AddHandler"|"Handles"
-Modifier = "ByRef"|"ByVal"|"strictfp"|"Friend"|"NotInheritable"|"NotOverridable"|"Optional"|"Out"|"Overloads"|"WithEvents"|"WriteOnly"
+Modifier = (
+    "ByRef"|"ByVal"|"strictfp"|"Friend"|"NotInheritable"|"NotOverridable"|
+    "Optional"|"Out"|"Overloads"|"WithEvents"|"WriteOnly"
+)
 Storage = "Dim"|"ReDim"
-Cast = "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|"CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|"CUShort"|"Narrowing"|"TryCast"|"Widening"
+Cast = (
+    "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|
+    "CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|
+    "CUShort"|"Narrowing"|"TryCast"|"Widening"
+)
 Event = "Event"
 Get = "Get"|"GetType"|"GetXmlNamespace"|"NameOf"
 GoTo = "GoTo"
@@ -131,7 +145,7 @@ Structure = "Structure"
 Add = "ADD"|"ADD CONSTRAINT"
 Constraint = "CHECK"|"CONSTRAINT"|"FOREIGN KEY"|"PRIMARY KEY"|"UNIQUE"
 Alter = "ALTER"
-Insert = "INSERT"|"INTO"|"VALUES"
+Insert = "INSERT INTO"|"VALUES"
 Sort = "ASC"|"DESC"|"GROUP BY"|"ORDER BY"
 Backup = "BACKUP"
 Range = "BETWEEN"
@@ -140,7 +154,10 @@ Column = "COLUMN"
 Table = "TABLE"
 Database = "DATABASE"
 Select = "SELECT"
-Join = "JOIN"|"FULL OUTER JOIN"|"INNER JOIN"|"LEFT JOIN"|"OUTER JOIN"|"RIGHT JOIN"
+Join = (
+    "JOIN"|"FULL OUTER JOIN"|"INNER JOIN"|
+    "LEFT JOIN"|"OUTER JOIN"|"RIGHT JOIN"
+)
 Index = "INDEX"
 Limit = "LIMIT"|"ROWNUM"|"TOP"|"DISTINCT"
 Update = "UPDATE"|"SET"
