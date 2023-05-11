@@ -79,7 +79,7 @@ String = \"[^\'\"]*\"
 Character = \'[^\'\"\\]?\'
 Integer = {SIGN}?{DIGIT}+           // [+-]?[0-9]+
 Decimal = {Integer}{DEC}?{EXPO}?    // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?
-Complex = ({Integer}|{Decimal})"i"  // (([+-]?[0-9]+)|(([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?))"i"
+Complex = {Decimal}"i"              // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?"i"
 
 // Keywords
 Loop = "for"|"foreach"|"while"|"do"|"Each"|"Next"
@@ -108,7 +108,16 @@ NonAccesMod = (
     "transient"|"synchronized"|"volatile"|"MustInherit"|
     "MustOverride"|"Overridable"|"Overrides"
 )
-Separator = "("|")"|"{"|"}"|"["|"]"|";"|","|"."|":"
+ParIzq = "("
+ParDer = ")"
+LlaveIzq = "{"
+LlaveDer = "}"
+CorIzq = "["
+CorDer = "]"
+Point = "."
+Comma = ","
+Colon = ":"
+SemiColon = ";"
 Class = "class"
 Parent = "super"|"MyBase"
 Interface = "interface"
@@ -181,8 +190,8 @@ Union = "UNION"|"UNION ALL"
 {Assignment}    {return foundSymbol("Asignador", yytext(), yyline, yycolumn);}
 {Logical}       {return foundSymbol("Operador Logico", yytext(), yyline, yycolumn);}
 {Identity}      {return foundSymbol("Operador de identidad", yytext(), yyline, yycolumn);}
-{Instance}      {return foundSymbol("Operador de instancia", yytext(), yyline, yycolumn);}
-{Type}          {return foundSymbol("Operador de typo", yytext(), yyline, yycolumn);}
+{Instance}      {return foundSymbol("Operador de instancia", "", yyline, yycolumn);}
+{Type}          {return foundSymbol("Operador de typo", "", yyline, yycolumn);}
 {Membership}    {return foundSymbol("Operadot de Pertenencia", yytext(), yyline, yycolumn);}
 {Bitwise}       {return foundSymbol("Operador de Bits", yytext(), yyline, yycolumn);}
 
@@ -207,15 +216,24 @@ Union = "UNION"|"UNION ALL"
 {Comment}       {return foundSymbol("Comentario", yytext(), yyline, yycolumn);}
 {AccesMod}      {return foundSymbol("Modificador de Acceso", yytext(), yyline, yycolumn);}
 {NonAccesMod}   {return foundSymbol("Modificador de No Acceso", yytext(), yyline, yycolumn);}
-{Separator}     {return foundSymbol("Separador", yytext(), yyline, yycolumn);}
-{Class}         {return foundSymbol("Clase", yytext(), yyline, yycolumn);}
+{ParIzq}        {return foundSymbol("Parentesis Izquierdo", "", yyline, yycolumn);}
+{ParDer}        {return foundSymbol("Parentesis Derecho", "", yyline, yycolumn);}
+{LlaveIzq}      {return foundSymbol("Llave Izquierda", "", yyline, yycolumn);}
+{LlaveDer}      {return foundSymbol("Llave Derecha", "yytext", yyline, yycolumn);}
+{CorIzq}        {return foundSymbol("Corchete Izquierdo", yytext(), yyline, yycolumn);}
+{CorDer}        {return foundSymbol("Corchete Derecho", "", yyline, yycolumn);}
+{Point}         {return foundSymbol("Punto", "", yyline, yycolumn);}
+{Comma}         {return foundSymbol("Coma", "", yyline, yycolumn);}
+{Colon}         {return foundSymbol("Dos puntos", "", yyline, yycolumn);}
+{SemiColon}     {return foundSymbol("Punto y coma", "", yyline, yycolumn);}
+{Class}         {return foundSymbol("Clase", "", yyline, yycolumn);}
 {Parent}        {return foundSymbol("Clase Padre", yytext(), yyline, yycolumn);}
-{Interface}     {return foundSymbol("Interface", yytext(), yyline, yycolumn);}
-{Enum}          {return foundSymbol("Enum", yytext(), yyline, yycolumn);}
+{Interface}     {return foundSymbol("Interface", "", yyline, yycolumn);}
+{Enum}          {return foundSymbol("Enum", "", yyline, yycolumn);}
 {Inherited}     {return foundSymbol("Erencia", yytext(), yyline, yycolumn);}
 {Break}         {return foundSymbol("Salida", yytext(), yyline, yycolumn);}
-{Continue}      {return foundSymbol("Continuar", yytext(), yyline, yycolumn);}
-{Pass}          {return foundSymbol("Pasar", yytext(), yyline, yycolumn);}
+{Continue}      {return foundSymbol("Continuar", "", yyline, yycolumn);}
+{Pass}          {return foundSymbol("Pass", "", yyline, yycolumn);}
 {Importing}     {return foundSymbol("Importar", yytext(), yyline, yycolumn);}
 {Return}        {return foundSymbol("Regresar", yytext(), yyline, yycolumn);}
 {Create}        {return foundSymbol("Crear", yytext(), yyline, yycolumn);}
@@ -223,40 +241,40 @@ Union = "UNION"|"UNION ALL"
 {Reference}     {return foundSymbol("Referencia", yytext(), yyline, yycolumn);}
 {Alias}         {return foundSymbol("Renombrar", yytext(), yyline, yycolumn);}
 {Asynchronous}  {return foundSymbol("Asyncrono", yytext(), yyline, yycolumn);}
-{Package}       {return foundSymbol("Paquete", yytext(), yyline, yycolumn);}
-{Print}         {return foundSymbol("Imprimir", yytext(), yyline, yycolumn);}
+{Package}       {return foundSymbol("Paquete", "", yyline, yycolumn);}
+{Print}         {return foundSymbol("Imprimir", "", yyline, yycolumn);}
 
 {Handler}       {return foundSymbol("AddHandler", yytext(), yyline, yycolumn);}
 {Modifier}      {return foundSymbol("Modificador", yytext(), yyline, yycolumn);}
 {Storage}       {return foundSymbol("Almacenamiento", yytext(), yyline, yycolumn);}
 {Cast}          {return foundSymbol("Cast", yytext(), yyline, yycolumn);}
-{Event}         {return foundSymbol("Evento", yytext(), yyline, yycolumn);}
+{Event}         {return foundSymbol("Evento", "", yyline, yycolumn);}
 {Get}           {return foundSymbol("Get", yytext(), yyline, yycolumn);}
-{GoTo}          {return foundSymbol("GoTo", yytext(), yyline, yycolumn);}
-{Module}        {return foundSymbol("Module", yytext(), yyline, yycolumn);}
-{Namespace}     {return foundSymbol("Namespace", yytext(), yyline, yycolumn);}
-{Of}            {return foundSymbol("Of", yytext(), yyline, yycolumn);}
-{Operator}      {return foundSymbol("Operador de VB", yytext(), yyline, yycolumn);}
-{Option}        {return foundSymbol("Opcion", yytext(), yyline, yycolumn);}
-{Partial}       {return foundSymbol("Parcial", yytext(), yyline, yycolumn);}
-{Increment}     {return foundSymbol("Incremento", yytext(), yyline, yycolumn);}
-{Debug}         {return foundSymbol("Debug", yytext(), yyline, yycolumn);}
-{Structure}     {return foundSymbol("Estructura", yytext(), yyline, yycolumn);}
+{GoTo}          {return foundSymbol("GoTo", "", yyline, yycolumn);}
+{Module}        {return foundSymbol("Module", "", yyline, yycolumn);}
+{Namespace}     {return foundSymbol("Namespace", "", yyline, yycolumn);}
+{Of}            {return foundSymbol("Of", "", yyline, yycolumn);}
+{Operator}      {return foundSymbol("Operador de VB", "", yyline, yycolumn);}
+{Option}        {return foundSymbol("Opcion", "", yyline, yycolumn);}
+{Partial}       {return foundSymbol("Parcial", "", yyline, yycolumn);}
+{Increment}     {return foundSymbol("Incremento", "", yyline, yycolumn);}
+{Debug}         {return foundSymbol("Debug", "", yyline, yycolumn);}
+{Structure}     {return foundSymbol("Estructura", "", yyline, yycolumn);}
 
 {Add}           {return foundSymbol("Añadir", yytext(), yyline, yycolumn);}
 {Constraint}    {return foundSymbol("Restriccion", yytext(), yyline, yycolumn);}
-{Alter}         {return foundSymbol("Alterar", yytext(), yyline, yycolumn);}
+{Alter}         {return foundSymbol("Alterar", "", yyline, yycolumn);}
 {Insert}        {return foundSymbol("Insertar", yytext(), yyline, yycolumn);}
 {Sort}          {return foundSymbol("Ordenar", yytext(), yyline, yycolumn);}
-{Backup}        {return foundSymbol("Backup", yytext(), yyline, yycolumn);}
-{Range}         {return foundSymbol("Rango", yytext(), yyline, yycolumn);}
-{View}          {return foundSymbol("Vista", yytext(), yyline, yycolumn);}
-{Column}        {return foundSymbol("Columna", yytext(), yyline, yycolumn);}
-{Table}         {return foundSymbol("Tabla", yytext(), yyline, yycolumn);}
-{Database}      {return foundSymbol("Database", yytext(), yyline, yycolumn);}
-{Select}        {return foundSymbol("Select", yytext(), yyline, yycolumn);}
+{Backup}        {return foundSymbol("Backup", "", yyline, yycolumn);}
+{Range}         {return foundSymbol("Rango", "", yyline, yycolumn);}
+{View}          {return foundSymbol("Vista", "", yyline, yycolumn);}
+{Column}        {return foundSymbol("Columna", "", yyline, yycolumn);}
+{Table}         {return foundSymbol("Tabla", "", yyline, yycolumn);}
+{Database}      {return foundSymbol("Database", "", yyline, yycolumn);}
+{Select}        {return foundSymbol("Select", "", yyline, yycolumn);}
 {Join}          {return foundSymbol("Join", yytext(), yyline, yycolumn);}
-{Index}         {return foundSymbol("Indice", yytext(), yyline, yycolumn);}
+{Index}         {return foundSymbol("Indice", "", yyline, yycolumn);}
 {Limit}         {return foundSymbol("Limite", yytext(), yyline, yycolumn);}
 {Update}        {return foundSymbol("Update", yytext(), yyline, yycolumn);}
 {Union}         {return foundSymbol("Union", yytext(), yyline, yycolumn);}
