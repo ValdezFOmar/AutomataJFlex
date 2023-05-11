@@ -3,16 +3,10 @@
 // source: src/resources/Lexer.flex
 
 // User Code (Import dependencies or declare variables)
-
+import java.util.HashMap;
 /*TODO.
     - Refactor some of the token (separe the 'Separator' category into their own tokens)
-
-    - Change the return values
-        - Return the lexema found if the token has more than one lexeme
-        - Return the nothing if the token has only one lexeme
-        - Return the number of the identifier found (0),(1),(2),...
 */
-
 
 @SuppressWarnings("fallthrough")
 public class Lexer {
@@ -1220,14 +1214,30 @@ public class Lexer {
   /* user code: */
     private int _numberTokens = 0;
     private boolean _thereIsTokens = false;
+    private HashMap<String, Integer> identifiers = new HashMap<String, Integer>();
     
     public boolean thereIsTokens() {return this._thereIsTokens;}
     public int numberTokens() {return this._numberTokens;}
+    public HashMap<String, Integer> getIdentifiers() {return this.identifiers;}
 
     // Creates and returns a Token Object
     private Token foundSymbol(String token, String lexeme, int line, int column) {
         this._thereIsTokens = true;
         this._numberTokens++;
+
+        // value given lexeme as a key
+        Integer value = identifiers.get(lexeme);
+        Integer size = identifiers.size();
+        
+        if (token == "Identificador") {
+            if (value == null) {
+                identifiers.put(lexeme, size);
+                lexeme = size.toString();
+            } else {
+                lexeme = value.toString();
+            }
+        }   
+
         Token t = new Token(token, lexeme, line, column);
         return t;
     }
