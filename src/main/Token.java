@@ -8,6 +8,10 @@ public class Token {
     public String getLexeme() {
         return this.lexeme;
     }
+
+    public void setLexeme(String value) {
+        this.lexeme = value;
+    }
     
     public String getToken() {
         return this.token;
@@ -30,8 +34,9 @@ public class Token {
 
     public String toString() {
         String symbol = "";
-        // (Linea: %d, Columna: %d)
-        if (lexeme.length() >= 8)
+        if (token == "Identificador")
+            symbol = String.format("(%s)\t\t<-\t[%s]", lexeme, token);
+        else if (lexeme.length() >= 8)
             symbol = String.format("%s\t<-\t[%s]", lexeme, token);
         else
             symbol = String.format("%s\t\t<-\t[%s]", lexeme, token);

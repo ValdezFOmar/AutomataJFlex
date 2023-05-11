@@ -171,6 +171,7 @@ Union = "UNION"|"UNION ALL"
 {Logical}       {return foundSymbol("Operador Logico", yytext(), yyline, yycolumn);}
 {Identity}      {return foundSymbol("Operador de identidad", yytext(), yyline, yycolumn);}
 {Instance}      {return foundSymbol("Operador de instancia", yytext(), yyline, yycolumn);}
+{Type}          {return foundSymbol("Operador de typo", yytext(), yyline, yycolumn);}
 {Membership}    {return foundSymbol("Operadot de Pertenencia", yytext(), yyline, yycolumn);}
 {Bitwise}       {return foundSymbol("Operador de Bits", yytext(), yyline, yycolumn);}
 
@@ -197,6 +198,7 @@ Union = "UNION"|"UNION ALL"
 {NonAccesMod}   {return foundSymbol("Modificador de No Acceso", yytext(), yyline, yycolumn);}
 {Separator}     {return foundSymbol("Separador", yytext(), yyline, yycolumn);}
 {Class}         {return foundSymbol("Clase", yytext(), yyline, yycolumn);}
+{Parent}        {return foundSymbol("Clase Padre", yytext(), yyline, yycolumn);}
 {Interface}     {return foundSymbol("Interface", yytext(), yyline, yycolumn);}
 {Enum}          {return foundSymbol("Enum", yytext(), yyline, yycolumn);}
 {Inherited}     {return foundSymbol("Erencia", yytext(), yyline, yycolumn);}

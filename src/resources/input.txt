@@ -1,4 +1,4 @@
-identificador
+mi_variable
 233
 45.15
 13i
@@ -23,7 +23,7 @@ int16
 int32
 int64
 string
-bool
+boolean
 float
 decimal
 date
