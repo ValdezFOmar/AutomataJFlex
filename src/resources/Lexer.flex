@@ -165,7 +165,7 @@ Structure = "Structure"
 Add = "ADD"|"ADD CONSTRAINT"
 Constraint = "CHECK"|"CONSTRAINT"|"FOREIGN KEY"|"PRIMARY KEY"|"UNIQUE"
 Alter = "ALTER"
-Insert = "INSERT INTO"|"VALUES"
+Insert = "INSERT"|"INTO"|"VALUES"
 Sort = "ASC"|"DESC"|"GROUP BY"|"ORDER BY"
 Backup = "BACKUP"
 Range = "BETWEEN"
@@ -192,7 +192,7 @@ Union = "UNION"|"UNION ALL"
 {Identity}      {return foundSymbol("Operador de identidad", yytext(), yyline, yycolumn);}
 {Instance}      {return foundSymbol("Operador de instancia", "", yyline, yycolumn);}
 {Type}          {return foundSymbol("Operador de typo", "", yyline, yycolumn);}
-{Membership}    {return foundSymbol("Operadot de Pertenencia", yytext(), yyline, yycolumn);}
+{Membership}    {return foundSymbol("Operador de Pertenencia", yytext(), yyline, yycolumn);}
 {Bitwise}       {return foundSymbol("Operador de Bits", yytext(), yyline, yycolumn);}
 
 {Boolean}       {return foundSymbol("Booleano", yytext(), yyline, yycolumn);}
@@ -220,7 +220,7 @@ Union = "UNION"|"UNION ALL"
 {ParDer}        {return foundSymbol("Parentesis Derecho", "", yyline, yycolumn);}
 {LlaveIzq}      {return foundSymbol("Llave Izquierda", "", yyline, yycolumn);}
 {LlaveDer}      {return foundSymbol("Llave Derecha", "yytext", yyline, yycolumn);}
-{CorIzq}        {return foundSymbol("Corchete Izquierdo", yytext(), yyline, yycolumn);}
+{CorIzq}        {return foundSymbol("Corchete Izquierdo", "", yyline, yycolumn);}
 {CorDer}        {return foundSymbol("Corchete Derecho", "", yyline, yycolumn);}
 {Point}         {return foundSymbol("Punto", "", yyline, yycolumn);}
 {Comma}         {return foundSymbol("Coma", "", yyline, yycolumn);}

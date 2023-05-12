@@ -31,11 +31,9 @@ public class Token {
     public String toString() {
         String symbol = "";
         if (token == "Identificador")
-            symbol = String.format("(%s)\t\t[%s]", lexeme, token);
-        else if (lexeme.length() >= 8)
-            symbol = String.format("%s\t[%s]", lexeme, token);
+            symbol = String.format("%-25s | (%s)", token, lexeme);
         else
-            symbol = String.format("%s\t\t[%s]", lexeme, token);
+            symbol = String.format("%-25s | %s", token, lexeme);
         return symbol;
     }
 }

@@ -25,11 +25,13 @@ public class Main {
             }
             
             // Print tokens
+            System.out.println("\n-----------------------------------");
             if (!tokens.isEmpty()) {
                 for (Token token : tokens) {
                     System.out.println(token);
                 }
             }
+            System.out.println("-----------------------------------");
 
             // Print total number of tokens found
             int numLexemes = lexer.numberTokens();
