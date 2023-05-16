@@ -10,15 +10,17 @@ Backup,BACKUP,BACKUP
 Bitwise,&|||^|~|<<|>>,"&,|,^,~,<<,>>"
 Boolean,([Tt]rue)|([Ff]alse),"True,true,False,false"
 Break,break|End|Exit,"break,End,Exit"
+Case,case,case
 Cast,DirectCast|CBool|CByte|CChar|CDate|CDbl|CDec|CInt|CLng|CObj|CSByte|CShort|CSng|CStr|CUInt|CULng|CUShort|Narrowing|TryCast|Widening,"DirectCastDirectCast,CBool,CByte,CChar,CDate,CDbl,CDec,CInt,CLng,CObj,CSByte,CShort,CSng,CStr,CUInt,CULng,CUShort,Narrowing,TryCast,Widening"
 Character,"\'[^\'\""\\]?\'",Infinitos
 Class,class,class
 Column,COLUMN,COLUMN
-Comment,/*|*/|#|TODO|FIXME|REM,"/*,*/,#,TODO,FIXME,REM"
 Comparison,<|>|==|!=|<=|>=,"<,>,==,!=,<=,>="
 Complex,(([+-]?[0-9]+)|(([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?))i,Infinitos
-Conditional,if|elif|switch|case|ALL|ANY|EXISTS|HAVING|LIKE|WHERE,"if,elif,switch,case,ALL,ANY,EXISTS,HAVING,LIKE,WHERE"
-Consequence,else|finally|Resume|Then,"else,finally,Resume,Then"
+Conditional,if,if
+ConditionalConsequence,elif,elif
+ConditionalQuery,HAVING|WHERE,"HAVING,WHERE"
+Consequence,else,else
 Constraint,CHECK|CONSTRAINT|FOREIGN KEY|PRIMARY KEY|UNIQUE,"CHECK,CONSTRAINT,FOREIGN KEY,PRIMARY KEY,UNIQUE"
 Continue,continue,continue
 Create,new|CREATE,"new,CREATE"
@@ -28,34 +30,42 @@ DataType,int|int8|int16|int32|int64|string|boolean|float|decimal|date|char|byte|
 Decimal,([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?,Infinitos
 Debug,Stop,Stop
 Delete,del|DELETE|DROP|TRUNCATE|Erase|RemoveHandler,"del,DELETE,DROP,TRUNCATE,Erase,RemoveHandler"
+DoLoop,do,do
+EndComment,*/,*/
 Enum,enum,enum
 Event,Event,Event
 Exception,throw|raise|catch|except|Error|RaiseEvent,"throw,raise,catch,except,Error,RaiseEvent"
 Execute,EXEC|Call,"EXEC,Call"
-Function,def|void|lambda|PROCEDURE|Sub|func,"def,void,lambda,PROCEDURE,Sub,func"
+Extends,extends,extends
+ForLoop,for,for
+Function,def|PROCEDURE|Sub|func,"def,PROCEDURE,Sub,func"
 Get,Get|GetType|GetXmlNamespace|NameOf,"Get,GetType,GetXmlNamespace,NameOf"
 GoTo,GoTo,GoTo
 Handler,AddHandler|Handles,"AddHandler,Handles"
 Identifier,[a-zA-Z][a-zA-Z0-9_]*,Infinitos
 Identity,is|is not,"is,is not"
+Implements,implements,implements
 Importing,import|from|requires|native|Using,"import,from,requires,native,Using"
 Increment,Step,Step
 Index,INDEX,INDEX
-Inherited,extends|implements,"extends,implements"
 Insert,INSERT|INTO|VALUES,"INSERT,INTO,VALUES"
 Instance,instanceof,instanceof
 Interface,interface,interface
 Integer,[+-]?[0-9]+,Infinitos
+Iterate,foreach|Each|Next,"foreach,Each,Next"
 Join,JOIN|FULL OUTER JOIN|INNER JOIN|LEFT JOIN|OUTER JOIN|RIGHT JOIN,"JOIN,FULL OUTER JOIN,INNER JOIN,LEFT JOIN,OUTER JOIN,RIGHT JOIN"
+Lambda,lambda,lambda
 Limit,LIMIT|ROWNUM|TOP|DISTINCT,"LIMIT,ROWNUM,TOP,DISTINCT"
-Logical,&&||||!|and|or|not|?|??|AndAlso|OrElse|Xor,"&&,||,!,and,or,not,?,??,AndAlso,OrElse,Xor"
-Loop,for|foreach|while|do|Each|Next,"for,foreach,while,do,Each,Next"
+LineComment,#,#
+Logical,&&||||and|or|not|?|??|AndAlso|OrElse|Xor,"&&,||,and,or,not,?,??,AndAlso,OrElse,Xor"
 Membership,in|not in,"in,not in"
 Modifier,ByRef|ByVal|strictfp|Friend|NotInheritable|NotOverridable|Optional|Out|Overloads|WithEvents|WriteOnly,"ByRef,ByVal,strictfp,Friend,NotInheritable,NotOverridable,Optional,Out,Overloads,WithEvents,WriteOnly"
 Module,Module,Module
 Namespace,Namespace,Namespace
+Negation,!,!
 NonAccesMod,ReadOnly|const|final|abstract|static|transient|synchronized|volatile|MustInherit|MustOverride|Overridable|Overrides,"ReadOnly,const,final,abstract,static,transient,synchronized,volatile,MustInherit,MustOverride,Overridable,Overrides"
 Null,[Nn]ull|None|Nothing,"Null,null,None,Nothing"
+Nullish,??,??
 Of,Of,Of
 Operator,Operator,Operator
 Option,Option,Option
@@ -64,19 +74,28 @@ Parent,super|MyBase,"super,MyBase"
 Partial,Partial,Partial
 Pass,pass,pass
 Print,print,print
+QueryConditions,ALL|ANY|EXISTS|LIKE,"ALL,ANY,EXISTS,LIKE"
 Range,BETWEEN,BETWEEN
-Reference,this|self|throws|AddressOf|Delegate|Lib|Me|MyClass,"this,self,throws,AddressOf,Delegate,Lib,Me,MyClass"
+Reference,throws|AddressOf|Delegate|Lib|Me|MyClass,"throws,AddressOf,Delegate,Lib,Me,MyClass"
 Return,return|yield," return,yield"
 Select,SELECT,SELECT
 Separator,"(|)|{|}|[|]|;|,|.|:",",,(,),{,},[,],;,.,:"
 Sort,ASC|DESC|GROUP BY|ORDER BY,"ASC,DESC,GROUP BY,ORDER BY"
+SpecialComment,TODO|FIXME|REM,"TODO,FIXME,REM"
+StartComment,/*,/*
 Storage,Dim|ReDim,"Dim,ReDim"
 String,"\""[^\'\""]*\""",Infinitos
 Structure,Structure,Structure
+Switch,switch,switch
 Table,TABLE,TABLE
+Ternary,?,?
+This,this|self,"this,self"
 Try,try|assert|with,"try,assert,with"
+TryConsequence,finally|Resume|Then,"finally,Resume,Then"
 Type,TypeOf,TypeOf
 Union,UNION|UNION ALL,"UNION,UNION ALL"
 Update,UPDATE|SET,"UPDATE,SET"
 Variable,var|Let,"var,Let"
 View,VIEW,VIEW
+Void,void,void
+WhileLoop,while,while
