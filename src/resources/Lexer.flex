@@ -108,8 +108,8 @@ Consequence = ("else")
 Function = ("def"|"PROCEDURE"|"Sub"|"func")
 Lambda = ("lambda")
 Void = ("void")
-Execute = "EXEC"|"Call"
-Try = "try"|"assert"|"with"
+Execute = ("EXEC"|"Call")
+Try = ("try"|"assert"|"with")
 TryConsequence = ("finally"|"Resume"|"Then")
 Exception = ("throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent")
 
@@ -139,74 +139,74 @@ Comma = ","
 Colon = ":"
 SemiColon = ";"
 
-Class = "class"
-Parent = "super"|"MyBase"
-Interface = "interface"
-Enum = "enum"
-Extends = "extends"
-Implements = "implements"
-Break = "break"|"End"|"Exit"
-Continue = "continue"
-Pass = "pass"
+Class = ("class")
+Parent = ("super"|"MyBase")
+Interface = ("interface")
+Enum = ("enum")
+Extends = ("extends")
+Implements = ("implements")
+Break = ("break"|"End"|"Exit")
+Continue = ("continue")
+Pass = ("pass")
 Importing = ("import"|"from"|"requires"|"native"|"Using")
-Return = "return"|"yield"
-Create = "new"|"CREATE"
+Return = ("return"|"yield")
+Create = ("new"|"CREATE")
 Delete = ("del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"|"RemoveHandler")
 This = ("this"|"self")
 Reference = ("throws"|"AddressOf"|"Delegate"|"Lib"|"Me"|"MyClass")
-Alias = "as"|"Alias"
-Asynchronous = "await"|"async"
-Package = "package"
-Print = "print"
+Alias = ("as"|"Alias")
+Asynchronous = ("await"|"async")
+Package = ("package")
+Print = ("print")
 
 // VisualBasic
-Handler = "AddHandler"|"Handles"
+Handler = ("AddHandler"|"Handles")
 Modifier = (
     "ByRef"|"ByVal"|"strictfp"|"Friend"|"NotInheritable"|"NotOverridable"|
     "Optional"|"Out"|"Overloads"|"WithEvents"|"WriteOnly"
 )
-Storage = "Dim"|"ReDim"
+Storage = ("Dim"|"ReDim")
 Cast = (
     "DirectCast"|"CBool"|"CByte"|"CChar"|"CDate"|"CDbl"|"CDec"|"CInt"|
     "CLng"|"CObj"|"CSByte"|"CShort"|"CSng"|"CStr"|"CUInt"|"CULng"|
     "CUShort"|"Narrowing"|"TryCast"|"Widening"
 )
-Event = "Event"
+Event = ("Event")
 Get = ("Get"|"GetType"|"GetXmlNamespace"|"NameOf")
-GoTo = "GoTo"
-Module = "Module"
-Namespace = "Namespace"
-Of = "Of"
-Operator = "Operator"
-Option = "Option"
-Partial = "Partial"
-Increment = "Step"
-Debug = "Stop"
-Structure = "Structure"
+GoTo = ("GoTo")
+Module = ("Module")
+Namespace = ("Namespace")
+Of = ("Of")
+Operator = ("Operator")
+Option = ("Option")
+Partial = ("Partial")
+Increment = ("Step")
+Debug = ("Stop")
+Structure = ("Structure")
 
 // SQL Keywords
-Add = "ADD"|"ADD CONSTRAINT"
+Add = ("ADD"|"ADD CONSTRAINT")
 Constraint = ("CHECK"|"CONSTRAINT"|"FOREIGN KEY"|"PRIMARY KEY"|"UNIQUE")
 ConditionalQuery = ("HAVING"|"WHERE")
 QueryConditions = ("ALL"|"ANY"|"EXISTS"|"LIKE")
-Alter = "ALTER"
-Insert = "INSERT"|"INTO"|"VALUES"
-Sort = "ASC"|"DESC"|"GROUP BY"|"ORDER BY"
-Backup = "BACKUP"
-Range = "BETWEEN"
-View = "VIEW"
-Column = "COLUMN"
-Table = "TABLE"
-Database = "DATABASE"
-Select = "SELECT"
+Alter = ("ALTER")
+Insert = ("INSERT"|"INTO"|"VALUES")
+Sort = ("ASC"|"DESC"|"GROUP BY"|"ORDER BY")
+Backup = ("BACKUP")
+Range = ("BETWEEN")
+View = ("VIEW")
+Column = ("COLUMN")
+Table = ("TABLE")
+Database = ("DATABASE")
+Select = ("SELECT")
 Join = (
     "JOIN"|"FULL OUTER JOIN"|"INNER JOIN"|
     "LEFT JOIN"|"OUTER JOIN"|"RIGHT JOIN"
 )
-Index = "INDEX"
-Limit = "LIMIT"|"ROWNUM"|"TOP"|"DISTINCT"
-Update = "UPDATE"|"SET"
-Union = "UNION"|"UNION ALL"
+Index = ("INDEX")
+Limit = ("LIMIT"|"ROWNUM"|"TOP"|"DISTINCT")
+Update = ("UPDATE"|"SET")
+Union = ("UNION"|"UNION ALL")
 
 %%
 // Lexical Rules
