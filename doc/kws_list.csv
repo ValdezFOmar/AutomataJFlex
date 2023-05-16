@@ -15,9 +15,9 @@ Expresion Regular,Token,Lenguaje
 /,Arithmetic,Python
 **,Arithmetic,Python
 %,Arithmetic,Python
-for,Loop,Python
-foreach,Loop,Java
-while,Loop,Python
+for,ForLoop,Python
+foreach,Iterate,Java
+while,WhileLoop,Python
 int,DataType,Python
 int8,DataType,Go
 int16,DataType,Go
@@ -35,8 +35,8 @@ True,Boolean,Python
 False,Boolean,Python
 class,Class,Python
 break,Break,Python
-switch,Conditional,Java
-elif,Conditional,Python
+switch,Switch,Java
+elif,ConditionalConsequence,Python
 import,Importing,Python
 from,Importing,Python
 return,Return,Python
@@ -49,18 +49,18 @@ catch,Exception,Java
 -=,Assignment,Python
 *=,Assignment,Python
 /=,Assignment,Python
-/*,Comment,Java
-*/,Comment,Java
+/*,StartComment,Java
+*/,EndComment,Java
 //,Arithmetic,Python
-finally,Consequence,Python
+finally,TryConsequence,Python
 except,Exception,Python
 &&,Logical,Java
 ||,Logical,Java
 and,Logical,Python
 or,Logical,Python
-case,Conditional,Java
+case,Case,Java
 default,AccesMod,Java
-void,Function,Java
+void,Void,Java
 public,AccesMod,Java
 private,AccesMod,Java
 char,DataType,Java
@@ -86,7 +86,7 @@ not in,Membership,Python
 ",",Separator,Python
 .,Separator,Python
 const,NonAccesMod,Java
-do,Loop,Java
+do,DoLoop,Java
 &,Bitwise,Python
 |,Bitwise,Python
 ^,Bitwise,Python
@@ -99,10 +99,10 @@ do,Loop,Java
 >>=,Assignment,Python
 <<=,Assignment,Python
 **=,Assignment,Python
-lambda,Function,Python
+lambda,Lambda,Python
 :,Separator,Python
 complex,DataType,Python
-!,Logical,Python
+!,Negation,Python
 continue,Continue,Python
 protected,AccesMod,Java
 final,NonAccesMod,Java
@@ -110,27 +110,27 @@ abstract,NonAccesMod,Java
 transient,NonAccesMod,Java
 synchronized,NonAccesMod,Java
 volatile,NonAccesMod,Java
-extends,Inherited,Java
+extends,Extends,Java
 instanceof,Instance,Java
 requires,Importing,Java
 new,Create,Java
-this,Reference,Java
+this,This,Java
 throw,Exception,Python
 throws,Reference,Python
 interface,Interface,Java
-implements,Inherited,Java
+implements,Implements,Java
 as,Alias,Python
 del,Delete,Python
 global,AccesMod,Python
 pass,Pass,Python
 nonlocal,AccesMod,Python
 raise,Exception,Python
-#,Comment,Python
+#,LineComment,Python
 //=,Assignment,Python
 ADD,Add,SQL
 ADD CONSTRAINT,Add,SQL
-ALL,Conditional,SQL
-ANY,Conditional,SQL
+ALL,QueryConditions,SQL
+ANY,QueryConditions,SQL
 ALTER,Alter,SQL
 ASC,Sort,SQL
 BACKUP,Backup,SQL
@@ -145,15 +145,15 @@ DESC,Sort,SQL
 DISTINCT,Limit,SQL
 DROP,Delete,SQL
 EXEC,Execute,SQL
-EXISTS,Conditional,SQL
+EXISTS,QueryConditions,SQL
 FULL OUTER JOIN,Join,SQL
-HAVING,Conditional,SQL
+HAVING,ConditionalQuery,SQL
 INDEX,Index,SQL
 INNER JOIN,Join,SQL
 INSERT,Join,SQL
 JOIN,Join,SQL
 LEFT JOIN,Join,SQL
-LIKE,Conditional,SQL
+LIKE,QueryConditions,SQL
 ORDER BY,Sort,SQL
 OUTER JOIN,Join,SQL
 PRIMARY KEY,Constraint,SQL
@@ -172,16 +172,16 @@ UNIQUE,Constraint,SQL
 UPDATE,Update,SQL
 VALUES,Insert,SQL
 VIEW,View,SQL
-WHERE,Conditional,SQL
+WHERE,ConditionalQuery,SQL
 enum,Enum,SQL
-?,Logical,SQL
-??,Logical,SQL
+?,Ternary,SQL
+??,Nullish,SQL
 yield,Return,SQL
 async,Asynchronous,SQL
 await,Asynchronous,SQL
-self,Reference,SQL
-TODO,Comment,SQL
-FIXME,Comment,SQL
+self,This,SQL
+TODO,SpecialComment,SQL
+FIXME,SpecialComment,SQL
 long,DataType,Java
 short,DataType,Java
 double,DataType,Java
@@ -204,7 +204,7 @@ Call,Execute,Visual Basic
 Delegate,Delegate,Visual Basic
 Dim,Storage,Visual Basic
 DirectCast,Cast,Visual Basic
-Each,Loop,Visual Basic
+Each,Iterate,Visual Basic
 CBool,Cast,Visual Basic
 CByte,Cast,Visual Basic
 CChar,Cast,Visual Basic
@@ -244,7 +244,7 @@ MyClass,Reference,Visual Basic
 NameOf,Get,Visual Basic
 Namespace,Namespace,Visual Basic
 Narrowing,Cast,Visual Basic
-Next,Loop,Visual Basic
+Next,Iterate,Visual Basic
 Nothing,Null,Visual Basic
 NotInheritable,Modifier,Visual Basic
 NotOverridable,Modifier,Visual Basic
@@ -262,9 +262,9 @@ Partial,Partial,Visual Basic
 RaiseEvent,Exception,Visual Basic
 ReadOnly,ReadOnly,Visual Basic
 ReDim,Storage,Visual Basic
-REM,Comment,Visual Basic
+REM,SpecialComment,Visual Basic
 RemoveHandler,Delete,Visual Basic
-Resume,Consequence,Visual Basic
+Resume,TryConsequence,Visual Basic
 SByte,DataType,Visual Basic
 Shared,AccesMod,Visual Basic
 Single,DataType,Visual Basic
@@ -272,7 +272,7 @@ Step,Increment,Visual Basic
 Stop,Debug,Visual Basic
 Structure,Structure,Visual Basic
 Sub,Function,Visual Basic
-Then,Consequence,Visual Backup
+Then,TryConsequence,Visual Backup
 TryCast,Cast,Visual Basic
 TypeOf,TypeOf,Visual Basic
 UInteger,DataType,Visual Basic
