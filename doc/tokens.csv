@@ -11,7 +11,7 @@ Bitwise,&|||^|~|<<|>>,"&,|,^,~,<<,>>"
 Boolean,([Tt]rue)|([Ff]alse),"True,true,False,false"
 Break,break|End|Exit,"break,End,Exit"
 Case,case,case
-Cast,DirectCast|CBool|CByte|CChar|CDate|CDbl|CDec|CInt|CLng|CObj|CSByte|CShort|CSng|CStr|CUInt|CULng|CUShort|Narrowing|TryCast|Widening,"DirectCastDirectCast,CBool,CByte,CChar,CDate,CDbl,CDec,CInt,CLng,CObj,CSByte,CShort,CSng,CStr,CUInt,CULng,CUShort,Narrowing,TryCast,Widening"
+Cast,DirectCast|CBool|CByte|CChar|CDate|CDbl|CDec|CInt|CLng|CObj|CSByte|CShort|CSng|CStr|CUInt|CULng|CUShort|Narrowing|TryCast|Widening,"DirectCast,CBool,CByte,CChar,CDate,CDbl,CDec,CInt,CLng,CObj,CSByte,CShort,CSng,CStr,CUInt,CULng,CUShort,Narrowing,TryCast,Widening"
 Character,"\'[^\'\""\\]?\'",Infinitos
 Class,class,class
 Column,COLUMN,COLUMN
