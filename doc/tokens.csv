@@ -16,7 +16,7 @@ Character,"\'[^\'\""\\]?\'",Infinitos
 Class,class,class
 Column,COLUMN,COLUMN
 Comparison,<|>|==|!=|<=|>=,"<,>,==,!=,<=,>="
-Complex,(([+-]?[0-9]+)|(([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?))i,Infinitos
+Complex,([+-]?[0-9]+)(.[0-9]+)?([Ee][+-]?[0-9]+)?i,Infinitos
 Conditional,if,if
 ConditionalConsequence,elif,elif
 ConditionalQuery,HAVING|WHERE,"HAVING,WHERE"
