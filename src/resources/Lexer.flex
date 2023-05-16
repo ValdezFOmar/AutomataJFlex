@@ -54,18 +54,23 @@ import java.util.HashMap;
 %eof}
 
 // --- Definitions ---
+// Not keywords
 SIGN = [+-]
 DIGIT = [0-9]
 DEC = "."{DIGIT}+
 EXPO = [Ee]{SIGN}?{DIGIT}+
 
+// Identifier
 Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
 // Operators
 Comparison = "<"|">"|"=="|"!="|"<="|">="
 Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod"
 Assignment = "="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<="
-Logical = "&&"|"||"|"!"|"and"|"or"|"not"|"?"|"??"|"AndAlso"|"OrElse"|"Xor"
+Logical = "&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor"
+Negation = "!"
+Nullish = "??"
+Ternary = "?"
 Identity = "is"|"is not"
 Instance = "instanceof"
 Type = "TypeOf"
@@ -82,7 +87,10 @@ Decimal = {Integer}{DEC}?{EXPO}?    // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+
 Complex = {Decimal}"i"              // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?"i"
 
 // Keywords
-Loop = "for"|"foreach"|"while"|"do"|"Each"|"Next"
+ForLoop = ("for")
+DoLoop = ("do")
+WhileLoop = ("while")
+Iterate = ("foreach"|"Each"|"Next")
 DataType = (
     "int"|"int8"|"int16"|"int32"|"int64"|"string"|"boolean"|
     "float"|"decimal"|"date"|"char"|"byte"|"complex"|"long"|
@@ -90,19 +98,30 @@ DataType = (
     "ULong"|"UShort"|"uint"|"uint8"|"uint16"|"uint32"|"uint64"|
     "float32"|"float64"|"complex64"|"complex128"
 )
-DataStructure = "list"|"tuple"|"dict"|"Array"|"Stack"|"Queue"
-Variable = "var"|"Let"
-Conditional = (
-    "if"|"elif"|"switch"|"case"|"ALL"|
-    "ANY"|"EXISTS"|"HAVING"|"LIKE"|"WHERE"
-)
-Consequence = "else"|"finally"|"Resume"|"Then"
-Function = "def"|"void"|"lambda"|"PROCEDURE"|"Sub"|"func"
+DataStructure = ("list"|"tuple"|"dict"|"Array"|"Stack"|"Queue")
+Variable = ("var"|"Let")
+Conditional = ("if")
+ConditionalConsequence = ("elif")
+Switch = ("switch")
+Case = ("case") 
+Consequence = ("else")
+Function = ("def"|"PROCEDURE"|"Sub"|"func")
+Lambda = ("lambda")
+Void = ("void")
 Execute = "EXEC"|"Call"
 Try = "try"|"assert"|"with"
-Exception = "throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent"
-Comment = "/*"|"*/"|"#"|"TODO"|"FIXME"|"REM"
-AccesMod = "nonlocal"|"global"|"public"|"private"|"protected"|"default"|"Shared"
+TryConsequence = ("finally"|"Resume"|"Then")
+Exception = ("throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent")
+
+LineComment = ("#")
+StartComment = ("/*")
+EndComment = ("*/")
+SpecialComment = ("TODO"|"FIXME"|"REM")
+
+AccesMod = (
+    "nonlocal"|"global"|"public"|"private"|
+    "protected"|"default"|"Shared"
+)
 NonAccesMod = (
     "ReadOnly"|"const"|"final"|"abstract"|"static"|
     "transient"|"synchronized"|"volatile"|"MustInherit"|
@@ -122,15 +141,17 @@ Class = "class"
 Parent = "super"|"MyBase"
 Interface = "interface"
 Enum = "enum"
-Inherited = "extends"|"implements"
+Extends = "extends"
+Implements = "implements"
 Break = "break"|"End"|"Exit"
 Continue = "continue"
 Pass = "pass"
-Importing = "import"|"from"|"requires"|"native"|"Using"
+Importing = ("import"|"from"|"requires"|"native"|"Using")
 Return = "return"|"yield"
 Create = "new"|"CREATE"
-Delete = "del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"|"RemoveHandler"
-Reference = "this"|"self"|"throws"|"AddressOf"|"Delegate"|"Lib"|"Me"|"MyClass"
+Delete = ("del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"|"RemoveHandler")
+This = ("this"|"self")
+Reference = ("throws"|"AddressOf"|"Delegate"|"Lib"|"Me"|"MyClass")
 Alias = "as"|"Alias"
 Asynchronous = "await"|"async"
 Package = "package"
@@ -149,7 +170,7 @@ Cast = (
     "CUShort"|"Narrowing"|"TryCast"|"Widening"
 )
 Event = "Event"
-Get = "Get"|"GetType"|"GetXmlNamespace"|"NameOf"
+Get = ("Get"|"GetType"|"GetXmlNamespace"|"NameOf")
 GoTo = "GoTo"
 Module = "Module"
 Namespace = "Namespace"
@@ -163,7 +184,9 @@ Structure = "Structure"
 
 // SQL Keywords
 Add = "ADD"|"ADD CONSTRAINT"
-Constraint = "CHECK"|"CONSTRAINT"|"FOREIGN KEY"|"PRIMARY KEY"|"UNIQUE"
+Constraint = ("CHECK"|"CONSTRAINT"|"FOREIGN KEY"|"PRIMARY KEY"|"UNIQUE")
+ConditionalQuery = ("HAVING"|"WHERE")
+QueryConditions = ("ALL"|"ANY"|"EXISTS"|"LIKE")
 Alter = "ALTER"
 Insert = "INSERT"|"INTO"|"VALUES"
 Sort = "ASC"|"DESC"|"GROUP BY"|"ORDER BY"
@@ -189,6 +212,9 @@ Union = "UNION"|"UNION ALL"
 {Arithmetic}    {return foundSymbol("Operador Aritmetico", yytext(), yyline, yycolumn);}
 {Assignment}    {return foundSymbol("Asignador", yytext(), yyline, yycolumn);}
 {Logical}       {return foundSymbol("Operador Logico", yytext(), yyline, yycolumn);}
+{Negation}      {return foundSymbol("Negacion", "", yyline, yycolumn);}
+{Nullish}       {return foundSymbol("Operador Nulo", "", yyline, yycolumn);}
+{Ternary}       {return foundSymbol("Operador Ternario", "", yyline, yycolumn);}
 {Identity}      {return foundSymbol("Operador de identidad", yytext(), yyline, yycolumn);}
 {Instance}      {return foundSymbol("Operador de instancia", "", yyline, yycolumn);}
 {Type}          {return foundSymbol("Operador de typo", "", yyline, yycolumn);}
@@ -203,17 +229,34 @@ Union = "UNION"|"UNION ALL"
 {Decimal}       {return foundSymbol("Decimal", yytext(), yyline, yycolumn);}
 {Complex}       {return foundSymbol("Complejo", yytext(), yyline, yycolumn);}
 
-{Loop}          {return foundSymbol("Iterador", yytext(), yyline, yycolumn);}
+{ForLoop}       {return foundSymbol("Ciclo For", "", yyline, yycolumn);}
+{DoLoop}        {return foundSymbol("Ciclo Do", "", yyline, yycolumn);}
+{WhileLoop}     {return foundSymbol("Ciclo While", "", yyline, yycolumn);}
+{Iterate}       {return foundSymbol("Iterador", yytext(), yyline, yycolumn);}
+
 {DataType}      {return foundSymbol("Tipo de dato", yytext(), yyline, yycolumn);}
 {DataStructure} {return foundSymbol("Estructura de datos", yytext(), yyline, yycolumn);}
 {Variable}      {return foundSymbol("Variable", yytext(), yyline, yycolumn);}
-{Conditional}   {return foundSymbol("Condicional", yytext(), yyline, yycolumn);}
-{Consequence}   {return foundSymbol("Consequencia", yytext(), yyline, yycolumn);}
+
+{Conditional}   {return foundSymbol("Condicional", "", yyline, yycolumn);}
+{ConditionalConsequence}    {return foundSymbol("Consecuencia Condicional", "", yyline, yycolumn);}
+{Consequence}   {return foundSymbol("Consequencia", "", yyline, yycolumn);}
+{Switch}        {return foundSymbol("Switch", "", yyline, yycolumn);}
+{Case}          {return foundSymbol("Case", "", yyline, yycolumn);}
+
 {Function}      {return foundSymbol("Funcion", yytext(), yyline, yycolumn);}
+{Void}          {return foundSymbol("Void", "", yyline, yycolumn);}
+{Lambda}        {return foundSymbol("Lamda", "", yyline, yycolumn);}
 {Execute}       {return foundSymbol("Ejecutar", yytext(), yyline, yycolumn);}
 {Try}           {return foundSymbol("Intentar", yytext(), yyline, yycolumn);}
+{TryConsequence}    {return foundSymbol("Consecuencia Itentar", yytext(), yyline, yycolumn);}
 {Exception}     {return foundSymbol("Excepcion", yytext(), yyline, yycolumn);}
-{Comment}       {return foundSymbol("Comentario", yytext(), yyline, yycolumn);}
+
+{LineComment}   {return foundSymbol("Comentario en linea", yytext(), yyline, yycolumn);}
+{StartComment}  {return foundSymbol("Inicia comentario", yytext(), yyline, yycolumn);}
+{EndComment}    {return foundSymbol("Termina comentario", yytext(), yyline, yycolumn);}
+{SpecialComment}    {return foundSymbol("Comentario especial", yytext(), yyline, yycolumn);}
+
 {AccesMod}      {return foundSymbol("Modificador de Acceso", yytext(), yyline, yycolumn);}
 {NonAccesMod}   {return foundSymbol("Modificador de No Acceso", yytext(), yyline, yycolumn);}
 {ParIzq}        {return foundSymbol("Parentesis Izquierdo", "", yyline, yycolumn);}
@@ -230,7 +273,8 @@ Union = "UNION"|"UNION ALL"
 {Parent}        {return foundSymbol("Clase Padre", yytext(), yyline, yycolumn);}
 {Interface}     {return foundSymbol("Interface", "", yyline, yycolumn);}
 {Enum}          {return foundSymbol("Enum", "", yyline, yycolumn);}
-{Inherited}     {return foundSymbol("Erencia", yytext(), yyline, yycolumn);}
+{Extends}       {return foundSymbol("Extiende", "", yyline, yycolumn);}
+{Implements}    {return foundSymbol("Implementa", "", yyline, yycolumn);}
 {Break}         {return foundSymbol("Salida", yytext(), yyline, yycolumn);}
 {Continue}      {return foundSymbol("Continuar", "", yyline, yycolumn);}
 {Pass}          {return foundSymbol("Pass", "", yyline, yycolumn);}
@@ -238,6 +282,7 @@ Union = "UNION"|"UNION ALL"
 {Return}        {return foundSymbol("Regresar", yytext(), yyline, yycolumn);}
 {Create}        {return foundSymbol("Crear", yytext(), yyline, yycolumn);}
 {Delete}        {return foundSymbol("Borrar", yytext(), yyline, yycolumn);}
+{This}          {return foundSymbol("This", yytext(), yyline, yycolumn);}
 {Reference}     {return foundSymbol("Referencia", yytext(), yyline, yycolumn);}
 {Alias}         {return foundSymbol("Renombrar", yytext(), yyline, yycolumn);}
 {Asynchronous}  {return foundSymbol("Asyncrono", yytext(), yyline, yycolumn);}
@@ -263,6 +308,8 @@ Union = "UNION"|"UNION ALL"
 
 {Add}           {return foundSymbol("Añadir", yytext(), yyline, yycolumn);}
 {Constraint}    {return foundSymbol("Restriccion", yytext(), yyline, yycolumn);}
+{ConditionalQuery}  {return foundSymbol("Query Condicional", yytext(), yyline, yycolumn);}
+{QueryConditions}   {return foundSymbol("Condiciones Query", yytext(), yyline, yycolumn);}
 {Alter}         {return foundSymbol("Alterar", "", yyline, yycolumn);}
 {Insert}        {return foundSymbol("Insertar", yytext(), yyline, yycolumn);}
 {Sort}          {return foundSymbol("Ordenar", yytext(), yyline, yycolumn);}

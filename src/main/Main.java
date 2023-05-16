@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 // Main class for reading the file and printing the results
+// For reloading .class: F1 > Clean java language server workspace
 public class Main {
     public static void main(String[] args) {
         String input = "src/resources/input.txt";
