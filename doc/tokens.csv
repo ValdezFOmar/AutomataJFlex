@@ -57,12 +57,12 @@ Join,JOIN|FULL OUTER JOIN|INNER JOIN|LEFT JOIN|OUTER JOIN|RIGHT JOIN,"JOIN,FULL 
 Lambda,lambda,lambda
 Limit,LIMIT|ROWNUM|TOP|DISTINCT,"LIMIT,ROWNUM,TOP,DISTINCT"
 LineComment,#,#
-Logical,&&||||and|or|not|?|??|AndAlso|OrElse|Xor,"&&,||,and,or,not,?,??,AndAlso,OrElse,Xor"
+Logical,&&||||and|or|not|?|??|AndAlso|OrElse|Xor,"&&,||,and,or,AndAlso,OrElse,Xor"
 Membership,in|not in,"in,not in"
 Modifier,ByRef|ByVal|strictfp|Friend|NotInheritable|NotOverridable|Optional|Out|Overloads|WithEvents|WriteOnly,"ByRef,ByVal,strictfp,Friend,NotInheritable,NotOverridable,Optional,Out,Overloads,WithEvents,WriteOnly"
 Module,Module,Module
 Namespace,Namespace,Namespace
-Negation,!,!
+Negation,!|not,"!,not"
 NonAccesMod,ReadOnly|const|final|abstract|static|transient|synchronized|volatile|MustInherit|MustOverride|Overridable|Overrides,"ReadOnly,const,final,abstract,static,transient,synchronized,volatile,MustInherit,MustOverride,Overridable,Overrides"
 Null,[Nn]ull|None|Nothing,"Null,null,None,Nothing"
 Nullish,??,??
@@ -79,7 +79,16 @@ Range,BETWEEN,BETWEEN
 Reference,throws|AddressOf|Delegate|Lib|Me|MyClass,"throws,AddressOf,Delegate,Lib,Me,MyClass"
 Return,return|yield," return,yield"
 Select,SELECT,SELECT
-Separator,"(|)|{|}|[|]|;|,|.|:",",,(,),{,},[,],;,.,:"
+ParIzq,(,(
+ParDer,),(
+LlaveIzq,{,{
+LlaveDer,},}
+CorIzq,[,[
+CorDer,],]
+Point,.,.
+Comma,",",","
+Colon,:,:
+SemiColon,;,;
 Sort,ASC|DESC|GROUP BY|ORDER BY,"ASC,DESC,GROUP BY,ORDER BY"
 SpecialComment,TODO|FIXME|REM,"TODO,FIXME,REM"
 StartComment,/*,/*

@@ -127,6 +127,7 @@ NonAccesMod = (
     "transient"|"synchronized"|"volatile"|"MustInherit"|
     "MustOverride"|"Overridable"|"Overrides"
 )
+
 ParIzq = "("
 ParDer = ")"
 LlaveIzq = "{"
@@ -137,6 +138,7 @@ Point = "."
 Comma = ","
 Colon = ":"
 SemiColon = ";"
+
 Class = "class"
 Parent = "super"|"MyBase"
 Interface = "interface"
