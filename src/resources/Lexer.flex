@@ -61,18 +61,18 @@ EXPO = [Ee]{SIGN}?{DIGIT}+
 Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
 // Operators
-Comparison = "<"|">"|"=="|"!="|"<="|">="
-Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod"
-Assignment = "="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<="
-Logical = "&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor"
+Comparison = ("<"|">"|"=="|"!="|"<="|">=")
+Arithmetic  = ("+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod")
+Assignment = ("="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
+Logical = ("&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor")
 Negation = "!"
 Nullish = "??"
 Ternary = "?"
-Identity = "is"|"is not"
-Instance = "instanceof"
-Type = "TypeOf"
-Membership = "in"|"not in"
-Bitwise = "&"|"|"|"^"|"~"|"<<"|">>"
+Identity = ("is"|"is not")
+Instance = ("instanceof")
+Type = ("TypeOf")
+Membership = ("in"|"not in")
+Bitwise = ("&"|"|"|"^"|"~"|"<<"|">>")
 
 // Literals
 Boolean = ([Tt]"rue")|([Ff]"alse")
@@ -261,7 +261,7 @@ Union = ("UNION"|"UNION ALL")
 {ParIzq}        {return foundSymbol("Parentesis Izquierdo", "", yyline, yycolumn);}
 {ParDer}        {return foundSymbol("Parentesis Derecho", "", yyline, yycolumn);}
 {LlaveIzq}      {return foundSymbol("Llave Izquierda", "", yyline, yycolumn);}
-{LlaveDer}      {return foundSymbol("Llave Derecha", "yytext", yyline, yycolumn);}
+{LlaveDer}      {return foundSymbol("Llave Derecha", "", yyline, yycolumn);}
 {CorIzq}        {return foundSymbol("Corchete Izquierdo", "", yyline, yycolumn);}
 {CorDer}        {return foundSymbol("Corchete Derecho", "", yyline, yycolumn);}
 {Point}         {return foundSymbol("Punto", "", yyline, yycolumn);}
