@@ -1,8 +1,5 @@
 // User Code (Import dependencies or declare variables)
 import java.util.HashMap;
-/*TODO.
-    - Refactor some of the token (separe the 'Separator' category into their own tokens)
-*/
 %%
 // Options and Declarations
 %public
