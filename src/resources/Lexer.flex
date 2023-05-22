@@ -61,18 +61,19 @@ EXPO = [Ee]{SIGN}?{DIGIT}+
 Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
 // Operators
-Comparison = "<"|">"|"=="|"!="|"<="|">="
-Arithmetic  = "+"|"-"|"*"|"/"|"**"|"//"|"%"|"++"|"--"|"Mod"
-Assignment = "="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<="
-Logical = "&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor"
+Comparison = ("<"|">"|"=="|"!="|"<="|">=")
+Arithmetic  = ("+"|"-"|"*"|"/"|"**"|"//"|"%"|"Mod")
+Unary = ("++"|"--")
+Assignment = ("="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
+Logical = ("&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor")
 Negation = "!"
 Nullish = "??"
 Ternary = "?"
-Identity = "is"|"is not"
+Identity = ("is"|"is not")
 Instance = "instanceof"
 Type = "TypeOf"
-Membership = "in"|"not in"
-Bitwise = "&"|"|"|"^"|"~"|"<<"|">>"
+Membership = ("in"|"not in")
+Bitwise = ("&"|"|"|"^"|"~"|"<<"|">>")
 
 // Literals
 Boolean = ([Tt]"rue")|([Ff]"alse")

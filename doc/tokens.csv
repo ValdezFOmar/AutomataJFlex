@@ -3,7 +3,7 @@ AccesMod,nonlocal|global|public|private|protected|default|Shared,"nonlocal,globa
 Add,ADD|ADD CONSTRAINT,"ADD,ADD CONSTRAINT"
 Alias,as|Alias,"as,Alias"
 Alter,ALTER,ALTER
-Arithmetic,+|-|*|/|**|//|%|++|--|Mod,"+,-,*,/,**,//,%,++,--,Mod"
+Arithmetic,+|-|*|/|**|//|%|Mod,"+,-,*,/,**,//,%,Mod"
 Assignment,=|+=|-=|*=|/=|**=|//=|%=|&=||=|^=|>>=|<<=,"=,+=,-=,*=,/=,**=,//=,%=,&=,|=,^=,>>=,<<="
 Asynchronous,await|async,"await,async"
 Backup,BACKUP,BACKUP
@@ -102,6 +102,7 @@ This,this|self,"this,self"
 Try,try|assert|with,"try,assert,with"
 TryConsequence,finally|Resume|Then,"finally,Resume,Then"
 Type,TypeOf,TypeOf
+Unary,++|--,"++,--"
 Union,UNION|UNION ALL,"UNION,UNION ALL"
 Update,UPDATE|SET,"UPDATE,SET"
 Variable,var|Let,"var,Let"
