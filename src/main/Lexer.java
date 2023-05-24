@@ -1772,7 +1772,7 @@ public class Lexer {
           // fall through
           case 129: break;
           case 20:
-            { return foundSymbol("Llave Derecha", "yytext", yyline, yycolumn);
+            { return foundSymbol("Llave Derecha", "", yyline, yycolumn);
             }
           // fall through
           case 130: break;
