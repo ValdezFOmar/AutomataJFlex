@@ -17,9 +17,10 @@ public class Main {
             BufferedReader buffer = new BufferedReader(new FileReader(input));
             Lexer lexer = new Lexer(buffer);
 
-            // Get tokens from file 
+            // Get tokens from file
+            Token token = new Token();
             while (true) {
-                Token token = lexer.nextToken();
+                token = lexer.nextToken();
                 if (!lexer.thereIsTokens())
                     break; 
                 tokens.offer(token);
@@ -28,8 +29,8 @@ public class Main {
             // Print tokens
             System.out.println("\n-----------------------------------");
             if (!tokens.isEmpty()) {
-                for (Token token : tokens) {
-                    System.out.println(token);
+                for (Token t : tokens) {
+                    System.out.println(t);
                 }
             }
             System.out.println("-----------------------------------");

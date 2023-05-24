@@ -8,11 +8,11 @@ public class Token {
     public String getLexeme() {
         return this.lexeme;
     }
-    
+
     public String getToken() {
         return this.token;
     }
-    
+
     public int getLine() {
         return this.line;
     }
@@ -20,7 +20,14 @@ public class Token {
     public int getColumn() {
         return this.column;
     }
-    
+
+    Token() {
+        this.lexeme = "";
+        this.token = "";
+        this.line = 0;
+        this.column = 0;
+    }
+
     Token(String token, String lexeme, int line, int column) {
         this.lexeme = lexeme;
         this.token = token;

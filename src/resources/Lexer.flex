@@ -210,6 +210,7 @@ Union = ("UNION"|"UNION ALL")
 // Lexical Rules
 {Comparison}    {return foundSymbol("Comparador", yytext(), yyline, yycolumn);}
 {Arithmetic}    {return foundSymbol("Operador Aritmetico", yytext(), yyline, yycolumn);}
+{Unary}         {return foundSymbol("Operador Unario", yytext(), yyline, yycolumn);}
 {Assignment}    {return foundSymbol("Asignador", yytext(), yyline, yycolumn);}
 {Logical}       {return foundSymbol("Operador Logico", yytext(), yyline, yycolumn);}
 {Negation}      {return foundSymbol("Negacion", "", yyline, yycolumn);}
@@ -329,4 +330,4 @@ Union = ("UNION"|"UNION ALL")
 {Identifier}    {return foundSymbol("Identificador", yytext(), yyline, yycolumn);}
 //{}{return foundSymbol("", yytext(), yyline, yycolumn);}
 
-[^] {/* Ignore unmatched characters */}
+[\s\t\n\r]      {/* Ignore space, tab, new line and carriage return characters */}
