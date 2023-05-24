@@ -39,6 +39,8 @@ public class Token {
         String symbol = "";
         if (token == "Identificador")
             symbol = String.format("%-25s | (%s)", token, lexeme);
+        else if (token == "ERROR")
+            symbol = String.format("\t(%s) Token no definido --> %s", token, lexeme);
         else
             symbol = String.format("%-25s | %s", token, lexeme);
         return symbol;

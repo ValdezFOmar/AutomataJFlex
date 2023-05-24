@@ -331,3 +331,4 @@ Union = ("UNION"|"UNION ALL")
 //{}{return foundSymbol("", yytext(), yyline, yycolumn);}
 
 [\s\t\n\r]      {/* Ignore space, tab, new line and carriage return characters */}
+.               {return foundSymbol("ERROR", yytext(), yyline, yycolumn);}
