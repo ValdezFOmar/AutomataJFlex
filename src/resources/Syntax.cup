@@ -1,0 +1,39 @@
+import java_cup.runtime.*;
+
+
+parser code {:
+    private Symbol s;
+
+    public void syntax_error(Symbol s) {
+        this.s = s;
+    }
+
+    public Symbol getS() {
+        return this.s;
+    }
+:}
+
+
+terminal        Comparison, Arithmetic, Unary, Assignment, Logical, Negation, Nullish, Ternary, Identity,
+                Instance, Type, Membership, Bitwise, Boolean, Null, String, Character, Integer, Decimal,
+                Complex, ForLoop, DoLoop, WhileLoop, Iterate, DataType, DataStructure, Variable, Conditional,
+                ConditionConseq, Consequence, Switch, Case, Function, Void, Lambda, Execute, Try, TryConsequence,
+                Exception, LineComment, StartComment, EndComment, SpecialComment, AccesMod, NonAccesMod, ParIzq,
+                ParDer, LlaveIzq, LlaveDer, CorIzq, CorDer, Point, Comma, Colon, SemiColon, Class, Parent,
+                Interface, Enum, Extends, Implements, Break, Continue, Pass, Importing, Return, Create, Delete,
+                This, Reference, Alias, Asynchronous, Package, Print, Handler, Modifier, Storage, Cast, Event,
+                Get, GoTo, Module, Namespace, Of, Operator, Option, Partial, Increment, Debug, Structure, Add,
+                Constraint, ConditionalQuery, QueryConditions, Alter, Insert, Sort, Backup, Range, View, Column,
+                Table, Database, Select, Join, Index, Limit, Update, Union, Identifier, Error;
+
+non terminal    DECLARA_FUNCION, SENTENCIA;
+
+
+start with DECLARA_FUNCION;
+
+
+DECLARA_FUNCION ::= Function Identifier ParIzq ParDer LlaveIzq SENTENCIA LlaveDer
+                {: System.out.println("Función"); :}
+;
+SENTENCIA ::= DataType Identifier Assignment Integer SemiColon
+;

@@ -1,0 +1,3 @@
+def nombre_funcion () {
+    int variable = 10;
+}
