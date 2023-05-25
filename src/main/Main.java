@@ -5,16 +5,42 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import java_cup.sym;
+
 // Main class for reading the file and printing the results
 // For reloading .class: F1 > Clean java language server workspace
 public class Main {
     public static void main(String[] args) {
-        String input = "src/resources/input.txt";
+        String input_lexer = "test/inputLexer.txt";
+        String input_syntax = "test/inputSyntax.txt";
+
+        System.out.print("Enter option -> (1) Lexer (2) Syntax: ");
+        String awnser = System.console().readLine();
+        try {
+            int opt = Integer.parseInt(awnser);
+
+            switch (opt) {
+                case 1:
+                    AnalizadorLexico(input_lexer);
+                    break;
+                case 2:
+                    AnalizadorSintactico(input_syntax);
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid option. Enter a Number.");
+        }
+    }
+
+    private static void AnalizadorLexico(String input_file_path) {
         Queue<Token> tokens = new LinkedList<Token>();
 
         try {
             // Read File
-            BufferedReader buffer = new BufferedReader(new FileReader(input));
+            BufferedReader buffer = new BufferedReader(new FileReader(input_file_path));
             Lexer lexer = new Lexer(buffer);
 
             // Get tokens from file
@@ -22,10 +48,10 @@ public class Main {
             while (true) {
                 token = lexer.nextToken();
                 if (!lexer.thereIsTokens())
-                    break; 
+                    break;
                 tokens.offer(token);
             }
-            
+
             // Print tokens
             System.out.println("\n-----------------------------------");
             if (!tokens.isEmpty()) {
@@ -43,8 +69,25 @@ public class Main {
             // System.out.println(lexer.getIdentifiers());
 
         } catch (FileNotFoundException e) {
-            System.out.println(String.format("File \"%s\" not found.", input));
+            System.out.println(String.format("File \"%s\" not found.", input_file_path));
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void AnalizadorSintactico(String input_file_path) {
+        try {
+            // Read File
+            BufferedReader buffer = new BufferedReader(new FileReader(input_file_path));
+            LexerCup lexer = new LexerCup(buffer);
+            parser p = new parser(lexer);
+            p.parse();
+
+        } catch (FileNotFoundException e) {
+            System.out.println(String.format("File \"%s\" not found.", input_file_path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

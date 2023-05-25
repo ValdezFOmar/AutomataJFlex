@@ -4,26 +4,25 @@ import java_cup.runtime.Symbol;
 // Options and Declarations
 %public
 %class LexerCup
-%function nextToken
 %type Symbol
+%cup
 %line
 %column
 %unicode
-%cup
-%full
+
 
 // Code for defining atributes a methods of the class "Lexer"
-%{  
+%{
     private boolean _thereIsTokens = false;
 
     public boolean thereIsTokens() {return this._thereIsTokens;}
 
     private Symbol symbol(int type, Object value) {
-        return new Symbol(type, yyline, yycolumn, value)
+        return new Symbol(type, yyline, yycolumn, value);
     }
 
     private Symbol symbol(int type) {
-        return new Symbol(type, yyline, yycolumn)
+        return new Symbol(type, yyline, yycolumn);
     }
 %}
 
