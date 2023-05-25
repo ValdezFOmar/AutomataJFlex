@@ -27,7 +27,7 @@ public enum TokenCup {
     DataStructure,
     Variable,
     Conditional,
-    ConditionalConsequence,
+    ConditionConseq,
     Consequence,
     Switch,
     Case,
@@ -108,5 +108,6 @@ public enum TokenCup {
     Limit,
     Update,
     Union,
-    Identifier
+    Identifier,
+    Error
 }

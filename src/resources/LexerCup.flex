@@ -10,9 +10,12 @@ import java_cup.runtime.Symbol;
 %column
 %unicode
 %cup
+%full
 
 // Code for defining atributes a methods of the class "Lexer"
 %{  
+    private boolean _thereIsTokens = false;
+
     public boolean thereIsTokens() {return this._thereIsTokens;}
 
     private Symbol symbol(int type, Object value) {
@@ -78,7 +81,7 @@ DataType = (
 DataStructure = ("list"|"tuple"|"dict"|"Array"|"Stack"|"Queue")
 Variable = ("var"|"Let")
 Conditional = ("if")
-ConditionalConsequence = ("elif")
+ConditionConseq = ("elif")
 Switch = ("switch")
 Case = ("case") 
 Consequence = ("else")
@@ -187,127 +190,141 @@ Union = ("UNION"|"UNION ALL")
 
 %%
 // Lexical Rules
-{Comparison}    {return ;}
-{Arithmetic}    {return ;}
-{Unary}         {return ;}
-{Assignment}    {return ;}
-{Logical}       {return ;}
-{Negation}      {return ;}
-{Nullish}       {return ;}
-{Ternary}       {return ;}
-{Identity}      {return ;}
-{Instance}      {return ;}
-{Type}          {return ;}
-{Membership}    {return ;}
-{Bitwise}       {return ;}
+// Operators
+{Comparison}        {return new Symbol(sym.Comparison, yycolumn, yyline, yytext());}
+{Arithmetic}        {return new Symbol(sym.Arithmetic, yycolumn, yyline, yytext());}
+{Unary}             {return new Symbol(sym.Unary, yycolumn, yyline, yytext());}
+{Assignment}        {return new Symbol(sym.Assignment, yycolumn, yyline, yytext());}
+{Logical}           {return new Symbol(sym.Logical, yycolumn, yyline, yytext());}
+{Negation}          {return new Symbol(sym.Negation, yycolumn, yyline, yytext());}
+{Nullish}           {return new Symbol(sym.Nullish, yycolumn, yyline, yytext());}
+{Ternary}           {return new Symbol(sym.Ternary, yycolumn, yyline, yytext());}
+{Identity}          {return new Symbol(sym.Identity, yycolumn, yyline, yytext());}
+{Instance}          {return new Symbol(sym.Instance, yycolumn, yyline, yytext());}
+{Type}              {return new Symbol(sym.Type, yycolumn, yyline, yytext());}
+{Membership}        {return new Symbol(sym.Membership, yycolumn, yyline, yytext());}
+{Bitwise}           {return new Symbol(sym.Bitwise, yycolumn, yyline, yytext());}
 
-{Boolean}       {return ;}
-{Null}          {return ;}
-{String}        {return ;}
-{Character}     {return ;}
-{Integer}       {return ;}
-{Decimal}       {return ;}
-{Complex}       {return ;}
+// Literals
+{Boolean}           {return new Symbol(sym.Boolean, yycolumn, yyline, yytext());}
+{Null}              {return new Symbol(sym.Null, yycolumn, yyline, yytext());}
+{String}            {return new Symbol(sym.String, yycolumn, yyline, yytext());}
+{Character}         {return new Symbol(sym.Character, yycolumn, yyline, yytext());}
+{Integer}           {return new Symbol(sym.Integer, yycolumn, yyline, yytext());}
+{Decimal}           {return new Symbol(sym.Decimal, yycolumn, yyline, yytext());}
+{Complex}           {return new Symbol(sym.Complex, yycolumn, yyline, yytext());}
 
-{ForLoop}       {return ;}
-{DoLoop}        {return ;}
-{WhileLoop}     {return ;}
-{Iterate}       {return ;}
+// Loops
+{ForLoop}           {return new Symbol(sym.ForLoop, yycolumn, yyline, yytext());}
+{DoLoop}            {return new Symbol(sym.DoLoop, yycolumn, yyline, yytext());}
+{WhileLoop}         {return new Symbol(sym.WhileLoop, yycolumn, yyline, yytext());}
+{Iterate}           {return new Symbol(sym.Iterate, yycolumn, yyline, yytext());}
 
-{DataType}      {return ;}
-{DataStructure} {return ;}
-{Variable}      {return ;}
+// Variables
+{DataType}          {return new Symbol(sym.DataType, yycolumn, yyline, yytext());}
+{DataStructure}     {return new Symbol(sym.DataStructure, yycolumn, yyline, yytext());}
+{Variable}          {return new Symbol(sym.Variable, yycolumn, yyline, yytext());}
 
-{Conditional}   {return ;}
-{ConditionalConsequence}    {return ;}
-{Consequence}   {return ;}
-{Switch}        {return ;}
-{Case}          {return ;}
+// Conditionals
+{Conditional}       {return new Symbol(sym.Conditional, yycolumn, yyline, yytext());}
+{ConditionConseq}   {return new Symbol(sym.ConditionConseq, yycolumn, yyline, yytext());}
+{Consequence}       {return new Symbol(sym.Consequence, yycolumn, yyline, yytext());}
+{Switch}            {return new Symbol(sym.Switch, yycolumn, yyline, yytext());}
+{Case}              {return new Symbol(sym.Case, yycolumn, yyline, yytext());}
 
-{Function}      {return ;}
-{Void}          {return ;}
-{Lambda}        {return ;}
-{Execute}       {return ;}
-{Try}           {return ;}
-{TryConsequence}    {return ;}
-{Exception}     {return ;}
+// Functions and Modifiers 
+{Function}          {return new Symbol(sym.Function, yycolumn, yyline, yytext());}
+{Void}              {return new Symbol(sym.Void, yycolumn, yyline, yytext());}
+{Lambda}            {return new Symbol(sym.Lambda, yycolumn, yyline, yytext());}
+{Execute}           {return new Symbol(sym.Execute, yycolumn, yyline, yytext());}
+{Try}               {return new Symbol(sym.Try, yycolumn, yyline, yytext());}
+{TryConsequence}    {return new Symbol(sym.TryConsequence, yycolumn, yyline, yytext());}
+{Exception}         {return new Symbol(sym.Exception, yycolumn, yyline, yytext());}
 
-{LineComment}   {return ;}
-{StartComment}  {return ;}
-{EndComment}    {return ;}
-{SpecialComment}    {return ;}
+// Comments
+{LineComment}       {return new Symbol(sym.LineComment, yycolumn, yyline, yytext());}
+{StartComment}      {return new Symbol(sym.StartComment, yycolumn, yyline, yytext());}
+{EndComment}        {return new Symbol(sym.EndComment, yycolumn, yyline, yytext());}
+{SpecialComment}    {return new Symbol(sym.SpecialComment, yycolumn, yyline, yytext());}
 
-{AccesMod}      {return ;}
-{NonAccesMod}   {return ;}
-{ParIzq}        {return ;}
-{ParDer}        {return ;}
-{LlaveIzq}      {return ;}
-{LlaveDer}      {return ;}
-{CorIzq}        {return ;}
-{CorDer}        {return ;}
-{Point}         {return ;}
-{Comma}         {return ;}
-{Colon}         {return ;}
-{SemiColon}     {return ;}
-{Class}         {return ;}
-{Parent}        {return ;}
-{Interface}     {return ;}
-{Enum}          {return ;}
-{Extends}       {return ;}
-{Implements}    {return ;}
-{Break}         {return ;}
-{Continue}      {return ;}
-{Pass}          {return ;}
-{Importing}     {return ;}
-{Return}        {return ;}
-{Create}        {return ;}
-{Delete}        {return ;}
-{This}          {return ;}
-{Reference}     {return ;}
-{Alias}         {return ;}
-{Asynchronous}  {return ;}
-{Package}       {return ;}
-{Print}         {return ;}
+// Modifiers
+{AccesMod}          {return new Symbol(sym.AccesMod, yycolumn, yyline, yytext());}
+{NonAccesMod}       {return new Symbol(sym.NonAccesMod, yycolumn, yyline, yytext());}
 
-{Handler}       {return ;}
-{Modifier}      {return ;}
-{Storage}       {return ;}
-{Cast}          {return ;}
-{Event}         {return ;}
-{Get}           {return ;}
-{GoTo}          {return ;}
-{Module}        {return ;}
-{Namespace}     {return ;}
-{Of}            {return ;}
-{Operator}      {return ;}
-{Option}        {return ;}
-{Partial}       {return ;}
-{Increment}     {return ;}
-{Debug}         {return ;}
-{Structure}     {return ;}
+// Separators
+{ParIzq}            {return new Symbol(sym.ParIzq, yycolumn, yyline, yytext());}
+{ParDer}            {return new Symbol(sym.ParDer, yycolumn, yyline, yytext());}
+{LlaveIzq}          {return new Symbol(sym.LlaveIzq, yycolumn, yyline, yytext());}
+{LlaveDer}          {return new Symbol(sym.LlaveDer, yycolumn, yyline, yytext());}
+{CorIzq}            {return new Symbol(sym.CorIzq, yycolumn, yyline, yytext());}
+{CorDer}            {return new Symbol(sym.CorDer, yycolumn, yyline, yytext());}
+{Point}             {return new Symbol(sym.Point, yycolumn, yyline, yytext());}
+{Comma}             {return new Symbol(sym.Comma, yycolumn, yyline, yytext());}
+{Colon}             {return new Symbol(sym.Colon, yycolumn, yyline, yytext());}
+{SemiColon}         {return new Symbol(sym.SemiColon, yycolumn, yyline, yytext());}
 
-{Add}           {return ;}
-{Constraint}    {return ;}
-{ConditionalQuery}  {return ;}
-{QueryConditions}   {return ;}
-{Alter}         {return ;}
-{Insert}        {return ;}
-{Sort}          {return ;}
-{Backup}        {return ;}
-{Range}         {return ;}
-{View}          {return ;}
-{Column}        {return ;}
-{Table}         {return ;}
-{Database}      {return ;}
-{Select}        {return ;}
-{Join}          {return ;}
-{Index}         {return ;}
-{Limit}         {return ;}
-{Update}        {return ;}
-{Union}         {return ;}
+// Misc
+{Class}             {return new Symbol(sym.Class, yycolumn, yyline, yytext());}
+{Parent}            {return new Symbol(sym.Parent, yycolumn, yyline, yytext());}
+{Interface}         {return new Symbol(sym.Interface, yycolumn, yyline, yytext());}
+{Enum}              {return new Symbol(sym.Enum, yycolumn, yyline, yytext());}
+{Extends}           {return new Symbol(sym.Extends, yycolumn, yyline, yytext());}
+{Implements}        {return new Symbol(sym.Implements, yycolumn, yyline, yytext());}
+{Break}             {return new Symbol(sym.Break, yycolumn, yyline, yytext());}
+{Continue}          {return new Symbol(sym.Continue, yycolumn, yyline, yytext());}
+{Pass}              {return new Symbol(sym.Pass, yycolumn, yyline, yytext());}
+{Importing}         {return new Symbol(sym.Importing, yycolumn, yyline, yytext());}
+{Return}            {return new Symbol(sym.Return, yycolumn, yyline, yytext());}
+{Create}            {return new Symbol(sym.Create, yycolumn, yyline, yytext());}
+{Delete}            {return new Symbol(sym.Delete, yycolumn, yyline, yytext());}
+{This}              {return new Symbol(sym.This, yycolumn, yyline, yytext());}
+{Reference}         {return new Symbol(sym.Reference, yycolumn, yyline, yytext());}
+{Alias}             {return new Symbol(sym.Alias, yycolumn, yyline, yytext());}
+{Asynchronous}      {return new Symbol(sym.Asynchronous, yycolumn, yyline, yytext());}
+{Package}           {return new Symbol(sym.Package, yycolumn, yyline, yytext());}
+{Print}             {return new Symbol(sym.Print, yycolumn, yyline, yytext());}
 
-{Identifier}    {return ;}
-//{}{return ;}
+// Visual Basic
+{Handler}           {return new Symbol(sym.Handler, yycolumn, yyline, yytext());}
+{Modifier}          {return new Symbol(sym.Modifier, yycolumn, yyline, yytext());}
+{Storage}           {return new Symbol(sym.Storage, yycolumn, yyline, yytext());}
+{Cast}              {return new Symbol(sym.Cast, yycolumn, yyline, yytext());}
+{Event}             {return new Symbol(sym.Event, yycolumn, yyline, yytext());}
+{Get}               {return new Symbol(sym.Get, yycolumn, yyline, yytext());}
+{GoTo}              {return new Symbol(sym.GoTo, yycolumn, yyline, yytext());}
+{Module}            {return new Symbol(sym.Module, yycolumn, yyline, yytext());}
+{Namespace}         {return new Symbol(sym.Namespace, yycolumn, yyline, yytext());}
+{Of}                {return new Symbol(sym.Of, yycolumn, yyline, yytext());}
+{Operator}          {return new Symbol(sym.Operator, yycolumn, yyline, yytext());}
+{Option}            {return new Symbol(sym.Option, yycolumn, yyline, yytext());}
+{Partial}           {return new Symbol(sym.Partial, yycolumn, yyline, yytext());}
+{Increment}         {return new Symbol(sym.Increment, yycolumn, yyline, yytext());}
+{Debug}             {return new Symbol(sym.Debug, yycolumn, yyline, yytext());}
+{Structure}         {return new Symbol(sym.Structure, yycolumn, yyline, yytext());}
 
-[\s\t\n\r]      {/* Ignore space, tab, new line and carriage return characters */}
-.               {return ;}
+// SQL
+{Add}               {return new Symbol(sym.Add, yycolumn, yyline, yytext());}
+{Constraint}        {return new Symbol(sym.Constraint, yycolumn, yyline, yytext());}
+{ConditionalQuery}  {return new Symbol(sym.ConditionalQuery, yycolumn, yyline, yytext());}
+{QueryConditions}   {return new Symbol(sym.QueryConditions, yycolumn, yyline, yytext());}
+{Alter}             {return new Symbol(sym.Alter, yycolumn, yyline, yytext());}
+{Insert}            {return new Symbol(sym.Insert, yycolumn, yyline, yytext());}
+{Sort}              {return new Symbol(sym.Sort, yycolumn, yyline, yytext());}
+{Backup}            {return new Symbol(sym.Backup, yycolumn, yyline, yytext());}
+{Range}             {return new Symbol(sym.Range, yycolumn, yyline, yytext());}
+{View}              {return new Symbol(sym.View, yycolumn, yyline, yytext());}
+{Column}            {return new Symbol(sym.Column, yycolumn, yyline, yytext());}
+{Table}             {return new Symbol(sym.Table, yycolumn, yyline, yytext());}
+{Database}          {return new Symbol(sym.Database, yycolumn, yyline, yytext());}
+{Select}            {return new Symbol(sym.Select, yycolumn, yyline, yytext());}
+{Join}              {return new Symbol(sym.Join, yycolumn, yyline, yytext());}
+{Index}             {return new Symbol(sym.Index, yycolumn, yyline, yytext());}
+{Limit}             {return new Symbol(sym.Limit, yycolumn, yyline, yytext());}
+{Update}            {return new Symbol(sym.Update, yycolumn, yyline, yytext());}
+{Union}             {return new Symbol(sym.Union, yycolumn, yyline, yytext());}
+
+{Identifier}        {return new Symbol(sym.Identifier, yycolumn, yyline, yytext());}
+//{}{return new Symbol(sym., yycolumn, yyline, yytext());}
+
+[\s\t\n\r]          {/* Ignore space, tab, new line and carriage return characters */}
+.                   {return new Symbol(sym.Error, yycolumn, yyline, yytext());}
