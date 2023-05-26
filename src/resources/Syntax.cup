@@ -14,26 +14,30 @@ parser code {:
 :}
 
 
-terminal        Comparison, Arithmetic, Unary, Assignment, Logical, Negation, Nullish, Ternary, Identity,
-                Instance, Type, Membership, Bitwise, Boolean, Null, String, Character, Integer, Decimal,
-                Complex, ForLoop, DoLoop, WhileLoop, Iterate, DataType, DataStructure, Variable, Conditional,
-                ConditionConseq, Consequence, Switch, Case, Function, Void, Lambda, Execute, Try, TryConsequence,
-                Exception, LineComment, StartComment, EndComment, SpecialComment, AccesMod, NonAccesMod, ParIzq,
-                ParDer, LlaveIzq, LlaveDer, CorIzq, CorDer, Point, Comma, Colon, SemiColon, Class, Parent,
-                Interface, Enum, Extends, Implements, Break, Continue, Pass, Importing, Return, Create, Delete,
-                This, Reference, Alias, Asynchronous, Package, Print, Handler, Modifier, Storage, Cast, Event,
-                Get, GoTo, Module, Namespace, Of, Operator, Option, Partial, Increment, Debug, Structure, Add,
-                Constraint, ConditionalQuery, QueryConditions, Alter, Insert, Sort, Backup, Range, View, Column,
-                Table, Database, Select, Join, Index, Limit, Update, Union, Identifier, Error;
+terminal        COMPARISON, ARITHMETIC, UNARY, ASSIGNMENT, ASSIGN_OPT, LOGICAL, NEGATION, NULLISH, TERNARY,
+                IDENTITY, INSTANCE, TYPE, MEMBERSHIP, BITWISE, BOOLEAN, NULL, STRING, CHARACTER, INTEGER, DECIMAL,
+                COMPLEX, FOR_LOOP, DO_LOOP, WHILE_LOOP, ITERATE, DATATYPE_INT, DATATYPE_DECIMAL, DATATYPE_COMPLEX,
+                DATATYPE_BOOL, DATATYPE_STRING, DATATYPE_CHAR, DATATYPE_MISC, DATA_STRUCTURE, VARIABLE, CONDITIONAL,
+                CONDITION_CONSEQ, CONSEQUENCE, SWITCH, CASE, FUNCTION, VOID, LAMBDA, EXECUTE, TRY, TRY_CONSEQUENCE,
+                EXCEPTION, LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT, ACCESMOD, NONACCESMOD, PAR_IZQ,
+                PAR_DER, LLAVE_IZQ, LLAVE_DER, COR_IZQ, COR_DER, POINT, COMMA, COLON, SEMICOLON, CLASS, PARENT,
+                INTERFACE, ENUM, EXTENDS, IMPLEMENTS, BREAK, CONTINUE, PASS, IMPORTING, RETURN, CREATE, DELETE,
+                THIS, REFERENCE, ALIAS, ASYNCHRONOUS, PACKAGE, PRINT, HANDLER, MODIFIER, STORAGE, CAST, EVENT,
+                GET, GOTO, MODULE, NAMESPACE, OF, OPERATOR, OPTION, PARTIAL, INCREMENT, DEBUG, STRUCTURE, ADD,
+                CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSERT, SORT, BACKUP, RANGE, VIEW, COLUMN,
+                TABLE, DATABASE, SELECT, JOIN, INDEX, LIMIT, UPDATE, UNION, IDENTIFIER, ERROR;
 
-non terminal    DECLARA_FUNCION, SENTENCIA;
-
-
-start with DECLARA_FUNCION;
+non terminal    incio, declara_funcion, sentencia;
 
 
-DECLARA_FUNCION ::= Function Identifier ParIzq ParDer LlaveIzq SENTENCIA LlaveDer
+start with incio;
+
+
+incio ::= declara_funcion | sentencia {: System.out.println("Función"); :}
+;
+declara_funcion ::= FUNCTION IDENTIFIER PAR_IZQ PAR_DER LLAVE_IZQ sentencia LLAVE_DER
                 {: System.out.println("Función"); :}
 ;
-SENTENCIA ::= DataType Identifier Assignment Integer SemiColon
+sentencia ::= DATATYPE_INT IDENTIFIER ASSIGNMENT INTEGER SEMICOLON
+                {: System.out.println("sentencia"); :}
 ;

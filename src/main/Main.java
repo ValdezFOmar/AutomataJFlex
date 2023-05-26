@@ -4,8 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
-
-import java_cup.sym;
+import java_cup.runtime.ComplexSymbolFactory;
 
 // Main class for reading the file and printing the results
 // For reloading .class: F1 > Clean java language server workspace
@@ -79,8 +78,9 @@ public class Main {
         try {
             // Read File
             BufferedReader buffer = new BufferedReader(new FileReader(input_file_path));
-            LexerCup lexer = new LexerCup(buffer);
-            parser p = new parser(lexer);
+
+            ComplexSymbolFactory sf = new ComplexSymbolFactory();
+            Parser p = new Parser(new LexerCup(buffer, sf), sf);
             p.parse();
 
         } catch (FileNotFoundException e) {

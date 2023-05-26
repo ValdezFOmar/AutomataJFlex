@@ -6,233 +6,247 @@
 /** CUP generated class containing symbol constants. */
 public class sym {
   /* terminals */
-  public static final int ConditionConseq = 30;
-  public static final int Return = 67;
-  public static final int ParDer = 48;
-  public static final int DataStructure = 27;
-  public static final int LlaveIzq = 49;
-  public static final int Conditional = 29;
-  public static final int Point = 53;
-  public static final int Break = 63;
-  public static final int AccesMod = 45;
-  public static final int Storage = 78;
-  public static final int Character = 18;
-  public static final int Interface = 59;
-  public static final int NonAccesMod = 46;
-  public static final int Print = 75;
-  public static final int GoTo = 82;
-  public static final int Void = 35;
-  public static final int Add = 92;
-  public static final int Variable = 28;
-  public static final int Debug = 90;
-  public static final int Try = 38;
-  public static final int Reference = 71;
-  public static final int ForLoop = 22;
-  public static final int WhileLoop = 24;
-  public static final int SpecialComment = 44;
-  public static final int LineComment = 41;
-  public static final int Arithmetic = 3;
-  public static final int ConditionalQuery = 94;
-  public static final int Null = 16;
-  public static final int SemiColon = 56;
-  public static final int Create = 68;
-  public static final int This = 70;
-  public static final int Colon = 55;
-  public static final int Complex = 21;
-  public static final int Importing = 66;
-  public static final int Negation = 7;
-  public static final int Option = 87;
-  public static final int Nullish = 8;
-  public static final int Update = 109;
-  public static final int Insert = 97;
-  public static final int Limit = 108;
-  public static final int Modifier = 77;
-  public static final int String = 17;
-  public static final int Range = 100;
-  public static final int Bitwise = 14;
-  public static final int Cast = 79;
-  public static final int Event = 80;
-  public static final int Function = 34;
-  public static final int CorDer = 52;
-  public static final int ParIzq = 47;
-  public static final int Operator = 86;
-  public static final int Column = 102;
-  public static final int Exception = 40;
-  public static final int Case = 33;
-  public static final int Parent = 58;
-  public static final int Comparison = 2;
-  public static final int StartComment = 42;
-  public static final int Structure = 91;
-  public static final int Continue = 64;
-  public static final int Consequence = 31;
-  public static final int Table = 103;
-  public static final int Sort = 98;
-  public static final int Lambda = 36;
-  public static final int Identity = 10;
-  public static final int Database = 104;
-  public static final int Identifier = 111;
-  public static final int LlaveDer = 50;
-  public static final int Iterate = 25;
-  public static final int Of = 85;
+  public static final int IDENTIFIER = 118;
+  public static final int COLUMN = 109;
+  public static final int TYPE = 13;
+  public static final int IMPLEMENTS = 69;
+  public static final int DATATYPE_COMPLEX = 29;
+  public static final int PARENT = 65;
+  public static final int QUERY_CONDITIONS = 102;
+  public static final int TABLE = 110;
+  public static final int LLAVE_IZQ = 56;
+  public static final int COR_IZQ = 58;
+  public static final int GET = 88;
+  public static final int LAMBDA = 43;
+  public static final int PASS = 72;
+  public static final int NAMESPACE = 91;
+  public static final int ASSIGNMENT = 5;
+  public static final int ENUM = 67;
+  public static final int ITERATE = 26;
+  public static final int COMMA = 61;
+  public static final int JOIN = 113;
+  public static final int MEMBERSHIP = 14;
+  public static final int UNARY = 4;
+  public static final int PAR_DER = 55;
+  public static final int INCREMENT = 96;
+  public static final int INTEGER = 20;
+  public static final int LOGICAL = 7;
+  public static final int DATATYPE_CHAR = 32;
+  public static final int BACKUP = 106;
+  public static final int VIEW = 108;
+  public static final int INSTANCE = 12;
+  public static final int ERROR = 119;
+  public static final int GOTO = 89;
+  public static final int PACKAGE = 81;
+  public static final int END_COMMENT = 50;
+  public static final int WHILE_LOOP = 25;
+  public static final int HANDLER = 83;
+  public static final int CHARACTER = 19;
+  public static final int ACCESMOD = 52;
+  public static final int CONDITIONALQUERY = 101;
+  public static final int CLASS = 64;
+  public static final int SELECT = 112;
+  public static final int PARTIAL = 95;
+  public static final int DATATYPE_STRING = 31;
+  public static final int ALIAS = 79;
+  public static final int ALTER = 103;
+  public static final int INDEX = 114;
+  public static final int UNION = 117;
+  public static final int MODULE = 90;
+  public static final int DELETE = 76;
+  public static final int EXTENDS = 68;
+  public static final int LINE_COMMENT = 48;
+  public static final int DECIMAL = 21;
+  public static final int INTERFACE = 66;
+  public static final int BOOLEAN = 16;
+  public static final int NONACCESMOD = 53;
+  public static final int DO_LOOP = 24;
+  public static final int EXECUTE = 44;
+  public static final int CONDITIONAL = 36;
+  public static final int SWITCH = 39;
+  public static final int VARIABLE = 35;
+  public static final int ADD = 99;
+  public static final int VOID = 42;
+  public static final int MODIFIER = 84;
+  public static final int RETURN = 74;
+  public static final int TERNARY = 10;
+  public static final int TRY = 45;
+  public static final int IMPORTING = 73;
+  public static final int POINT = 60;
+  public static final int BREAK = 70;
+  public static final int CONDITION_CONSEQ = 37;
+  public static final int SPECIAL_COMMENT = 51;
+  public static final int STORAGE = 85;
+  public static final int REFERENCE = 78;
+  public static final int DATATYPE_DECIMAL = 28;
+  public static final int NULL = 17;
+  public static final int PAR_IZQ = 54;
+  public static final int NEGATION = 8;
   public static final int EOF = 0;
-  public static final int Comma = 54;
-  public static final int DoLoop = 23;
-  public static final int Implements = 62;
-  public static final int Unary = 4;
-  public static final int Type = 12;
-  public static final int Constraint = 93;
-  public static final int Package = 74;
-  public static final int Integer = 19;
-  public static final int Logical = 6;
-  public static final int Backup = 99;
-  public static final int Handler = 76;
-  public static final int Namespace = 84;
-  public static final int EndComment = 43;
-  public static final int QueryConditions = 95;
-  public static final int Assignment = 5;
+  public static final int SEMICOLON = 63;
+  public static final int ARITHMETIC = 3;
+  public static final int ASYNCHRONOUS = 80;
+  public static final int THIS = 77;
+  public static final int LLAVE_DER = 57;
+  public static final int DATATYPE_MISC = 33;
+  public static final int PRINT = 82;
+  public static final int FUNCTION = 41;
+  public static final int COR_DER = 59;
+  public static final int OPERATOR = 93;
+  public static final int DATATYPE_INT = 27;
+  public static final int DEBUG = 97;
+  public static final int FOR_LOOP = 23;
   public static final int error = 1;
-  public static final int Get = 81;
-  public static final int TryConsequence = 39;
-  public static final int Pass = 65;
-  public static final int Error = 112;
-  public static final int Partial = 88;
-  public static final int Enum = 60;
-  public static final int Membership = 13;
-  public static final int Increment = 89;
-  public static final int Join = 106;
-  public static final int Asynchronous = 73;
-  public static final int Extends = 61;
-  public static final int Select = 105;
-  public static final int Execute = 37;
-  public static final int Class = 57;
-  public static final int CorIzq = 51;
-  public static final int Alias = 72;
-  public static final int Ternary = 9;
-  public static final int View = 101;
-  public static final int Alter = 96;
-  public static final int Module = 83;
-  public static final int Delete = 69;
-  public static final int Index = 107;
-  public static final int Union = 110;
-  public static final int DataType = 26;
-  public static final int Instance = 11;
-  public static final int Decimal = 20;
-  public static final int Boolean = 15;
-  public static final int Switch = 32;
+  public static final int CONTINUE = 71;
+  public static final int DATATYPE_BOOL = 30;
+  public static final int CAST = 86;
+  public static final int IDENTITY = 11;
+  public static final int DATA_STRUCTURE = 34;
+  public static final int OF = 92;
+  public static final int DATABASE = 111;
+  public static final int COLON = 62;
+  public static final int START_COMMENT = 49;
+  public static final int CREATE = 75;
+  public static final int TRY_CONSEQUENCE = 46;
+  public static final int NULLISH = 9;
+  public static final int LIMIT = 115;
+  public static final int CASE = 40;
+  public static final int OPTION = 94;
+  public static final int EXCEPTION = 47;
+  public static final int UPDATE = 116;
+  public static final int INSERT = 104;
+  public static final int RANGE = 107;
+  public static final int STRING = 18;
+  public static final int CONSEQUENCE = 38;
+  public static final int BITWISE = 15;
+  public static final int COMPARISON = 2;
+  public static final int SORT = 105;
+  public static final int COMPLEX = 22;
+  public static final int STRUCTURE = 98;
+  public static final int CONSTRAINT = 100;
+  public static final int EVENT = 87;
+  public static final int ASSIGN_OPT = 6;
   public static final String[] terminalNames = new String[] {
   "EOF",
   "error",
-  "Comparison",
-  "Arithmetic",
-  "Unary",
-  "Assignment",
-  "Logical",
-  "Negation",
-  "Nullish",
-  "Ternary",
-  "Identity",
-  "Instance",
-  "Type",
-  "Membership",
-  "Bitwise",
-  "Boolean",
-  "Null",
-  "String",
-  "Character",
-  "Integer",
-  "Decimal",
-  "Complex",
-  "ForLoop",
-  "DoLoop",
-  "WhileLoop",
-  "Iterate",
-  "DataType",
-  "DataStructure",
-  "Variable",
-  "Conditional",
-  "ConditionConseq",
-  "Consequence",
-  "Switch",
-  "Case",
-  "Function",
-  "Void",
-  "Lambda",
-  "Execute",
-  "Try",
-  "TryConsequence",
-  "Exception",
-  "LineComment",
-  "StartComment",
-  "EndComment",
-  "SpecialComment",
-  "AccesMod",
-  "NonAccesMod",
-  "ParIzq",
-  "ParDer",
-  "LlaveIzq",
-  "LlaveDer",
-  "CorIzq",
-  "CorDer",
-  "Point",
-  "Comma",
-  "Colon",
-  "SemiColon",
-  "Class",
-  "Parent",
-  "Interface",
-  "Enum",
-  "Extends",
-  "Implements",
-  "Break",
-  "Continue",
-  "Pass",
-  "Importing",
-  "Return",
-  "Create",
-  "Delete",
-  "This",
-  "Reference",
-  "Alias",
-  "Asynchronous",
-  "Package",
-  "Print",
-  "Handler",
-  "Modifier",
-  "Storage",
-  "Cast",
-  "Event",
-  "Get",
-  "GoTo",
-  "Module",
-  "Namespace",
-  "Of",
-  "Operator",
-  "Option",
-  "Partial",
-  "Increment",
-  "Debug",
-  "Structure",
-  "Add",
-  "Constraint",
-  "ConditionalQuery",
-  "QueryConditions",
-  "Alter",
-  "Insert",
-  "Sort",
-  "Backup",
-  "Range",
-  "View",
-  "Column",
-  "Table",
-  "Database",
-  "Select",
-  "Join",
-  "Index",
-  "Limit",
-  "Update",
-  "Union",
-  "Identifier",
-  "Error"
+  "COMPARISON",
+  "ARITHMETIC",
+  "UNARY",
+  "ASSIGNMENT",
+  "ASSIGN_OPT",
+  "LOGICAL",
+  "NEGATION",
+  "NULLISH",
+  "TERNARY",
+  "IDENTITY",
+  "INSTANCE",
+  "TYPE",
+  "MEMBERSHIP",
+  "BITWISE",
+  "BOOLEAN",
+  "NULL",
+  "STRING",
+  "CHARACTER",
+  "INTEGER",
+  "DECIMAL",
+  "COMPLEX",
+  "FOR_LOOP",
+  "DO_LOOP",
+  "WHILE_LOOP",
+  "ITERATE",
+  "DATATYPE_INT",
+  "DATATYPE_DECIMAL",
+  "DATATYPE_COMPLEX",
+  "DATATYPE_BOOL",
+  "DATATYPE_STRING",
+  "DATATYPE_CHAR",
+  "DATATYPE_MISC",
+  "DATA_STRUCTURE",
+  "VARIABLE",
+  "CONDITIONAL",
+  "CONDITION_CONSEQ",
+  "CONSEQUENCE",
+  "SWITCH",
+  "CASE",
+  "FUNCTION",
+  "VOID",
+  "LAMBDA",
+  "EXECUTE",
+  "TRY",
+  "TRY_CONSEQUENCE",
+  "EXCEPTION",
+  "LINE_COMMENT",
+  "START_COMMENT",
+  "END_COMMENT",
+  "SPECIAL_COMMENT",
+  "ACCESMOD",
+  "NONACCESMOD",
+  "PAR_IZQ",
+  "PAR_DER",
+  "LLAVE_IZQ",
+  "LLAVE_DER",
+  "COR_IZQ",
+  "COR_DER",
+  "POINT",
+  "COMMA",
+  "COLON",
+  "SEMICOLON",
+  "CLASS",
+  "PARENT",
+  "INTERFACE",
+  "ENUM",
+  "EXTENDS",
+  "IMPLEMENTS",
+  "BREAK",
+  "CONTINUE",
+  "PASS",
+  "IMPORTING",
+  "RETURN",
+  "CREATE",
+  "DELETE",
+  "THIS",
+  "REFERENCE",
+  "ALIAS",
+  "ASYNCHRONOUS",
+  "PACKAGE",
+  "PRINT",
+  "HANDLER",
+  "MODIFIER",
+  "STORAGE",
+  "CAST",
+  "EVENT",
+  "GET",
+  "GOTO",
+  "MODULE",
+  "NAMESPACE",
+  "OF",
+  "OPERATOR",
+  "OPTION",
+  "PARTIAL",
+  "INCREMENT",
+  "DEBUG",
+  "STRUCTURE",
+  "ADD",
+  "CONSTRAINT",
+  "CONDITIONALQUERY",
+  "QUERY_CONDITIONS",
+  "ALTER",
+  "INSERT",
+  "SORT",
+  "BACKUP",
+  "RANGE",
+  "VIEW",
+  "COLUMN",
+  "TABLE",
+  "DATABASE",
+  "SELECT",
+  "JOIN",
+  "INDEX",
+  "LIMIT",
+  "UPDATE",
+  "UNION",
+  "IDENTIFIER",
+  "ERROR"
   };
 }
 
