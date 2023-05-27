@@ -59,7 +59,7 @@ Comparison = ("<"|">"|"=="|"!="|"<="|">=")
 Arithmetic  = ("+"|"-"|"*"|"/"|"**"|"//"|"%"|"Mod")
 Unary = ("++"|"--")
 Assignment = "="
-AssignOperation = ("="|"+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
+AssignOperation = ("+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
 Logical = ("&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor")
 Negation = "!"
 Nullish = "??"
@@ -101,9 +101,10 @@ Variable = ("var"|"Let")
 
 Conditional = ("if")
 ConditionConseq = ("elif")
-Switch = ("switch")
-Case = ("case") 
 Consequence = ("else")
+Switch = ("switch")
+Case = ("case")
+Default = ("default")
 Function = ("def"|"PROCEDURE"|"Sub"|"func")
 Lambda = ("lambda")
 Void = ("void")
@@ -119,7 +120,7 @@ SpecialComment = ("TODO"|"FIXME"|"REM")
 
 AccesMod = (
     "nonlocal"|"global"|"public"|"private"|
-    "protected"|"default"|"Shared"
+    "protected"|"Shared"
 )
 NonAccesMod = (
     "ReadOnly"|"const"|"final"|"abstract"|"static"|
@@ -147,7 +148,8 @@ Implements = ("implements")
 Break = ("break"|"End"|"Exit")
 Continue = ("continue")
 Pass = ("pass")
-Importing = ("import"|"from"|"requires"|"native"|"Using")
+Import = ("import"|"requires"|"native"|"Using")
+From = ("from")
 Return = ("return"|"yield")
 Create = ("new"|"CREATE")
 Delete = ("del"|"DELETE"|"DROP"|"TRUNCATE"|"Erase"|"RemoveHandler")
@@ -257,6 +259,7 @@ Union = ("UNION"|"UNION ALL")
 {Consequence}       {return symbol(yytext(), sym.CONSEQUENCE);}
 {Switch}            {return symbol(yytext(), sym.SWITCH);}
 {Case}              {return symbol(yytext(), sym.CASE);}
+{Default}           {return symbol(yytext(), sym.DEFAULT);}
 
 // Functions and Modifiers 
 {Function}          {return symbol(yytext(), sym.FUNCTION);}
@@ -287,7 +290,7 @@ Union = ("UNION"|"UNION ALL")
 {Point}             {return symbol(yytext(), sym.POINT);}
 {Comma}             {return symbol(yytext(), sym.COMMA);}
 {Colon}             {return symbol(yytext(), sym.COLON);}
-{SemiColon}         {return symbol(yytext(), sym.SEMICOLON);}
+{SemiColon}         {return symbol(yytext(), sym.SEMI);}
 
 // Misc
 {Class}             {return symbol(yytext(), sym.CLASS);}
@@ -299,7 +302,8 @@ Union = ("UNION"|"UNION ALL")
 {Break}             {return symbol(yytext(), sym.BREAK);}
 {Continue}          {return symbol(yytext(), sym.CONTINUE);}
 {Pass}              {return symbol(yytext(), sym.PASS);}
-{Importing}         {return symbol(yytext(), sym.IMPORTING);}
+{Import}            {return symbol(yytext(), sym.IMPORT);}
+{From}              {return symbol(yytext(), sym.FROM);}
 {Return}            {return symbol(yytext(), sym.RETURN);}
 {Create}            {return symbol(yytext(), sym.CREATE);}
 {Delete}            {return symbol(yytext(), sym.DELETE);}
@@ -349,7 +353,7 @@ Union = ("UNION"|"UNION ALL")
 {Update}            {return symbol(yytext(), sym.UPDATE);}
 {Union}             {return symbol(yytext(), sym.UNION);}
 
-{Identifier}        {return symbol(yytext(), sym.IDENTIFIER);}
+{Identifier}        {return symbol(yytext(), sym.ID);}
 //{}{return symbol(yytext(), sym.);}, yytext()
 
 [\s\t\n\r]          {/* Ignore space, tab, new line and carriage return characters */}

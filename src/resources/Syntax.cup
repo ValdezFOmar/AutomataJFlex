@@ -1,4 +1,4 @@
-import java_cup.runtime.*;
+import java_cup.runtime.Symbol;
 
 
 parser code {:
@@ -14,30 +14,55 @@ parser code {:
 :}
 
 
-terminal        COMPARISON, ARITHMETIC, UNARY, ASSIGNMENT, ASSIGN_OPT, LOGICAL, NEGATION, NULLISH, TERNARY,
-                IDENTITY, INSTANCE, TYPE, MEMBERSHIP, BITWISE, BOOLEAN, NULL, STRING, CHARACTER, INTEGER, DECIMAL,
-                COMPLEX, FOR_LOOP, DO_LOOP, WHILE_LOOP, ITERATE, DATATYPE_INT, DATATYPE_DECIMAL, DATATYPE_COMPLEX,
-                DATATYPE_BOOL, DATATYPE_STRING, DATATYPE_CHAR, DATATYPE_MISC, DATA_STRUCTURE, VARIABLE, CONDITIONAL,
-                CONDITION_CONSEQ, CONSEQUENCE, SWITCH, CASE, FUNCTION, VOID, LAMBDA, EXECUTE, TRY, TRY_CONSEQUENCE,
-                EXCEPTION, LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT, ACCESMOD, NONACCESMOD, PAR_IZQ,
-                PAR_DER, LLAVE_IZQ, LLAVE_DER, COR_IZQ, COR_DER, POINT, COMMA, COLON, SEMICOLON, CLASS, PARENT,
-                INTERFACE, ENUM, EXTENDS, IMPLEMENTS, BREAK, CONTINUE, PASS, IMPORTING, RETURN, CREATE, DELETE,
-                THIS, REFERENCE, ALIAS, ASYNCHRONOUS, PACKAGE, PRINT, HANDLER, MODIFIER, STORAGE, CAST, EVENT,
-                GET, GOTO, MODULE, NAMESPACE, OF, OPERATOR, OPTION, PARTIAL, INCREMENT, DEBUG, STRUCTURE, ADD,
-                CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSERT, SORT, BACKUP, RANGE, VIEW, COLUMN,
-                TABLE, DATABASE, SELECT, JOIN, INDEX, LIMIT, UPDATE, UNION, IDENTIFIER, ERROR;
+// ======== TERMINALES ========
+// Palabras Reservadas 
+terminal        ACCESMOD, NONACCESMOD, CLASS, PARENT, INTERFACE, ENUM, EXTENDS, IMPLEMENTS, CONTINUE,
+                PASS, IMPORT, FROM, CREATE, DELETE, THIS, REFERENCE, ALIAS, ASYNCHRONOUS, PACKAGE, PRINT;
+// Operadores
+terminal        COMPARISON, ARITHMETIC, UNARY, ASSIGNMENT, ASSIGN_OPT, LOGICAL, NEGATION, NULLISH,
+                TERNARY, IDENTITY, INSTANCE, TYPE, MEMBERSHIP, BITWISE;
+// Visual Basic
+terminal        HANDLER, MODIFIER, STORAGE, CAST, EVENT, GET, GOTO, MODULE, NAMESPACE, OF, OPERATOR, OPTION,
+                PARTIAL, INCREMENT, DEBUG, STRUCTURE;
+// SQL
+terminal        ADD, CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSERT, SORT, BACKUP, RANGE,
+                VIEW, COLUMN, TABLE, DATABASE, SELECT, JOIN, INDEX, LIMIT, UPDATE, UNION;
+// Comentarios
+terminal        LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT;
+// Condicional
+terminal        CONDITIONAL, CONDITION_CONSEQ, CONSEQUENCE, SWITCH, CASE, BREAK,DEFAULT, TRY, TRY_CONSEQUENCE, EXCEPTION;
+// Funciones
+terminal        FUNCTION, VOID, LAMBDA, EXECUTE, RETURN;
+// Separadores
+terminal        PAR_IZQ, PAR_DER, LLAVE_IZQ, LLAVE_DER, COR_IZQ, COR_DER, POINT, COMMA, COLON, SEMI;
+// Ciclos
+terminal        FOR_LOOP, DO_LOOP, WHILE_LOOP, ITERATE;
+// Tipos de dato
+terminal        DATATYPE_BOOL, DATATYPE_INT, DATATYPE_DECIMAL, DATATYPE_COMPLEX,
+                DATATYPE_STRING, DATATYPE_CHAR, DATATYPE_MISC, DATA_STRUCTURE, VARIABLE;
+// Literales
+terminal        BOOLEAN, NULL, STRING, CHARACTER, INTEGER, DECIMAL, COMPLEX;
+// Otro
+terminal        ID, ERROR;
 
-non terminal    incio, declara_funcion, sentencia;
+
+// ======== NO TERMINALES ========
+non terminal    inicio, importar, declara_clase, declara_funcion, sentencia, otra_sentencia;
 
 
-start with incio;
-
-
-incio ::= declara_funcion | sentencia {: System.out.println("Función"); :}
+// ======== GRAMATICA ========
+// Estructura del lenguaje
+//incio ::= importar declara_clase declara_funcion sentencia 
+start with inicio;
+inicio ::= declara_funcion sentencia otra_sentencia
 ;
-declara_funcion ::= FUNCTION IDENTIFIER PAR_IZQ PAR_DER LLAVE_IZQ sentencia LLAVE_DER
+
+otra_sentencia ::= DATATYPE_BOOL ID ASSIGNMENT BOOLEAN SEMI | /* empty */
+;
+// Funciones
+declara_funcion ::= FUNCTION ID PAR_IZQ PAR_DER LLAVE_IZQ sentencia LLAVE_DER
                 {: System.out.println("Función"); :}
 ;
-sentencia ::= DATATYPE_INT IDENTIFIER ASSIGNMENT INTEGER SEMICOLON
+sentencia ::= DATATYPE_INT ID ASSIGNMENT INTEGER SEMI |
                 {: System.out.println("sentencia"); :}
 ;

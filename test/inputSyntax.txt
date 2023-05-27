@@ -1,3 +1,5 @@
 def nombre_funcion () {
     int variable = 10;
 }
+
+boolean bo1 = false;
