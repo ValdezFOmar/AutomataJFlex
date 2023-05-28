@@ -1,6 +1,6 @@
 import java_cup.runtime.Symbol;
 
-
+// TODO: Mejor manejo de errores (Imprimir la linea y columna)
 parser code {:
     private Symbol s;
 
@@ -11,7 +11,7 @@ parser code {:
     public Symbol getS() {
         return this.s;
     }
-:}
+:};
 
 
 // ======== TERMINALES ========
@@ -30,7 +30,7 @@ terminal        ADD, CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSE
 // Comentarios
 terminal        LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT;
 // Condicional
-terminal        CONDITIONAL, CONDITION_CONSEQ, CONSEQUENCE, SWITCH, CASE, BREAK,DEFAULT, TRY, TRY_CONSEQUENCE, EXCEPTION;
+terminal        IF, ELIF, ELSE, SWITCH, CASE, BREAK,DEFAULT, TRY, TRY_CONSEQUENCE, EXCEPTION;
 // Funciones
 terminal        FUNCTION, VOID, LAMBDA, EXECUTE, RETURN;
 // Separadores
@@ -47,22 +47,169 @@ terminal        ID, ERROR;
 
 
 // ======== NO TERMINALES ========
-non terminal    inicio, importar, declara_clase, declara_funcion, sentencia, otra_sentencia;
+non terminal    inicio, importar_opcional, importar, declara_importacion;
+non terminal    clases_opcionales, clases, clase, atributos_opcionales, atributos;
+non terminal    funciones_opcionales, funciones, funcion, tipo_funcion, parametros, parametros_opcionales,
+                declara_parametros, mas_parametros, regresa_valor, ejecutar_funcion;
+non terminal    ciclo_while, evaluar_while, ciclo_do_while, ciclo_for, iterador, incremento;
+non terminal    estructura_if, condicion_opcional, condicion_elif, condicion_else, estrucura_try;
+non terminal    estructura_switch, switch_opciones, switch_literal, mas_switch_opciones, default_opcion,
+                bloque_codigo_switch;
+
+non terminal    declara_variable, literal, literal_numerico, tipo_dato, agregar_variable, variable_opr_unario;
+non terminal    bloque_codigo, instrucciones, instrucciones_opcionales, declara_instruccion, exp_logica;
 
 
 // ======== GRAMATICA ========
-// Estructura del lenguaje
-//incio ::= importar declara_clase declara_funcion sentencia 
+// Estructura del lenguaje (0)
 start with inicio;
-inicio ::= declara_funcion sentencia otra_sentencia
+inicio ::= importar_opcional clases_opcionales funciones_opcionales instrucciones_opcionales
+{:
+    System.out.println("-----------------------------");
+    System.out.println("Escaneo completado con exito.");
+    System.out.println("-----------------------------");
+:};
+
+// Importaciones (1)
+importar_opcional ::= importar |
+;
+importar ::= declara_importacion SEMI importar_opcional
+;
+declara_importacion ::= IMPORT ID | FROM ID IMPORT ID
 ;
 
-otra_sentencia ::= DATATYPE_BOOL ID ASSIGNMENT BOOLEAN SEMI | /* empty */
+// Clases (2)
+clases_opcionales ::= clases |
 ;
-// Funciones
-declara_funcion ::= FUNCTION ID PAR_IZQ PAR_DER LLAVE_IZQ sentencia LLAVE_DER
-                {: System.out.println("Función"); :}
+clases ::= clase clases_opcionales
 ;
-sentencia ::= DATATYPE_INT ID ASSIGNMENT INTEGER SEMI |
-                {: System.out.println("sentencia"); :}
+clase ::= CLASS ID LLAVE_IZQ atributos_opcionales funciones_opcionales LLAVE_DER
 ;
+atributos_opcionales ::= atributos |
+;
+atributos ::= declara_variable atributos_opcionales
+;
+
+// Funciones (2)
+funciones_opcionales ::= funciones |
+;
+funciones ::= funcion funciones_opcionales
+;
+funcion ::= FUNCTION ID COLON tipo_funcion
+;
+tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN regresa_valor SEMI LLAVE_DER |
+                    VOID parametros bloque_codigo
+;
+parametros ::= PAR_IZQ parametros_opcionales PAR_DER
+;
+parametros_opcionales ::= declara_parametros |
+;
+declara_parametros ::= tipo_dato ID mas_parametros
+;
+mas_parametros ::= COMMA declara_parametros |
+;
+regresa_valor ::= literal | ID
+;
+ejecutar_funcion ::= EXECUTE ID PAR_IZQ PAR_DER SEMI
+;
+
+// Ciclo While (4)
+ciclo_while ::= evaluar_while bloque_codigo
+;
+evaluar_while ::= WHILE_LOOP PAR_IZQ exp_logica PAR_DER
+;
+
+// Ciclo Do While (5)
+ciclo_do_while ::= DO_LOOP bloque_codigo evaluar_while
+;
+
+// Ciclo For (6)
+ciclo_for ::= FOR_LOOP PAR_IZQ iterador exp_logica SEMI incremento PAR_DER bloque_codigo
+;
+iterador ::= declara_variable | ID
+;
+incremento ::= agregar_variable | variable_opr_unario
+;
+
+// Switch (7)
+estructura_switch ::= SWITCH PAR_IZQ ID PAR_DER LLAVE_IZQ switch_opciones default_opcion LLAVE_DER
+;
+switch_opciones ::= CASE COLON switch_literal bloque_codigo_switch mas_switch_opciones
+;
+switch_literal ::= CHARACTER | STRING | INTEGER | DECIMAL | COMPLEX
+;
+mas_switch_opciones ::= switch_opciones |
+;
+default_opcion ::= DEFAULT COLON bloque_codigo_switch
+;
+bloque_codigo_switch ::= LLAVE_IZQ instrucciones_opcionales BREAK SEMI LLAVE_DER
+;
+
+// if, elif, else (8)
+estructura_if ::= IF PAR_IZQ exp_logica PAR_DER bloque_codigo condicion_opcional condicion_else
+;
+condicion_opcional ::= condicion_elif |
+;
+condicion_elif ::= ELIF PAR_IZQ exp_logica PAR_DER bloque_codigo condicion_opcional
+;
+condicion_else ::= ELSE bloque_codigo |
+;
+
+// Declara variables (9)
+declara_variable ::=    DATATYPE_BOOL ID ASSIGNMENT BOOLEAN SEMI |
+                        DATATYPE_INT ID ASSIGNMENT INTEGER SEMI |
+                        DATATYPE_DECIMAL ID ASSIGNMENT DECIMAL SEMI |
+                        DATATYPE_COMPLEX ID ASSIGNMENT COMPLEX SEMI |
+                        DATATYPE_STRING ID ASSIGNMENT STRING SEMI |
+                        DATATYPE_CHAR ID ASSIGNMENT CHARACTER SEMI
+;
+
+// try, catch (10)
+estrucura_try ::= TRY COLON bloque_codigo EXCEPTION COLON bloque_codigo
+;
+
+// -------- ESTRUCTURAS INVENTADAS --------
+
+
+// -------- OTROS --------
+// Variables
+tipo_dato ::=   DATATYPE_BOOL |
+                DATATYPE_INT |
+                DATATYPE_DECIMAL |
+                DATATYPE_COMPLEX |
+                DATATYPE_STRING |
+                DATATYPE_CHAR |
+                DATATYPE_MISC |
+                DATA_STRUCTURE |
+;
+literal ::= literal_numerico | BOOLEAN | NULL | STRING | CHARACTER
+;
+literal_numerico ::= INTEGER | DECIMAL | COMPLEX
+;
+agregar_variable ::= ID ASSIGN_OPT literal_numerico
+;
+variable_opr_unario ::= ID UNARY
+;
+
+// Estructras genericas
+bloque_codigo ::= LLAVE_IZQ instrucciones_opcionales LLAVE_DER
+;
+instrucciones_opcionales ::= instrucciones |
+;
+instrucciones ::= declara_instruccion instrucciones_opcionales
+;
+declara_instruccion ::= declara_variable |
+                        agregar_variable SEMI |
+                        variable_opr_unario SEMI |
+                        ciclo_while |
+                        ciclo_do_while |
+                        ciclo_for |
+                        estructura_if |
+                        estructura_switch |
+                        estrucura_try |
+                        ejecutar_funcion
+;
+// TODO: Expresion logica mas compleja
+exp_logica ::= BOOLEAN
+;
+// TODO: Definir operaciones aritmeticas

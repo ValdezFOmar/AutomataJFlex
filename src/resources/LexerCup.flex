@@ -60,8 +60,8 @@ Arithmetic  = ("+"|"-"|"*"|"/"|"**"|"//"|"%"|"Mod")
 Unary = ("++"|"--")
 Assignment = "="
 AssignOperation = ("+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
-Logical = ("&&"|"||"|"and"|"or"|"not"|"AndAlso"|"OrElse"|"Xor")
-Negation = "!"
+Logical = ("&&"|"||"|"and"|"or"|"AndAlso"|"OrElse"|"Xor")
+Negation = ("!"|"not")
 Nullish = "??"
 Ternary = "?"
 Identity = ("is"|"is not")
@@ -74,7 +74,7 @@ Bitwise = ("&"|"|"|"^"|"~"|"<<"|">>")
 Boolean = ([Tt]"rue")|([Ff]"alse")
 Null = [Nn]"ull"|"None"|"Nothing"
 String = \"[^\'\"]*\"
-Character = \'[^\'\"\\]?\'
+Character = \'[^\'\"\\]\'
 Integer = {SIGN}?{DIGIT}+           // [+-]?[0-9]+
 Decimal = {Integer}{DEC}?{EXPO}?    // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?
 Complex = {Decimal}"i"              // ([+-]?[0-9]+)("."[0-9]+)?([Ee][+-]?[0-9]+)?"i"
@@ -254,9 +254,9 @@ Union = ("UNION"|"UNION ALL")
 {Variable}          {return symbol(yytext(), sym.VARIABLE);}
 
 // Conditionals
-{Conditional}       {return symbol(yytext(), sym.CONDITIONAL);}
-{ConditionConseq}   {return symbol(yytext(), sym.CONDITION_CONSEQ);}
-{Consequence}       {return symbol(yytext(), sym.CONSEQUENCE);}
+{Conditional}       {return symbol(yytext(), sym.IF);}
+{ConditionConseq}   {return symbol(yytext(), sym.ELIF);}
+{Consequence}       {return symbol(yytext(), sym.ELSE);}
 {Switch}            {return symbol(yytext(), sym.SWITCH);}
 {Case}              {return symbol(yytext(), sym.CASE);}
 {Default}           {return symbol(yytext(), sym.DEFAULT);}

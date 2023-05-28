@@ -27,6 +27,7 @@ public class sym {
   public static final int COMMA = 97;
   public static final int JOIN = 66;
   public static final int PAR_DER = 91;
+  public static final int ELIF = 76;
   public static final int MEMBERSHIP = 34;
   public static final int UNARY = 24;
   public static final int INCREMENT = 49;
@@ -63,7 +64,6 @@ public class sym {
   public static final int NONACCESMOD = 3;
   public static final int DO_LOOP = 101;
   public static final int EXECUTE = 88;
-  public static final int CONDITIONAL = 75;
   public static final int SWITCH = 78;
   public static final int VARIABLE = 112;
   public static final int VOID = 86;
@@ -72,9 +72,9 @@ public class sym {
   public static final int MODIFIER = 37;
   public static final int TERNARY = 30;
   public static final int TRY = 82;
+  public static final int ELSE = 77;
   public static final int POINT = 96;
   public static final int BREAK = 80;
-  public static final int CONDITION_CONSEQ = 76;
   public static final int SPECIAL_COMMENT = 74;
   public static final int STORAGE = 38;
   public static final int REFERENCE = 17;
@@ -99,6 +99,7 @@ public class sym {
   public static final int DEBUG = 50;
   public static final int error = 1;
   public static final int CONTINUE = 10;
+  public static final int IF = 75;
   public static final int ID = 120;
   public static final int DATATYPE_BOOL = 104;
   public static final int IDENTITY = 31;
@@ -118,7 +119,6 @@ public class sym {
   public static final int UPDATE = 69;
   public static final int INSERT = 57;
   public static final int STRING = 115;
-  public static final int CONSEQUENCE = 77;
   public static final int RANGE = 60;
   public static final int BITWISE = 35;
   public static final int COMPARISON = 22;
@@ -204,9 +204,9 @@ public class sym {
   "START_COMMENT",
   "END_COMMENT",
   "SPECIAL_COMMENT",
-  "CONDITIONAL",
-  "CONDITION_CONSEQ",
-  "CONSEQUENCE",
+  "IF",
+  "ELIF",
+  "ELSE",
   "SWITCH",
   "CASE",
   "BREAK",

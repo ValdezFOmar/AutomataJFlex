@@ -1,5 +1,89 @@
-def nombre_funcion () {
+import unaLibreria;
+from otraLibreria import unMetodo;
+import otraLibreriaMas;
+
+
+class una_Clase {
+    int unAtributo = 34;
+    string otroAtributo = "Lorem ipsum";
+
+    def unMetodo: void () {
+        boolean bo1 = True;
+    }
+
+    def getAtributo: int () {
+        return unAtributo;
+    } 
+}
+
+class otra_Clase {
+    decimal pi = 3.1416;
+
+    def getPI: decimal () {
+        return pi;
+    }
+}
+
+
+def nombre_funcion: void () {
     int variable = 10;
 }
 
+string text = "test";
+char unCaracter = 'N';
+double myDouble = 54.5;
+
+for (int i = 0; i <= 10; i++) {
+    print("Some random text");
+}
+
+if (text == "prueba")
+{
+    myDouble += 47;
+}
+elif (test == "otra cosa")
+{
+    myDouble *= 2;
+}
+else
+{
+    myDouble -= 10e2;
+}
+
 boolean bo1 = false;
+boolean bo2 = true;
+int32 number = 0;
+
+while (number != 40) {
+    if (bo1 || bo2) {
+        number++;
+    }
+}
+
+do {
+    if (bo1 || bo2) {
+        number++;
+    }
+} while (number != 40)
+
+try: {
+    char opt = 'A';
+    switch (opt) {
+        case: 'A' {
+            break;
+        }
+        case: 'B' {
+            break;
+        }
+        case: 'C' {
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+} catch: {
+    string super_error = "chale";
+}
+
+decimal valor = (2 - (4 + 5 * 8) % 2) / 10;
