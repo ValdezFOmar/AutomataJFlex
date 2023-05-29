@@ -56,7 +56,12 @@ Identifier = [a-zA-Z][a-zA-Z0-9_]*
 
 // Operators
 Comparison = ("<"|">"|"=="|"!="|"<="|">=")
-Arithmetic  = ("+"|"-"|"*"|"/"|"**"|"//"|"%"|"Mod")
+Suma  = "+"
+Resta = "-"
+Producto = "*"
+Division = ("/"|"//")
+Mod = ("%"|"Mod")
+Potencia = "**"
 Unary = ("++"|"--")
 Assignment = "="
 AssignOperation = ("+="|"-="|"*="|"/="|"**="|"//="|"%="|"&="|"|="|"^="|">>="|"<<=")
@@ -182,7 +187,7 @@ Operator = ("Operator")
 Option = ("Option")
 Partial = ("Partial")
 Increment = ("Step")
-Debug = ("Stop")
+Stop = ("Stop")
 Structure = ("Structure")
 
 // SQL Keywords
@@ -213,7 +218,12 @@ Union = ("UNION"|"UNION ALL")
 // Lexical Rules
 // Operators
 {Comparison}        {return symbol(yytext(), sym.COMPARISON);}
-{Arithmetic}        {return symbol(yytext(), sym.ARITHMETIC);}
+{Suma}              {return symbol(yytext(), sym.SUMA);}
+{Resta}             {return symbol(yytext(), sym.RESTA);}
+{Producto}          {return symbol(yytext(), sym.PRODUCTO);}
+{Division}          {return symbol(yytext(), sym.DIVISION);}
+{Mod}               {return symbol(yytext(), sym.MOD);}
+{Potencia}          {return symbol(yytext(), sym.POTENCIA);}
 {Unary}             {return symbol(yytext(), sym.UNARY);}
 {Assignment}        {return symbol(yytext(), sym.ASSIGNMENT);}
 {AssignOperation}   {return symbol(yytext(), sym.ASSIGN_OPT);}
@@ -329,7 +339,7 @@ Union = ("UNION"|"UNION ALL")
 {Option}            {return symbol(yytext(), sym.OPTION);}
 {Partial}           {return symbol(yytext(), sym.PARTIAL);}
 {Increment}         {return symbol(yytext(), sym.INCREMENT);}
-{Debug}             {return symbol(yytext(), sym.DEBUG);}
+{Stop}              {return symbol(yytext(), sym.STOP);}
 {Structure}         {return symbol(yytext(), sym.STRUCTURE);}
 
 // SQL

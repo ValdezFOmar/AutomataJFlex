@@ -87,3 +87,10 @@ try: {
 }
 
 decimal valor = (2 - (4 + 5 * 8) % 2) / 10;
+
+try: {
+    Call una_funcion();
+}
+catch: {
+    print("Ocurrio un error.");
+}

@@ -19,11 +19,11 @@ parser code {:
 terminal        ACCESMOD, NONACCESMOD, CLASS, PARENT, INTERFACE, ENUM, EXTENDS, IMPLEMENTS, CONTINUE,
                 PASS, IMPORT, FROM, CREATE, DELETE, THIS, REFERENCE, ALIAS, ASYNCHRONOUS, PACKAGE, PRINT;
 // Operadores
-terminal        COMPARISON, ARITHMETIC, UNARY, ASSIGNMENT, ASSIGN_OPT, LOGICAL, NEGATION, NULLISH,
-                TERNARY, IDENTITY, INSTANCE, TYPE, MEMBERSHIP, BITWISE;
+terminal        COMPARISON, SUMA, RESTA, PRODUCTO, DIVISION, MOD, POTENCIA, UNARY, ASSIGNMENT, ASSIGN_OPT,
+                LOGICAL, NEGATION, NULLISH, TERNARY, IDENTITY, INSTANCE, TYPE, MEMBERSHIP, BITWISE;
 // Visual Basic
 terminal        HANDLER, MODIFIER, STORAGE, CAST, EVENT, GET, GOTO, MODULE, NAMESPACE, OF, OPERATOR, OPTION,
-                PARTIAL, INCREMENT, DEBUG, STRUCTURE;
+                PARTIAL, INCREMENT, STOP, STRUCTURE;
 // SQL
 terminal        ADD, CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSERT, SORT, BACKUP, RANGE,
                 VIEW, COLUMN, TABLE, DATABASE, SELECT, JOIN, INDEX, LIMIT, UPDATE, UNION;
@@ -50,15 +50,27 @@ terminal        ID, ERROR;
 non terminal    inicio, importar_opcional, importar, declara_importacion;
 non terminal    clases_opcionales, clases, clase, atributos_opcionales, atributos;
 non terminal    funciones_opcionales, funciones, funcion, tipo_funcion, parametros, parametros_opcionales,
-                declara_parametros, mas_parametros, regresa_valor, ejecutar_funcion;
+                declara_parametros, mas_parametros, ejecutar_funcion;
 non terminal    ciclo_while, evaluar_while, ciclo_do_while, ciclo_for, iterador, incremento;
 non terminal    estructura_if, condicion_opcional, condicion_elif, condicion_else, estrucura_try;
 non terminal    estructura_switch, switch_opciones, switch_literal, mas_switch_opciones, default_opcion,
                 bloque_codigo_switch;
 
-non terminal    declara_variable, literal, literal_numerico, tipo_dato, agregar_variable, variable_opr_unario;
-non terminal    bloque_codigo, instrucciones, instrucciones_opcionales, declara_instruccion, exp_logica;
+non terminal    declara_variable, literal_numerico, tipo_dato, agregar_variable, asigna_variable,
+                valor, variable_opr_unario;
+non terminal    bloque_codigo, instrucciones, instrucciones_opcionales, declara_instruccion, imprime_consola, 
+                exp_logica, exp_logica_p, comparacion, comparacion_p, operacion_logica, operacion_logica_p,
+                valor_comp, exp_aritmetica, exp_a_p, termino, termino_p, factor;
 
+
+// ======== PRECEDENCIA ========
+precedence left SUMA, RESTA;
+precedence left MOD;
+precedence left PRODUCTO, DIVISION;
+precedence right POTENCIA;
+
+precedence left LOGICAL;
+precedence left COMPARISON;
 
 // ======== GRAMATICA ========
 // Estructura del lenguaje (0)
@@ -97,7 +109,7 @@ funciones ::= funcion funciones_opcionales
 ;
 funcion ::= FUNCTION ID COLON tipo_funcion
 ;
-tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN regresa_valor SEMI LLAVE_DER |
+tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER |
                     VOID parametros bloque_codigo
 ;
 parametros ::= PAR_IZQ parametros_opcionales PAR_DER
@@ -107,8 +119,6 @@ parametros_opcionales ::= declara_parametros |
 declara_parametros ::= tipo_dato ID mas_parametros
 ;
 mas_parametros ::= COMMA declara_parametros |
-;
-regresa_valor ::= literal | ID
 ;
 ejecutar_funcion ::= EXECUTE ID PAR_IZQ PAR_DER SEMI
 ;
@@ -156,14 +166,13 @@ condicion_else ::= ELSE bloque_codigo |
 ;
 
 // Declara variables (9)
-declara_variable ::=    DATATYPE_BOOL ID ASSIGNMENT BOOLEAN SEMI |
-                        DATATYPE_INT ID ASSIGNMENT INTEGER SEMI |
-                        DATATYPE_DECIMAL ID ASSIGNMENT DECIMAL SEMI |
-                        DATATYPE_COMPLEX ID ASSIGNMENT COMPLEX SEMI |
+declara_variable ::=    DATATYPE_BOOL ID ASSIGNMENT exp_logica SEMI |
+                        DATATYPE_INT ID ASSIGNMENT exp_aritmetica SEMI |
+                        DATATYPE_DECIMAL ID ASSIGNMENT exp_aritmetica SEMI |
+                        DATATYPE_COMPLEX ID ASSIGNMENT exp_aritmetica SEMI |
                         DATATYPE_STRING ID ASSIGNMENT STRING SEMI |
                         DATATYPE_CHAR ID ASSIGNMENT CHARACTER SEMI
 ;
-
 // try, catch (10)
 estrucura_try ::= TRY COLON bloque_codigo EXCEPTION COLON bloque_codigo
 ;
@@ -180,18 +189,22 @@ tipo_dato ::=   DATATYPE_BOOL |
                 DATATYPE_STRING |
                 DATATYPE_CHAR |
                 DATATYPE_MISC |
-                DATA_STRUCTURE |
+                DATA_STRUCTURE
 ;
-literal ::= literal_numerico | BOOLEAN | NULL | STRING | CHARACTER
+asigna_variable ::= ID ASSIGNMENT valor
+;
+valor ::= exp_aritmetica | NULL | STRING | CHARACTER | BOOLEAN
 ;
 literal_numerico ::= INTEGER | DECIMAL | COMPLEX
 ;
-agregar_variable ::= ID ASSIGN_OPT literal_numerico
+agregar_variable ::= ID ASSIGN_OPT exp_aritmetica
 ;
 variable_opr_unario ::= ID UNARY
 ;
 
 // Estructras genericas
+imprime_consola ::= PRINT PAR_IZQ STRING PAR_DER SEMI
+;
 bloque_codigo ::= LLAVE_IZQ instrucciones_opcionales LLAVE_DER
 ;
 instrucciones_opcionales ::= instrucciones |
@@ -199,6 +212,7 @@ instrucciones_opcionales ::= instrucciones |
 instrucciones ::= declara_instruccion instrucciones_opcionales
 ;
 declara_instruccion ::= declara_variable |
+                        asigna_variable SEMI|
                         agregar_variable SEMI |
                         variable_opr_unario SEMI |
                         ciclo_while |
@@ -207,9 +221,43 @@ declara_instruccion ::= declara_variable |
                         estructura_if |
                         estructura_switch |
                         estrucura_try |
-                        ejecutar_funcion
+                        ejecutar_funcion |
+                        imprime_consola
 ;
-// TODO: Expresion logica mas compleja
-exp_logica ::= BOOLEAN
+
+// Expresion logica mas compleja
+exp_logica ::=  ID exp_logica_p | 
+                BOOLEAN operacion_logica |
+                valor_comp comparacion
 ;
-// TODO: Definir operaciones aritmeticas
+exp_logica_p ::= comparacion | operacion_logica
+;
+comparacion ::= COMPARISON comparacion_p
+;
+comparacion_p ::= ID | valor_comp
+;
+operacion_logica ::= LOGICAL operacion_logica_p |
+;
+operacion_logica_p ::= ID | BOOLEAN
+;
+valor_comp ::= literal_numerico | STRING | CHARACTER | NULL
+;
+
+// Operaciones aritmeticas
+exp_aritmetica ::= termino exp_a_p
+;
+exp_a_p ::= termino exp_a_p |
+;
+termino ::= factor termino_p
+;
+termino_p ::=   SUMA factor termino_p |
+                RESTA factor termino_p |
+                DIVISION factor termino_p |
+                PRODUCTO factor termino_p |
+                MOD factor termino_p |
+                POTENCIA factor termino_p |
+;
+factor ::=  PAR_IZQ exp_aritmetica PAR_DER |
+            literal_numerico |
+            ID
+;
