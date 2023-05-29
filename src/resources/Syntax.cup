@@ -1,6 +1,6 @@
 import java_cup.runtime.Symbol;
 
-// TODO: Mejor manejo de errores (Imprimir la linea y columna)
+
 parser code {:
     private Symbol s;
 
@@ -57,7 +57,9 @@ non terminal    estructura_switch, switch_opciones, switch_literal, mas_switch_o
                 bloque_codigo_switch;
 
 non terminal    ejecuta_paralelo, lista_funciones, otra_funcion_paralela;
-non terminal    timeout, revisa, lista_id, mas_id, regresa_revision, haz_backup;
+non terminal    timeout, revisa, lista_id, mas_id, regresa_revision, haz_backup, variable_evento;
+non terminal    valores_aleatorios, estructura_datos, valores_estructura, selecciona_aleatorio;
+non terminal    ver_codigo_consola, conexion_bd, insertar_tabla;
 
 non terminal    declara_variable, literal_numerico, tipo_dato, agregar_variable, asigna_variable,
                 valor, variable_opr_unario;
@@ -175,7 +177,8 @@ declara_variable ::=    DATATYPE_BOOL ID ASSIGNMENT exp_logica SEMI |
                         DATATYPE_DECIMAL ID ASSIGNMENT exp_aritmetica SEMI |
                         DATATYPE_COMPLEX ID ASSIGNMENT exp_aritmetica SEMI |
                         DATATYPE_STRING ID ASSIGNMENT STRING SEMI |
-                        DATATYPE_CHAR ID ASSIGNMENT CHARACTER SEMI
+                        DATATYPE_CHAR ID ASSIGNMENT CHARACTER SEMI |
+                        DATA_STRUCTURE ID ASSIGNMENT estructura_datos SEMI
 ;
 
 // try, catch (10)
@@ -197,6 +200,8 @@ timeout ::= STOP COR_IZQ INTEGER COR_DER bloque_codigo ELSE bloque_codigo
 ;
 
 // Generar estructura con numeros aleatorios (13)
+valores_aleatorios ::= POINT POINT POINT COR_DER PAR_IZQ INTEGER PAR_DER
+;
 
 // Revisar variables (14)
 revisa ::= CONSTRAINT ID COLON COR_IZQ lista_id COR_DER SEMI
@@ -212,6 +217,26 @@ regresa_revision ::= CONSTRAINT ID
 haz_backup ::= BACKUP COLON COR_IZQ lista_id COR_DER ARROW STRING SEMI
 ;
 
+// (16)
+selecciona_aleatorio ::= SELECT PAR_IZQ INTEGER PAR_DER OF COR_IZQ lista_id COR_DER
+;
+
+// Evento para escuchar cambios en una variable (17)
+variable_evento ::= EVENT ID COLON ARROW bloque_codigo
+;
+
+// (18)
+ver_codigo_consola ::= VIEW bloque_codigo
+;
+
+// (19)
+conexion_bd ::= DATABASE ARROW STRING SEMI
+;
+
+// (20)
+insertar_tabla ::= TABLE COR_IZQ STRING COR_DER ARROW COR_IZQ lista_id COR_DER SEMI
+;
+
 
 // ---------------- OTROS ----------------
 // Variables
@@ -223,6 +248,10 @@ tipo_dato ::=   DATATYPE_BOOL |
                 DATATYPE_CHAR |
                 DATATYPE_MISC |
                 DATA_STRUCTURE
+;
+estructura_datos ::= COR_IZQ valores_estructura | selecciona_aleatorio
+;
+valores_estructura ::= valores_aleatorios | lista_id COR_DER
 ;
 asigna_variable ::= ID ASSIGNMENT valor
 ;
@@ -260,7 +289,11 @@ declara_instruccion ::= declara_variable |
                         ejecuta_paralelo |
                         timeout |
                         revisa |
-                        haz_backup
+                        haz_backup |
+                        variable_evento |
+                        ver_codigo_consola |
+                        conexion_bd |
+                        insertar_tabla
 ;
 
 // Expresion logica

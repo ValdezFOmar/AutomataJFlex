@@ -95,7 +95,7 @@ catch: {
     print("Ocurrio un error.");
 }
 
-numero = super_funcion();
+numero = Call super_funcion();
 
 package Call: [
     funcion_uno(),
@@ -117,3 +117,33 @@ id = CHECK track;
 BACKUP: [
     id_1, id_2, id_3, id_4, id_5
 ] -> "miArchivo.csv";
+
+Event mi_variable: -> {
+    print("Cambio datectado");
+    Call una_funcion();
+    
+    if (True) {
+        print("Bloque if");
+    }
+}
+
+Array mi_arreglo = [id_1, id_2];
+
+Array otro_arreglo = [...](5);
+
+Array nuevo_arr = SELECT(2) Of [
+    id_1, id_2, id_3
+];
+
+VIEW {
+    while (id_1 < 10) {
+        id_1 *= 2;
+    }
+    if (true) {
+        id_1 -= 10;
+    }
+}
+
+DATABASE -> "my_database@localhost";
+
+TABLE["my_table"] -> [id_1, id_2, id_3];
