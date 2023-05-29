@@ -43,7 +43,7 @@ terminal        DATATYPE_BOOL, DATATYPE_INT, DATATYPE_DECIMAL, DATATYPE_COMPLEX,
 // Literales
 terminal        BOOLEAN, NULL, STRING, CHARACTER, INTEGER, DECIMAL, COMPLEX;
 // Otro
-terminal        ID, ERROR;
+terminal        ID, ERROR, ARROW;
 
 
 // ======== NO TERMINALES ========
@@ -55,6 +55,9 @@ non terminal    ciclo_while, evaluar_while, ciclo_do_while, ciclo_for, iterador,
 non terminal    estructura_if, condicion_opcional, condicion_elif, condicion_else, estrucura_try;
 non terminal    estructura_switch, switch_opciones, switch_literal, mas_switch_opciones, default_opcion,
                 bloque_codigo_switch;
+
+non terminal    ejecuta_paralelo, lista_funciones, otra_funcion_paralela;
+non terminal    timeout, revisa, lista_id, mas_id, regresa_revision, haz_backup;
 
 non terminal    declara_variable, literal_numerico, tipo_dato, agregar_variable, asigna_variable,
                 valor, variable_opr_unario;
@@ -71,6 +74,7 @@ precedence right POTENCIA;
 
 precedence left LOGICAL;
 precedence left COMPARISON;
+
 
 // ======== GRAMATICA ========
 // Estructura del lenguaje (0)
@@ -120,7 +124,7 @@ declara_parametros ::= tipo_dato ID mas_parametros
 ;
 mas_parametros ::= COMMA declara_parametros |
 ;
-ejecutar_funcion ::= EXECUTE ID PAR_IZQ PAR_DER SEMI
+ejecutar_funcion ::= ID PAR_IZQ PAR_DER
 ;
 
 // Ciclo While (4)
@@ -173,14 +177,43 @@ declara_variable ::=    DATATYPE_BOOL ID ASSIGNMENT exp_logica SEMI |
                         DATATYPE_STRING ID ASSIGNMENT STRING SEMI |
                         DATATYPE_CHAR ID ASSIGNMENT CHARACTER SEMI
 ;
+
 // try, catch (10)
 estrucura_try ::= TRY COLON bloque_codigo EXCEPTION COLON bloque_codigo
 ;
 
-// -------- ESTRUCTURAS INVENTADAS --------
+
+// ---------------- ESTRUCTURAS INVENTADAS ----------------
+// Ejecucion de funciones en paralelo (11)
+ejecuta_paralelo ::= PACKAGE EXECUTE COLON COR_IZQ lista_funciones COR_DER
+;
+lista_funciones ::= ejecutar_funcion otra_funcion_paralela
+;
+otra_funcion_paralela ::= COMMA lista_funciones |
+;
+
+// Timeout para la ejecucion de codigo (12)
+timeout ::= STOP COR_IZQ INTEGER COR_DER bloque_codigo ELSE bloque_codigo
+;
+
+// Generar estructura con numeros aleatorios (13)
+
+// Revisar variables (14)
+revisa ::= CONSTRAINT ID COLON COR_IZQ lista_id COR_DER SEMI
+;
+lista_id ::= ID mas_id
+;
+mas_id ::= COMMA lista_id |
+;
+regresa_revision ::= CONSTRAINT ID
+;
+
+// Backup de variables (15)
+haz_backup ::= BACKUP COLON COR_IZQ lista_id COR_DER ARROW STRING SEMI
+;
 
 
-// -------- OTROS --------
+// ---------------- OTROS ----------------
 // Variables
 tipo_dato ::=   DATATYPE_BOOL |
                 DATATYPE_INT |
@@ -193,7 +226,8 @@ tipo_dato ::=   DATATYPE_BOOL |
 ;
 asigna_variable ::= ID ASSIGNMENT valor
 ;
-valor ::= exp_aritmetica | NULL | STRING | CHARACTER | BOOLEAN
+valor ::=   exp_aritmetica | NULL | STRING | CHARACTER | BOOLEAN | 
+            EXECUTE ejecutar_funcion | regresa_revision
 ;
 literal_numerico ::= INTEGER | DECIMAL | COMPLEX
 ;
@@ -221,11 +255,15 @@ declara_instruccion ::= declara_variable |
                         estructura_if |
                         estructura_switch |
                         estrucura_try |
-                        ejecutar_funcion |
-                        imprime_consola
+                        EXECUTE ejecutar_funcion SEMI|
+                        imprime_consola |
+                        ejecuta_paralelo |
+                        timeout |
+                        revisa |
+                        haz_backup
 ;
 
-// Expresion logica mas compleja
+// Expresion logica
 exp_logica ::=  ID exp_logica_p | 
                 BOOLEAN operacion_logica |
                 valor_comp comparacion

@@ -94,3 +94,26 @@ try: {
 catch: {
     print("Ocurrio un error.");
 }
+
+numero = super_funcion();
+
+package Call: [
+    funcion_uno(),
+    funcion_dos(),
+    funcion_tres()
+]
+
+Stop[5] {
+    Call funcion();
+}
+else {
+    Call otra_funcion();
+}
+
+CHECK track: [id_1, id_2, id_3, id_4, id_5];
+boolean id = false;
+id = CHECK track;
+
+BACKUP: [
+    id_1, id_2, id_3, id_4, id_5
+] -> "miArchivo.csv";

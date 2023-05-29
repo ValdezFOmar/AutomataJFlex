@@ -13,7 +13,7 @@ public class Main {
         String input_lexer = "test/inputLexer.txt";
         String input_syntax = "test/inputSyntax.txt";
 
-        System.out.print("Enter option -> (1) Lexer (2) Syntax: ");
+        System.out.print("Escoge una opcion -> (1) Lexico (2) Sintactico: ");
         String awnser = System.console().readLine();
         try {
             int opt = Integer.parseInt(awnser);
@@ -30,7 +30,7 @@ public class Main {
                     break;
             }
         } catch (NumberFormatException e) {
-            System.out.println("Invalid option. Enter a Number.");
+            System.out.println("Opcion Invalida. Introduce un numero.");
         }
     }
 

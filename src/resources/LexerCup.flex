@@ -74,6 +74,7 @@ Instance = ("instanceof")
 Type = ("TypeOf")
 Membership = ("in"|"not in")
 Bitwise = ("&"|"|"|"^"|"~"|"<<"|">>")
+Arrow = "->"
 
 // Literals
 Boolean = ([Tt]"rue")|([Ff]"alse")
@@ -236,6 +237,7 @@ Union = ("UNION"|"UNION ALL")
 {Type}              {return symbol(yytext(), sym.TYPE);}
 {Membership}        {return symbol(yytext(), sym.MEMBERSHIP);}
 {Bitwise}           {return symbol(yytext(), sym.BITWISE);}
+{Arrow}             {return symbol(yytext(), sym.ARROW);}
 
 // Literals
 {Boolean}           {return symbol(yytext(), sym.BOOLEAN);}

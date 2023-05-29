@@ -8,6 +8,7 @@ public class sym {
   /* terminals */
   public static final int DIVISION = 26;
   public static final int FROM = 13;
+  public static final int ARROW = 127;
   public static final int COLUMN = 67;
   public static final int TYPE = 38;
   public static final int IMPLEMENTS = 9;
@@ -260,7 +261,8 @@ public class sym {
   "DECIMAL",
   "COMPLEX",
   "ID",
-  "ERROR"
+  "ERROR",
+  "ARROW"
   };
 }
 
