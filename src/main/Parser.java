@@ -818,6 +818,10 @@ public class Parser extends java_cup.runtime.lr_parser {
 
 
     private Symbol s;
+    
+    private int _num_importes = 0;
+    private int _num_clases = 0;
+    private int _num_funciones = 0;
 
     public void syntax_error(Symbol s) {
         this.s = s;
@@ -871,9 +875,13 @@ class CUP$Parser$actions {
             {
               Object RESULT =null;
 		
+    System.out.println("=============================");
+    System.out.println("Librerias importadas: " + _num_importes);
+    System.out.println("Clases declaradas: " + _num_clases);
+    System.out.println("Funciones declaradas: " + _num_funciones);
     System.out.println("-----------------------------");
     System.out.println("Escaneo completado con exito.");
-    System.out.println("-----------------------------");
+    System.out.println("=============================");
 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("inicio",0, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -910,7 +918,7 @@ class CUP$Parser$actions {
           case 5: // declara_importacion ::= IMPORT ID 
             {
               Object RESULT =null;
-
+		 _num_importes++; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declara_importacion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -919,7 +927,7 @@ class CUP$Parser$actions {
           case 6: // declara_importacion ::= FROM ID IMPORT ID 
             {
               Object RESULT =null;
-
+		 _num_importes++; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("declara_importacion",3, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -955,7 +963,7 @@ class CUP$Parser$actions {
           case 10: // clase ::= CLASS ID LLAVE_IZQ atributos_opcionales funciones_opcionales LLAVE_DER 
             {
               Object RESULT =null;
-
+		 _num_clases++; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("clase",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-5)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1027,7 +1035,7 @@ class CUP$Parser$actions {
           case 18: // tipo_funcion ::= tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER 
             {
               Object RESULT =null;
-
+		 _num_funciones++; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("tipo_funcion",12, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-7)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
@@ -1036,7 +1044,7 @@ class CUP$Parser$actions {
           case 19: // tipo_funcion ::= VOID parametros bloque_codigo 
             {
               Object RESULT =null;
-
+		 _num_funciones++; 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("tipo_funcion",12, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-2)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;

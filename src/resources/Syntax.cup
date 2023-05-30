@@ -3,6 +3,10 @@ import java_cup.runtime.Symbol;
 
 parser code {:
     private Symbol s;
+    
+    private int _num_importes = 0;
+    private int _num_clases = 0;
+    private int _num_funciones = 0;
 
     public void syntax_error(Symbol s) {
         this.s = s;
@@ -83,17 +87,22 @@ precedence left COMPARISON;
 start with inicio;
 inicio ::= importar_opcional clases_opcionales funciones_opcionales instrucciones_opcionales
 {:
+    System.out.println("=============================");
+    System.out.println("Librerias importadas: " + _num_importes);
+    System.out.println("Clases declaradas: " + _num_clases);
+    System.out.println("Funciones declaradas: " + _num_funciones);
     System.out.println("-----------------------------");
     System.out.println("Escaneo completado con exito.");
-    System.out.println("-----------------------------");
+    System.out.println("=============================");
 :};
 
 // Importaciones (1)
-importar_opcional ::= importar |
+importar_opcional ::= importar |      
 ;
 importar ::= declara_importacion SEMI importar_opcional
 ;
-declara_importacion ::= IMPORT ID | FROM ID IMPORT ID
+declara_importacion ::= IMPORT ID {: _num_importes++; :} |
+                        FROM ID IMPORT ID {: _num_importes++; :}
 ;
 
 // Clases (2)
@@ -101,7 +110,7 @@ clases_opcionales ::= clases |
 ;
 clases ::= clase clases_opcionales
 ;
-clase ::= CLASS ID LLAVE_IZQ atributos_opcionales funciones_opcionales LLAVE_DER
+clase ::= CLASS ID LLAVE_IZQ atributos_opcionales funciones_opcionales LLAVE_DER {: _num_clases++; :}
 ;
 atributos_opcionales ::= atributos |
 ;
@@ -115,8 +124,9 @@ funciones ::= funcion funciones_opcionales
 ;
 funcion ::= FUNCTION ID COLON tipo_funcion
 ;
-tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER |
-                    VOID parametros bloque_codigo
+tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER 
+                    {: _num_funciones++; :}
+                    | VOID parametros bloque_codigo {: _num_funciones++; :}
 ;
 parametros ::= PAR_IZQ parametros_opcionales PAR_DER
 ;
