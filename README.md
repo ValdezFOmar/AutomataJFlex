@@ -7,7 +7,7 @@ source utils/scripts/convert.sh
 
 or PowerShell script:
 ```PS1
-utils/scripts/Convert
+./utils/scripts/Convert.ps1
 ```
 
 Then execute the Main java file:
@@ -15,19 +15,21 @@ Then execute the Main java file:
     src/main/Main.java
 
 # Resources
-<!---
-## Packages,Libs,JDK,JFlex,etc.
-TODO. Add this info
---->
-To be added.
+- [JFlex](https://www.jflex.de/) (Lexical analyzer generator)
+- [CUP](http://www2.cs.tum.edu/projects/cup/) (LALR parser generator)
 
-# Keywords
+## Grammar
+Complete set of grammar rules in:
+
+    doc/grammar.ods
+
+## Keywords
 Complete list of keywords:
 
     doc/kws_list.csv
 
 Total number of keywords = `300`<br>
-Gathered from from this sources: 
+Gathered from this sources:
 - [GO DataTypes](https://www.geeksforgeeks.org/data-types-in-go/)
 - [GO Keywords](https://go.dev/ref/spec#Keywords)
 - [Java Keywords](https://www.w3schools.com/java/java_ref_keywords.asp)
