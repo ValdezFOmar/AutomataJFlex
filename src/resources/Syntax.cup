@@ -97,7 +97,7 @@ inicio ::= importar_opcional clases_opcionales funciones_opcionales instruccione
 :};
 
 // Importaciones (1)
-importar_opcional ::= importar |      
+importar_opcional ::= importar |
 ;
 importar ::= declara_importacion SEMI importar_opcional
 ;
@@ -124,7 +124,7 @@ funciones ::= funcion funciones_opcionales
 ;
 funcion ::= FUNCTION ID COLON tipo_funcion
 ;
-tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER 
+tipo_funcion ::=    tipo_dato parametros LLAVE_IZQ instrucciones_opcionales RETURN valor SEMI LLAVE_DER
                     {: _num_funciones++; :}
                     | VOID parametros bloque_codigo {: _num_funciones++; :}
 ;
@@ -265,7 +265,7 @@ valores_estructura ::= valores_aleatorios | lista_id COR_DER
 ;
 asigna_variable ::= ID ASSIGNMENT valor
 ;
-valor ::=   exp_aritmetica | NULL | STRING | CHARACTER | BOOLEAN | 
+valor ::=   exp_aritmetica | NULL | STRING | CHARACTER | BOOLEAN |
             EXECUTE ejecutar_funcion | regresa_revision
 ;
 literal_numerico ::= INTEGER | DECIMAL | COMPLEX
@@ -307,7 +307,7 @@ declara_instruccion ::= declara_variable |
 ;
 
 // Expresion logica
-exp_logica ::=  ID exp_logica_p | 
+exp_logica ::=  ID exp_logica_p |
                 BOOLEAN operacion_logica |
                 valor_comp comparacion
 ;

@@ -26,7 +26,7 @@ public class Main {
                     AnalizadorSintactico(input_syntax);
                     break;
                 default:
-                    System.out.println("Invalid option.");
+                    System.out.println("Opcion invalida.");
                     break;
             }
         } catch (NumberFormatException e) {
