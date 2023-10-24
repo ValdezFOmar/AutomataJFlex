@@ -1,25 +1,29 @@
 # Execute Program
 
-Run BASH script:
+## Installation
+
+You'll need to:
+- Make sure that [`jflex`](#binaries) is available in your path.
+- Download and extract [CUP](#binaries)'s `*.jar` files into a directory called `lib` in the root directory of the repository.
+
+## Compilation and Running
+
+You'll need GNU Make to compile the files:
 ```sh
-./scripts/convert.sh
+cd AutomataJFlex/
+make convert
+make compile
 ```
 
-<!--
-or PowerShell script:
-```PS1
-./utils/scripts/Convert.ps1
-```
--->
-
-Then execute the Main java file:
-
-```
-src/main/Main.java
+Then, for running:
+```sh
+make run
 ```
 
 
 # Resources
+
+## Binaries
 - [JFlex](https://www.jflex.de/) (Lexical analyzer generator)
 - [CUP](http://www2.cs.tum.edu/projects/cup/) (LALR parser generator)
 
