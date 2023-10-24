@@ -1,4 +1,5 @@
 #!/bin/bash 
+
 #Script for converting .flex and .cup to .java file
 jflex --nobak -q -d src/main/ src/resources/Lexer.flex
 jflex --nobak -q -d src/main/ src/resources/LexerCup.flex

@@ -1,18 +1,23 @@
 # Execute Program
 
 Run BASH script:
-```BASH
-source utils/scripts/convert.sh
+```sh
+./scripts/convert.sh
 ```
 
+<!--
 or PowerShell script:
 ```PS1
 ./utils/scripts/Convert.ps1
 ```
+-->
 
 Then execute the Main java file:
 
-    src/main/Main.java
+```
+src/main/Main.java
+```
+
 
 # Resources
 - [JFlex](https://www.jflex.de/) (Lexical analyzer generator)
