@@ -119,10 +119,8 @@ Try = ("try"|"assert"|"with")
 TryConsequence = ("finally"|"Resume"|"Then")
 Exception = ("throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent")
 
-LineComment = ("#")
-StartComment = ("/*")
-EndComment = ("*/")
-SpecialComment = ("TODO"|"FIXME"|"REM")
+LineComment = "#".*
+BlockComment = ("/*"[^]*"*/")
 
 AccesMod = (
     "nonlocal"|"global"|"public"|"private"|
@@ -282,11 +280,9 @@ Union = ("UNION"|"UNION ALL")
 {TryConsequence}    {return symbol(yytext(), sym.TRY_CONSEQUENCE);}
 {Exception}         {return symbol(yytext(), sym.EXCEPTION);}
 
-// Comments
-{LineComment}       {return symbol(yytext(), sym.LINE_COMMENT);}
-{StartComment}      {return symbol(yytext(), sym.START_COMMENT);}
-{EndComment}        {return symbol(yytext(), sym.END_COMMENT);}
-{SpecialComment}    {return symbol(yytext(), sym.SPECIAL_COMMENT);}
+// Comments         // Ignore comments
+{LineComment}       {/*return symbol(yytext(), sym.LINE_COMMENT);*/}
+{BlockComment}      {/*ignore block comments*/}
 
 // Modifiers
 {AccesMod}          {return symbol(yytext(), sym.ACCESMOD);}
@@ -372,3 +368,5 @@ Union = ("UNION"|"UNION ALL")
 [^]                 { /* throw new Error("Illegal character <"+yytext()+">"); */
                         error("Illegal character <"+ yytext()+">");
                     }
+
+/* vim: set syntax=lex: */

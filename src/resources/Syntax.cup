@@ -32,7 +32,7 @@ terminal        HANDLER, MODIFIER, STORAGE, CAST, EVENT, GET, GOTO, MODULE, NAME
 terminal        ADD, CONSTRAINT, CONDITIONALQUERY, QUERY_CONDITIONS, ALTER, INSERT, SORT, BACKUP, RANGE,
                 VIEW, COLUMN, TABLE, DATABASE, SELECT, JOIN, INDEX, LIMIT, UPDATE, UNION;
 // Comentarios
-terminal        LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT;
+//terminal        LINE_COMMENT, START_COMMENT, END_COMMENT, SPECIAL_COMMENT;
 // Condicional
 terminal        IF, ELIF, ELSE, SWITCH, CASE, BREAK,DEFAULT, TRY, TRY_CONSEQUENCE, EXCEPTION;
 // Funciones
@@ -342,3 +342,5 @@ factor ::=  PAR_IZQ exp_aritmetica PAR_DER |
             literal_numerico |
             ID
 ;
+
+// vim: set syntax=jflex:
