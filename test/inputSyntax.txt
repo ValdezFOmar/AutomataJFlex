@@ -4,11 +4,6 @@ import unaLibreria;
 from otraLibreria import unMetodo;
 import otraLibreriaMas;
 
-/****
-This is
-a *blok
-comment*
-*/
 
 class una_Clase {
     int unAtributo = 34;

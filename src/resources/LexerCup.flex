@@ -227,14 +227,14 @@ Union = ("UNION"|"UNION ALL")
 {Assignment}        {return symbol(yytext(), sym.ASSIGNMENT);}
 {AssignOperation}   {return symbol(yytext(), sym.ASSIGN_OPT);}
 {Logical}           {return symbol(yytext(), sym.LOGICAL);}
-{Negation}          {return symbol(yytext(), sym.NEGATION);}
-{Nullish}           {return symbol(yytext(), sym.NULLISH);}
-{Ternary}           {return symbol(yytext(), sym.TERNARY);}
-{Identity}          {return symbol(yytext(), sym.IDENTITY);}
-{Instance}          {return symbol(yytext(), sym.INSTANCE);}
-{Type}              {return symbol(yytext(), sym.TYPE);}
-{Membership}        {return symbol(yytext(), sym.MEMBERSHIP);}
-{Bitwise}           {return symbol(yytext(), sym.BITWISE);}
+// {Negation}          {return symbol(yytext(), sym.NEGATION);}
+// {Nullish}           {return symbol(yytext(), sym.NULLISH);}
+// {Ternary}           {return symbol(yytext(), sym.TERNARY);}
+// {Identity}          {return symbol(yytext(), sym.IDENTITY);}
+// {Instance}          {return symbol(yytext(), sym.INSTANCE);}
+// {Type}              {return symbol(yytext(), sym.TYPE);}
+// {Membership}        {return symbol(yytext(), sym.MEMBERSHIP);}
+// {Bitwise}           {return symbol(yytext(), sym.BITWISE);}
 {Arrow}             {return symbol(yytext(), sym.ARROW);}
 
 // Literals
@@ -250,7 +250,7 @@ Union = ("UNION"|"UNION ALL")
 {ForLoop}           {return symbol(yytext(), sym.FOR_LOOP);}
 {DoLoop}            {return symbol(yytext(), sym.DO_LOOP);}
 {WhileLoop}         {return symbol(yytext(), sym.WHILE_LOOP);}
-{Iterate}           {return symbol(yytext(), sym.ITERATE);}
+// {Iterate}           {return symbol(yytext(), sym.ITERATE);}
 
 // Variables
 {DataTypeInt}       {return symbol(yytext(), sym.DATATYPE_INT);}
@@ -261,7 +261,7 @@ Union = ("UNION"|"UNION ALL")
 {DataTypeChar}      {return symbol(yytext(), sym.DATATYPE_CHAR);}
 {DataTypeMisc}      {return symbol(yytext(), sym.DATATYPE_MISC);}
 {DataStructure}     {return symbol(yytext(), sym.DATA_STRUCTURE);}
-{Variable}          {return symbol(yytext(), sym.VARIABLE);}
+// {Variable}          {return symbol(yytext(), sym.VARIABLE);}
 
 // Conditionals
 {Conditional}       {return symbol(yytext(), sym.IF);}
@@ -274,10 +274,10 @@ Union = ("UNION"|"UNION ALL")
 // Functions and Modifiers 
 {Function}          {return symbol(yytext(), sym.FUNCTION);}
 {Void}              {return symbol(yytext(), sym.VOID);}
-{Lambda}            {return symbol(yytext(), sym.LAMBDA);}
+// {Lambda}            {return symbol(yytext(), sym.LAMBDA);}
 {Execute}           {return symbol(yytext(), sym.EXECUTE);}
 {Try}               {return symbol(yytext(), sym.TRY);}
-{TryConsequence}    {return symbol(yytext(), sym.TRY_CONSEQUENCE);}
+// {TryConsequence}    {return symbol(yytext(), sym.TRY_CONSEQUENCE);}
 {Exception}         {return symbol(yytext(), sym.EXCEPTION);}
 
 // Comments         // Ignore comments
@@ -285,8 +285,8 @@ Union = ("UNION"|"UNION ALL")
 {BlockComment}      {/*ignore block comments*/}
 
 // Modifiers
-{AccesMod}          {return symbol(yytext(), sym.ACCESMOD);}
-{NonAccesMod}       {return symbol(yytext(), sym.NONACCESMOD);}
+// {AccesMod}          {return symbol(yytext(), sym.ACCESMOD);}
+// {NonAccesMod}       {return symbol(yytext(), sym.NONACCESMOD);}
 
 // Separators
 {ParIzq}            {return symbol(yytext(), sym.PAR_IZQ);}
@@ -302,64 +302,64 @@ Union = ("UNION"|"UNION ALL")
 
 // Misc
 {Class}             {return symbol(yytext(), sym.CLASS);}
-{Parent}            {return symbol(yytext(), sym.PARENT);}
-{Interface}         {return symbol(yytext(), sym.INTERFACE);}
-{Enum}              {return symbol(yytext(), sym.ENUM);}
-{Extends}           {return symbol(yytext(), sym.EXTENDS);}
-{Implements}        {return symbol(yytext(), sym.IMPLEMENTS);}
+// {Parent}            {return symbol(yytext(), sym.PARENT);}
+// {Interface}         {return symbol(yytext(), sym.INTERFACE);}
+// {Enum}              {return symbol(yytext(), sym.ENUM);}
+// {Extends}           {return symbol(yytext(), sym.EXTENDS);}
+// {Implements}        {return symbol(yytext(), sym.IMPLEMENTS);}
 {Break}             {return symbol(yytext(), sym.BREAK);}
-{Continue}          {return symbol(yytext(), sym.CONTINUE);}
-{Pass}              {return symbol(yytext(), sym.PASS);}
+// {Continue}          {return symbol(yytext(), sym.CONTINUE);}
+// {Pass}              {return symbol(yytext(), sym.PASS);}
 {Import}            {return symbol(yytext(), sym.IMPORT);}
 {From}              {return symbol(yytext(), sym.FROM);}
 {Return}            {return symbol(yytext(), sym.RETURN);}
-{Create}            {return symbol(yytext(), sym.CREATE);}
-{Delete}            {return symbol(yytext(), sym.DELETE);}
-{This}              {return symbol(yytext(), sym.THIS);}
-{Reference}         {return symbol(yytext(), sym.REFERENCE);}
-{Alias}             {return symbol(yytext(), sym.ALIAS);}
-{Asynchronous}      {return symbol(yytext(), sym.ASYNCHRONOUS);}
+// {Create}            {return symbol(yytext(), sym.CREATE);}
+// {Delete}            {return symbol(yytext(), sym.DELETE);}
+// {This}              {return symbol(yytext(), sym.THIS);}
+// {Reference}         {return symbol(yytext(), sym.REFERENCE);}
+// {Alias}             {return symbol(yytext(), sym.ALIAS);}
+// {Asynchronous}      {return symbol(yytext(), sym.ASYNCHRONOUS);}
 {Package}           {return symbol(yytext(), sym.PACKAGE);}
 {Print}             {return symbol(yytext(), sym.PRINT);}
 
 // Visual Basic
-{Handler}           {return symbol(yytext(), sym.HANDLER);}
-{Modifier}          {return symbol(yytext(), sym.MODIFIER);}
-{Storage}           {return symbol(yytext(), sym.STORAGE);}
-{Cast}              {return symbol(yytext(), sym.CAST);}
+// {Handler}           {return symbol(yytext(), sym.HANDLER);}
+// {Modifier}          {return symbol(yytext(), sym.MODIFIER);}
+// {Storage}           {return symbol(yytext(), sym.STORAGE);}
+// {Cast}              {return symbol(yytext(), sym.CAST);}
 {Event}             {return symbol(yytext(), sym.EVENT);}
-{Get}               {return symbol(yytext(), sym.GET);}
-{GoTo}              {return symbol(yytext(), sym.GOTO);}
-{Module}            {return symbol(yytext(), sym.MODULE);}
-{Namespace}         {return symbol(yytext(), sym.NAMESPACE);}
+// {Get}               {return symbol(yytext(), sym.GET);}
+// {GoTo}              {return symbol(yytext(), sym.GOTO);}
+// {Module}            {return symbol(yytext(), sym.MODULE);}
+// {Namespace}         {return symbol(yytext(), sym.NAMESPACE);}
 {Of}                {return symbol(yytext(), sym.OF);}
-{Operator}          {return symbol(yytext(), sym.OPERATOR);}
-{Option}            {return symbol(yytext(), sym.OPTION);}
-{Partial}           {return symbol(yytext(), sym.PARTIAL);}
-{Increment}         {return symbol(yytext(), sym.INCREMENT);}
+// {Operator}          {return symbol(yytext(), sym.OPERATOR);}
+// {Option}            {return symbol(yytext(), sym.OPTION);}
+// {Partial}           {return symbol(yytext(), sym.PARTIAL);}
+// {Increment}         {return symbol(yytext(), sym.INCREMENT);}
 {Stop}              {return symbol(yytext(), sym.STOP);}
-{Structure}         {return symbol(yytext(), sym.STRUCTURE);}
+// {Structure}         {return symbol(yytext(), sym.STRUCTURE);}
 
 // SQL
-{Add}               {return symbol(yytext(), sym.ADD);}
+// {Add}               {return symbol(yytext(), sym.ADD);}
 {Constraint}        {return symbol(yytext(), sym.CONSTRAINT);}
-{ConditionalQuery}  {return symbol(yytext(), sym.CONDITIONALQUERY);}
-{QueryConditions}   {return symbol(yytext(), sym.QUERY_CONDITIONS);}
-{Alter}             {return symbol(yytext(), sym.ALTER);}
-{Insert}            {return symbol(yytext(), sym.INSERT);}
-{Sort}              {return symbol(yytext(), sym.SORT);}
+// {ConditionalQuery}  {return symbol(yytext(), sym.CONDITIONALQUERY);}
+// {QueryConditions}   {return symbol(yytext(), sym.QUERY_CONDITIONS);}
+// {Alter}             {return symbol(yytext(), sym.ALTER);}
+// {Insert}            {return symbol(yytext(), sym.INSERT);}
+// {Sort}              {return symbol(yytext(), sym.SORT);}
 {Backup}            {return symbol(yytext(), sym.BACKUP);}
-{Range}             {return symbol(yytext(), sym.RANGE);}
+// {Range}             {return symbol(yytext(), sym.RANGE);}
 {View}              {return symbol(yytext(), sym.VIEW);}
-{Column}            {return symbol(yytext(), sym.COLUMN);}
+// {Column}            {return symbol(yytext(), sym.COLUMN);}
 {Table}             {return symbol(yytext(), sym.TABLE);}
 {Database}          {return symbol(yytext(), sym.DATABASE);}
 {Select}            {return symbol(yytext(), sym.SELECT);}
-{Join}              {return symbol(yytext(), sym.JOIN);}
-{Index}             {return symbol(yytext(), sym.INDEX);}
-{Limit}             {return symbol(yytext(), sym.LIMIT);}
-{Update}            {return symbol(yytext(), sym.UPDATE);}
-{Union}             {return symbol(yytext(), sym.UNION);}
+// {Join}              {return symbol(yytext(), sym.JOIN);}
+// {Index}             {return symbol(yytext(), sym.INDEX);}
+// {Limit}             {return symbol(yytext(), sym.LIMIT);}
+// {Update}            {return symbol(yytext(), sym.UPDATE);}
+// {Union}             {return symbol(yytext(), sym.UNION);}
 
 {Identifier}        {return symbol(yytext(), sym.ID);}
 //{}{return symbol(yytext(), sym.);}, yytext()
