@@ -28,7 +28,18 @@ compile:
 	javac --class-path $(classpath) -d $(compiled_bins) $(java_src_dir)/*
 
 
+.SILENT: compile-main
+compile-main:
+	echo "Compiling..."
+	javac --class-path $(classpath) -d $(compiled_bins) $(java_src_dir)/Main.java
+
+
 # Run the Main.java file
 .SILENT: run
 run:
 	java --class-path $(bin_classpath) Main
+
+
+.SILENT: with-args
+with-args:
+	java --class-path $(bin_classpath) Main parser test/inputSyntax.txt
