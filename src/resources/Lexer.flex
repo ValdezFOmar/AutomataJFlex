@@ -111,10 +111,8 @@ Try = ("try"|"assert"|"with")
 TryConsequence = ("finally"|"Resume"|"Then")
 Exception = ("throw"|"raise"|"catch"|"except"|"Error"|"RaiseEvent")
 
-LineComment = ("#")
-StartComment = ("/*")
-EndComment = ("*/")
-SpecialComment = ("TODO"|"FIXME"|"REM")
+LineComment = "#".*
+BlockComment = ("/*"[^]*"*/")
 
 AccesMod = (
     "nonlocal"|"global"|"public"|"private"|
@@ -253,10 +251,8 @@ Union = ("UNION"|"UNION ALL")
 {TryConsequence}    {return foundSymbol("Consecuencia Itentar", yytext(), yyline, yycolumn);}
 {Exception}     {return foundSymbol("Excepcion", yytext(), yyline, yycolumn);}
 
-{LineComment}   {return foundSymbol("Comentario en linea", yytext(), yyline, yycolumn);}
-{StartComment}  {return foundSymbol("Inicia comentario", yytext(), yyline, yycolumn);}
-{EndComment}    {return foundSymbol("Termina comentario", yytext(), yyline, yycolumn);}
-{SpecialComment}    {return foundSymbol("Comentario especial", yytext(), yyline, yycolumn);}
+{LineComment}   {/*return foundSymbol("Comentario en linea", yytext(), yyline, yycolumn);*/}
+{BlockComment}  {/*ignore block comment */}
 
 {AccesMod}      {return foundSymbol("Modificador de Acceso", yytext(), yyline, yycolumn);}
 {NonAccesMod}   {return foundSymbol("Modificador de No Acceso", yytext(), yyline, yycolumn);}
