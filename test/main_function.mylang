@@ -1,0 +1,12 @@
+# vim: set syntax=mylang:
+
+func main: void() {
+    boolean cond1 = True;
+    boolean cond2 = False;
+
+    if (cond1 and cond2) {
+        string a = "test";
+    } else {
+        print("Not true");
+    }
+}
